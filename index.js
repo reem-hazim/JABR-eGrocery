@@ -53,6 +53,11 @@ app.get('/login', (req, res)=>{
 	res.render('login', {title})
 })
 
+app.get('/register', (req, res)=>{
+	const title = "Abraj Register"
+	res.render('register', {title})
+})
+
 app.get('*', (req, res)=>{
 	res.send("Sorry, the page you requested doesn't exist!")
 })
