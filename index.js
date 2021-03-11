@@ -42,10 +42,20 @@ app.get('/', (req, res)=>{
 	res.render('home', {title})
 })
 
-// app.get('/item/:itemName', (req, res)=>{
-// 	const {itemName} = req.params;
-// 	res.send(`Looking at ${itemName} item`)
-// })
+app.get('/item/:itemName', (req, res)=>{
+	const {itemName} = req.params;
+	res.send(`Looking at ${itemName} item`)
+})
+
+app.get('/login', (req, res)=>{
+	const title = "Abraj Login"
+	res.render('login', {title})
+})
+
+app.get('/item/:itemName', (req, res)=>{
+	const {itemName} = req.params;
+	res.send(`Looking at ${itemName} item`)
+})
 
 app.get('*', (req, res)=>{
 	res.send("Sorry, the page you requested doesn't exist!")
