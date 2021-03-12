@@ -15,6 +15,7 @@ mongoose.connect('mongodb://localhost:27017/abrajTest', {useNewUrlParser: true, 
 	})
 
 app.use(express.static(path.join(__dirname, '/static')));
+app.use(express.urlencoded({extended: true}))
 
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, '/views'));
@@ -23,6 +24,12 @@ app.set('views', path.join(__dirname, '/views'));
 app.get('/', (req, res)=>{
 	const title = "Abraj eGrocery"
 	res.render('home', {title})
+})
+
+app.post('/register', async (req, res)=> {
+	const newUser = new User(req.body);
+	await newUser.save();
+	res.redirect('/login');
 })
 
 // Just a demo

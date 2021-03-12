@@ -3,20 +3,15 @@
 	<%- include('partials/navbar') %>
 	<h1>Abraj Register</h1>
 	<div class="main">
-    <form>
+    <form action="/register" method="POST">
       <div class="row">
         <div class="twelve">
-          <input type="text" placeholder="Username" class="u-full-width" required>
+          <input type="text" placeholder="Email" id="email" name="email" class="u-full-width" required>
         </div>
       </div>
       <div class="row">
         <div class="twelve">
-          <input type="text" placeholder="Email" class="u-full-width" required>
-        </div>
-      </div>
-      <div class="row">
-        <div class="twelve">
-          <input type="password" placeholder="Password" class="u-full-width" required>
+          <input type="password" placeholder="Password" id="password" name="password" class="u-full-width" required>
         </div>
       </div>
       <div class="row">
