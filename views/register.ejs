@@ -1,0 +1,39 @@
+<%- include('partials/head')%>
+<body>
+	<%- include('partials/navbar') %>
+	<h1>Abraj Register</h1>
+	<div class="main">
+    <form>
+      <div class="row">
+        <div class="twelve">
+          <input type="text" placeholder="Username" class="u-full-width" required>
+        </div>
+      </div>
+      <div class="row">
+        <div class="twelve">
+          <input type="text" placeholder="Email" class="u-full-width" required>
+        </div>
+      </div>
+      <div class="row">
+        <div class="twelve">
+          <input type="password" placeholder="Password" class="u-full-width" required>
+        </div>
+      </div>
+      <div class="row">
+        <div class="twelve">
+          <input type="password" placeholder="Re-enter Password" class="u-full-width" required>
+        </div>
+      </div>
+      <div class="row">
+        <div class="twelve">
+          <input type="submit" class="button-primary u-full-width" value="Register">
+        </div>
+      </div>
+    </form>
+    <p>
+      Returning User? <a href="/login">Login here</a>
+    </p>
+  </div>
+	<%- include('partials/footer') %>
+</body>
+</html>

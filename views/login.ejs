@@ -3,23 +3,26 @@
 	<%- include('partials/navbar') %>
 	<h1>Abraj Login</h1>
 	<div class="main">
-      <form>
-        <div class="row">
-          <div class="twelve">
-            <input type="text" placeholder="Username*" class="u-full-width" required>
-          </div>
-        </div>
-        <div class="row">
-          <div class="twelve">
-            <input type="password" placeholder="Password*" class="u-full-width" required>
-          </div>
-        </div>
-        <div class="row">
-          <div class="twelve">
-            <input type="submit" name="" class="button-primary u-full-width" value="Login">
-          </div>
-        </div>
-      </form>
+		<form>
+			<div class="row">
+				<div class="twelve">
+					<input type="text" placeholder="Username" class="u-full-width" required>
+				</div>
+			</div>
+			<div class="row">
+				<div class="twelve">
+					<input type="password" placeholder="Password" class="u-full-width" required>
+				</div>
+			</div>
+			<div class="row">
+				<div class="twelve">
+					<input type="submit" name="" class="button-primary u-full-width" value="Login">
+				</div>
+			</div>
+		</form>
+     	<p>
+      		New User? <a href="/register">Register here</a>
+  		</p>
     </div>
 	<%- include('partials/footer') %>
 </body>

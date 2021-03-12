@@ -37,7 +37,7 @@ app.get('/login', (req, res)=>{
 })
 
 app.get('/register', (req, res)=>{
-	const title = "Abraj Registration"
+	const title = "Abraj Register"
 	res.render('register', {title})
 })
 
