@@ -1,6 +1,7 @@
 const express = require("express");
 const path = require('path');
-const mongoose = require('mongoose')
+const mongoose = require('mongoose');
+const User = require('./models/user');
 
 // Set up
 const app = express();
@@ -12,24 +13,6 @@ mongoose.connect('mongodb://localhost:27017/abrajTest', {useNewUrlParser: true, 
 		console.log("Error connecting to MongoDB")
 		console.log(err)
 	})
-
-// Users schema
-const userSchema = new mongoose.Schema({
-	username: String,
-	password: String,
-	address: String,
-	phone_number: String,
-
-});
-
-// Mongoose model
-const User = mongoose.model('User', userSchema);
-const reem = new User({
-	username: "Reem", 
-	password: "hello", 
-	address:"Dubai, UAE", 
-	phone_number:"055 839 3788"
-});
 
 app.use(express.static(path.join(__dirname, '/static')));
 
@@ -51,6 +34,11 @@ app.get('/', (req, res)=>{
 app.get('/login', (req, res)=>{
 	const title = "Abraj Login"
 	res.render('login', {title})
+})
+
+app.get('/register', (req, res)=>{
+	const title = "Abraj Registration"
+	res.render('register', {title})
 })
 
 app.get('*', (req, res)=>{
