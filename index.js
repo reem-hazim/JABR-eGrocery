@@ -1,8 +1,11 @@
-// Required packages
+// Require packages
 const express = require("express");
 const path = require('path');
 const mongoose = require('mongoose');
 const User = require('./models/user');
+
+// Validator for email and password:
+// https://www.npmjs.com/package/validator
 
 // Set up
 const app = express();
