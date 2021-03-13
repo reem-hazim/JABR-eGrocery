@@ -25,7 +25,7 @@ app.set('views', path.join(__dirname, '/views'));
 
 // Home page
 app.get('/', (req, res)=>{
-	const title = "Abraj eGrocery"
+	const title = "JABR eGrocery"
 	res.render('home', {title})
 })
 
@@ -33,7 +33,7 @@ app.get('/', (req, res)=>{
 
 // Form
 app.get('/register', (req, res)=>{
-	const title = "Abraj Register"
+	const title = "JABR Register"
 	res.render('register', {title})
 })
 
@@ -50,7 +50,7 @@ app.post('/register', async (req, res)=> {
 
 // Login
 app.get('/login', (req, res)=>{
-	const title = "Abraj Login"
+	const title = "JABR Login"
 	res.render('login', {title})
 })
 
