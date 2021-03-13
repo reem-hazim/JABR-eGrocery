@@ -21,13 +21,38 @@
       </div>
       <div class="row">
         <div class="twelve">
-          <input type="submit" class="button-primary u-full-width" value="Register">
+          <input type="submit" class="button-primary u-full-width" id="register" value="Register">
         </div>
       </div>
     </form>
     <p>
       Returning User? <a href="/login">Login here</a>
     </p>
+    <script>
+    	var password = document.getElementById("password"), confirm_password = document.getElementById("confirm_password"), email = document.getElementById("email");
+
+		function validatePassword(){
+			if(password.value != confirm_password.value) {
+		    	confirm_password.setCustomValidity("Passwords Don't Match");
+		  	} else {
+		    	confirm_password.setCustomValidity('');
+		  	}
+		}
+
+		function validateEmail(){
+			const res = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  			if (res.test(email.value)){
+  				email.setCustomValidity('');
+			} else {
+				email.setCustomValidity("Not a Valid Email");
+			}
+		}
+
+		password.onchange = validatePassword;
+		confirm_password.onkeyup = validatePassword;
+		register.onclick = validateEmail;
+
+    </script>
   </div>
 	<%- include('partials/footer') %>
 </body>
