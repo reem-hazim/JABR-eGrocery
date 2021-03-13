@@ -1,3 +1,4 @@
+// Required packages
 const express = require("express");
 const path = require('path');
 const mongoose = require('mongoose');
@@ -21,35 +22,41 @@ app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, '/views'));
 
 // Routes
+
+// Home page
 app.get('/', (req, res)=>{
 	const title = "Abraj eGrocery"
 	res.render('home', {title})
 })
 
-app.post('/register', async (req, res)=> {
-	const newUser = new User(req.body);
-	await newUser.save();
-	res.redirect('/login');
-})
+// Registration
 
-// Just a demo
-// app.get('/item/:itemName', (req, res)=>{
-// 	const {itemName} = req.params;
-// 	res.send(`Looking at ${itemName} item`)
-// })
-
-app.get('/login', (req, res)=>{
-	const title = "Abraj Login"
-	res.render('login', {title})
-})
-
+// Form
 app.get('/register', (req, res)=>{
 	const title = "Abraj Register"
 	res.render('register', {title})
 })
 
+// Save new user to database
+app.post('/register', async (req, res)=> {
+	const newUser = new User(req.body);
+	try {
+		await newUser.save();
+		res.redirect('/login');
+	} catch(e){
+		res.status(400).send('<h3>' + e.message+ '</h3>');
+	}
+})
+
+// Login
+app.get('/login', (req, res)=>{
+	const title = "Abraj Login"
+	res.render('login', {title})
+})
+
+// Undefined route error
 app.get('*', (req, res)=>{
-	res.send("Sorry, the page you requested doesn't exist!")
+	res.status(404).send("Sorry, the page you requested doesn't exist!")
 })
 
 app.listen(3000, ()=>{
