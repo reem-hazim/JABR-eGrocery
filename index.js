@@ -3,7 +3,7 @@ const express = require("express");
 const path = require('path');
 const mongoose = require('mongoose');
 const User = require('./models/user');
-
+const AppError = require('./AppError');
 // Validator for email and password:
 // https://www.npmjs.com/package/validator
 
@@ -24,6 +24,13 @@ app.use(express.urlencoded({extended: true}))
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, '/views'));
 
+// Utilities
+function wrapAsync(fn){
+	return function(req, res, next){
+		fn(req, res, next).catch(e => next(e))
+	}
+}
+
 // Routes
 
 // Home page
@@ -41,15 +48,11 @@ app.get('/register', (req, res)=>{
 })
 
 // Save new user to database
-app.post('/register', async (req, res)=> {
+app.post('/register', wrapAsync(async (req, res, next)=> {
 	const newUser = new User(req.body);
-	try {
-		await newUser.save();
-		res.redirect('/login');
-	} catch(e){
-		res.status(400).send('<h3>' + e.message+ '</h3>');
-	}
-})
+	await newUser.save();
+	res.redirect('/login');
+}))
 
 // NavBarTab pages
 app.get('/login', (req, res)=>{
@@ -75,6 +78,14 @@ app.get('/contact', (req, res)=>{
 // Undefined route error
 app.get('*', (req, res)=>{
 	res.status(404).send("Sorry, the page you requested doesn't exist!")
+})
+
+// Error handler
+app.use((err, req, res, next)=>{
+	const {status = 500, message = "Something went wrong"} = err;
+	res.status(status)
+	console.log(message);
+	res.render('error', {title:"Error"});
 })
 
 app.listen(3000, ()=>{
