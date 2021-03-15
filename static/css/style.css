@@ -44,9 +44,7 @@ h1 {
 #brandLogo{
 	position: relative;
 	display: inline-block;
-	padding-left: 30px;
 	width: 10%;
-	background-color: bisque;
 }
 .navbar-brand{
 	margin: 0;
