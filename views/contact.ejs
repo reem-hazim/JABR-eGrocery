@@ -2,32 +2,40 @@
 <body>
 	<%- include('partials/navbar') %>
 	<h1>Hit Us Up. We're Always Listening.</h1>
-	<div class="main">
-		<form>
-			<div class="row">
-				<div class="twelve">
-					<input type="text" placeholder="Name" class="u-full-width" required>
-				</div>
-			</div>
-			<div class="row">
-				<div class="twelve">
-					<input type="text" placeholder="Email" class="u-full-width" required>
-				</div>
-			</div>
-			<div class="row">
-				<div class="twelve">
-					<textarea placeholder="Inquiry" class="u-full-width" required></textarea>
-				</div>
-			</div>
-			<div class="row">
-				<div class="twelve">
-					<input type="submit" name="" class="button-primary u-full-width" value="Submit">
-				</div>
-			</div>
-		</form>
-     	<p>
-      		Please call us at 050 123 4567 or email us at help@jabr.com for immediate assistance.
-  		</p>
+	<div id="main_container">
+		<div class="form">
+			<form id="contact-form">
+				<ul class="contact-form-container">
+					<li>
+					  <h2>Contact Us.</h2>
+					</li> 
+					<li>
+					  <label for="name">Name</label>
+					  <input type="name" name="name" required="" class="u-full-width" id="name" required>
+					</li>
+					<li>
+					  <label for="email">Email</label>
+					  <input type="email" name="email" id="email" class="u-full-width" required>
+					</li>
+					<li>
+					  <label for="re-password">Inquiry</label>
+					  <textarea placeholder="Inquiry" class="u-full-width" required></textarea>
+					</li>
+					<li>
+					  <button type="submit" class="button-primary u-full-width primary" value="Submit">
+						Send
+					  </button>
+					</li>
+					<li>
+					  <div>
+						Please call us at 050 123 4567 or email us at help@jabr.com for immediate assistance.
+					  </div>
+					</li>
+				  </ul>
+			</form>
+
+		</div>
+     	
     </div>
 	<%- include('partials/footer') %>
 </body>
