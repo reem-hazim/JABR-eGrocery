@@ -4,6 +4,7 @@ const path = require('path');
 const mongoose = require('mongoose');
 const User = require('./models/user');
 const AppError = require('./AppError');
+const cookieParser= require('cookie-parser');
 // Validator for email and password:
 // https://www.npmjs.com/package/validator
 
@@ -19,7 +20,8 @@ mongoose.connect('mongodb://localhost:27017/abrajTest', {useNewUrlParser: true, 
 	})
 
 app.use(express.static(path.join(__dirname, '/static')));
-app.use(express.urlencoded({extended: true}))
+app.use(express.urlencoded({extended: true}));
+app.use(cookieParser());
 
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, '/views'));
@@ -49,15 +51,22 @@ app.get('/register', (req, res)=>{
 
 // Save new user to database
 app.post('/register', wrapAsync(async (req, res, next)=> {
+	//set email as cookie
+	const {email} = req.body;
+	res.cookie("email", email);
+	//save user to database
 	const newUser = new User(req.body);
 	await newUser.save();
+	//redirect to login
 	res.redirect('/login');
 }))
 
 // NavBarTab pages
 app.get('/login', (req, res)=>{
+	//Retrieve email cookie
+	const {email=""} = req.cookies;
 	const title = "JABR Login"
-	res.render('login', {title})
+	res.render('login', {title, email})
 })
 
 app.get('/products', (req, res)=>{
