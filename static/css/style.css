@@ -1,4 +1,181 @@
-body { 
-	background-color: #D8D8D8;
-	color: #444;
+:root {
+	--navBarHeight: 5;
+    --txtPanelWidth: 50;
+    --quarterGutterWidth: 25;
+}
+
+body {
+    display: block;
+	margin-top: calc(var(--navBarHeight)*1vw);
+	height: 150vh;
+}
+
+h1 {
+	display: block;
+	padding: 20px;
+	text-align: center;
+}
+
+/* ================================================================================================ */
+/* ================================================================================================ */
+/* NavBar */
+
+/* Container */
+.navbar {
+	top: 0;
+	left: 0;
+	margin: 0;
+	height: calc(var(--navBarHeight)*1vw);
+	width: 100vw;
+	position: fixed;
+	background-color: white;
+	z-index: 1;
+}
+.container-fluid {
+	display: flex;
+	align-items: center;
+	justify-content: space-evenly;
+}
+.bg-light {
+	background-color: aliceblue!important;		/* can change this through JS*/
+}
+
+/* Brand Logo (Home Page) */
+.brandLogo{
+	position: relative;
+	display: inline-flex;
+	margin: 0;
+	padding-left: 30px;
+	width: 5%;
+	background-color: bisque;
+}
+.navbar-brand{
+	margin: 0;
+	padding: 0;
+}
+/* Nav Bar Elements */
+#navbarNav{
+	position: relative;
+    display: inline-block!important;
+	width: 80%;
+    align-items: center;
+	justify-content: space-evenly;
+	list-style: none;
+}
+.navbar-nav {
+    display: flex;
+	width: 100%;
+	align-items: center;
+	justify-content: space-evenly;
+}
+
+.nav-item li {
+	display: inline-block;
+	color: gray;
+	transition: 1s;
+	
+}
+.nav-link:hover {
+	font-weight: white;		/* Doesn't work. bootstrap prblem? */
+}
+
+#loginButton {
+	position: relative;
+	display: inline-block;
+	padding-right: 30px;
+	width: 5%;
+	text-align: right;
+}
+
+/* ================================================================================================ */
+/* ================================================================================================ */
+/*  */
+
+
+/* ================================================================================================ */
+/* ================================================================================================ */
+/* Sign-In */
+
+input {
+    -webkit-writing-mode: horizontal-tb !important;
+    text-rendering: auto;
+    color: -internal-light-dark(black, white);
+    letter-spacing: normal;
+    word-spacing: normal;
+    text-transform: none;
+    text-indent: 0px;
+    text-shadow: none;
+    display: inline-block;
+    text-align: start;
+    appearance: textfield;
+    background-color: -internal-light-dark(rgb(255, 255, 255), rgb(59, 59, 59));
+    -webkit-rtl-ordering: logical;
+    cursor: text;
+    margin: 0em;
+    font: 400 13.3333px Arial;
+    padding: 1px 2px;
+    border-width: 2px;
+    border-style: inset;
+    border-color: -internal-light-dark(rgb(118, 118, 118), rgb(133, 133, 133));
+    border-image: initial;
+}
+
+#main_container {
+	position: relative;
+	display: block;
+}
+
+.form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 70%;
+}
+
+#signin-form {
+	font: 1.6rem Helvetica;
+	box-sizing: border-box;
+	display: block;
+	justify-content: center;
+	align-items: center;
+	height: 100%;
+}
+
+#register-form {
+	font: 1.6rem Helvetica;
+	box-sizing: border-box;
+	display: block;
+	justify-content: center;
+	align-items: center;
+	height: 100%;
+}
+
+.form-container{
+	font: 1.6rem Helvetica;
+	box-sizing: border-box;
+	display: flex;
+	flex-direction: column;
+	width: 32rem;
+	padding: 2rem;
+	border: 0.1rem #c0c0c0 solid;
+	border-radius: 0.5rem;
+	list-style-type: none;
+}
+
+.form-container li {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+}
+
+button.primary {
+    background-color: aliceblue;
+}
+
+select, input, button, textarea {
+    font: 1.6rem Helvetica;
+    padding: 1rem;
+    border: 0.1rem #808080 solid;
+    border-radius: 0.5rem;
 }

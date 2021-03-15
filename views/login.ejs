@@ -1,29 +1,38 @@
 <%- include('partials/head')%>
 <body>
 	<%- include('partials/navbar') %>
-	<h1>JABR Login</h1>
-	<div class="main">
-		<form>
-			<div class="row">
-				<div class="twelve">
-					<input type="text" placeholder="Username" class="u-full-width" required>
-				</div>
-			</div>
-			<div class="row">
-				<div class="twelve">
-					<input type="password" placeholder="Password" class="u-full-width" required>
-				</div>
-			</div>
-			<div class="row">
-				<div class="twelve">
-					<input type="submit" name="" class="button-primary u-full-width" value="Login">
-				</div>
-			</div>
-		</form>
-     	<p>
-      		New User? <a href="/register">Register here</a>
-  		</p>
+	<h1>Hey There. Welcome Back.</h1>
+	<div id="main_container">
+		<div class="form">
+			<form id="signin-form">
+				<ul class="form-container">
+					<li>
+					  <h2>Sign-In</h2>
+					</li>
+					<li>
+					  <label for="email">Email</label>
+					  <input type="email" name="email" id="email" class="u-full-width" required>
+					</li>
+					<li>
+					  <label for="password">Password</label>
+					  <input type="password" id="password" name="password" class="u-full-width" required autocomplete="on">
+					</li>
+					<li>
+					  <button type="submit" class="button-primary primary u-full-width" value="Login">
+						Sign In
+					  </button>
+					</li>
+					<li>
+						<div>New User? 
+							<a href="/register">Create your account</a>
+						</div>
+					</li>
+				  </ul>
+			</form>
+		</div>
+     	
     </div>
 	<%- include('partials/footer') %>
 </body>
 </html>
+
