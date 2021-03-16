@@ -12,26 +12,38 @@ mongoose.connect('mongodb://localhost:27017/abrajTest', {useNewUrlParser: true, 
 
 const seedUsers = [
 	{
+		firstName: 'Emma',
+		lastName: 'Watson',
 		email: 'hello@gmail.com',
 		password: 'hello',
 	},
 	{
+		firstName: 'Harry',
+		lastName: 'Potter',
 		email: 'wow@yahoo.com',
 		password: 'wow',
 	},
 	{
+		firstName: 'Reem',
+		lastName: 'Hazim',
 		email: 'reem.hazim@nyu.edu',
 		password: 'reem'
 	},
 	{
+		firstName: 'Joseph',
+		lastName: 'Hong',
 		email: 'joseph.hong@nyu.edu',
 		password: 'joseph',
 	},
 	{
+		firstName: 'Armaan',
+		lastName: 'Agrawal',
 		email: 'armaan.agrawal@nyu.edu',
 		password: 'armaan',
 	},
 	{
+		firstName: 'Brian',
+		lastName: 'Kim',
 		email: 'brian.kim@nyu.edu',
 		password: 'brian',
 	}
