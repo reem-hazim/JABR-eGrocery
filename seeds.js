@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const bcrypt = require('bcrypt');
 const User = require('./models/user');
 
 mongoose.connect('mongodb://localhost:27017/abrajTest', {useNewUrlParser: true, useUnifiedTopology: true})
@@ -49,10 +50,19 @@ const seedUsers = [
 	}
 ]
 
-User.insertMany(seedUsers)
-.then(res => {
-	console.log(res);
-})
-.catch(err => {
-	console.log(err);
-})
+const hashAndSaveUsers = async ()=>{
+	for (let user of seedUsers){
+		newPass = await bcrypt.hash(user.password, 12);
+		user.password = newPass;
+	}
+
+	User.insertMany(seedUsers)
+	.then(res => {
+		console.log(res);
+	})
+	.catch(err => {
+		console.log(err);
+	})
+}
+
+hashAndSaveUsers();
