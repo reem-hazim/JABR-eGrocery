@@ -2,9 +2,13 @@
 const express = require("express");
 const path = require('path');
 const mongoose = require('mongoose');
+const cookieParser= require('cookie-parser');
+const bcrypt = require('bcrypt');
+
+//Require other files
 const User = require('./models/user');
 const AppError = require('./AppError');
-const cookieParser= require('cookie-parser');
+
 // Validator for email and password:
 // https://www.npmjs.com/package/validator
 
@@ -52,10 +56,17 @@ app.get('/register', (req, res)=>{
 // Save new user to database
 app.post('/register', wrapAsync(async (req, res, next)=> {
 	//set email as cookie
-	const {email} = req.body;
+	const {firstName, lastName, email, password} = req.body;
 	res.cookie("email", email);
+	// Encrypt (hash) password
+	const hash = await bcrypt.hash(password, 12);
 	//save user to database
-	const newUser = new User(req.body);
+	const newUser = new User({
+		firstName,
+		lastName,
+		email,
+		password: hash,
+	});
 	await newUser.save();
 	//redirect to login
 	res.redirect('/login');
