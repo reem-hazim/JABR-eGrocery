@@ -245,61 +245,6 @@ header .row{
     transform: translateX(-50%);
 }
 
-footer{
-    background: rgb(134, 188, 235);
-    color: #8a8a8a;
-    font-size: 14px;
-    padding: 60px 0 20px;
-}
-
-footer p{
-    color: #8a8a8a;
-}
-
-footer h3{
-    color: #fff;
-    margin-bottom: 20px;
-}
-
-.footer-col-1 , .footer-col-2 , .footer-col-3, .footer-col-4{
-    min-width: 250px;
-    margin-bottom: 20px;
-}
-
-.footer-col-1{
-    flex-basis: 30%;
-}
-
-.footer-col-2{
-    flex: 1;
-    text-align: center;
-}
-
-.footer-col-2 img{
-    width: 180px;
-    margin-bottom: 20px;
-}
-
-.footer-col-3, .footer-col-4{
-    flex-basis: 12%;
-    text-align: center;
-}
-
-.app-logo{
-    margin-top: 20px;
-}
-
-.app-logo img{
-    width: 140px;
-}
-
-footer hr{
-    border: none;
-    background: #b5b5b5;
-    height: 1px;
-    margin: 20px 0;
-}
-
 /* Brands */
 .brands{
     margin: 100px auto;
@@ -327,7 +272,7 @@ footer hr{
 
 /* footer */
 footer{
-    background: #000000;
+    background: #2F5061;
     color: #8a8a8a;
     font-size: 14px;
     padding: 60px 0 20px;
@@ -474,6 +419,27 @@ input, button, textarea {
 /* ================================================================================================ */
 /* About */
 
+.mainLogo {
+    margin: 100px auto;
+    margin-bottom: 10px;
+    height: 30vh;
+    width: 30vh;
+}
+
+.mainLogo img {
+    height: 100%;
+    width: 100%;
+}
+
+.aboutPage h1 {
+    padding: 0;
+}
+
+.aboutPage p {
+    width: 50vw;
+    margin: 100px auto;
+    margin-top: 50px;
+}
 
 
 /* ================================================================================================ */
