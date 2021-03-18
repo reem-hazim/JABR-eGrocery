@@ -72,9 +72,15 @@ h1 {
 	transition: 1s;
 	
 }
-.nav-link:hover {
-	font-weight: white;		/* Doesn't work. bootstrap prblem? */
+
+.navbar-light .navbar-nav .nav-link:hover{
+    color: white;
 }
+
+.navbar-light .navbar-nav .nav-link{
+    color: red;
+}
+
 .productsList {
 
 }
