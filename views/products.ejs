@@ -13,7 +13,11 @@
                 <option>Sort By Sale</option>
             </select>
         </div>
-
+        <% if(noMatch !== undefined) { %>
+            <p><%= noMatch%><p>
+        <% } else { %>
+            <p>Here are your results!</p>
+        <% } %>
         <div class="row">
             <div class="col-4">
                 <img src="./assets/product-1.jpg" alt="products">

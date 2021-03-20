@@ -84,29 +84,36 @@ app.get('/login', (req, res)=>{
 app.get('/products', (req, res)=>{
 	const title = "JABR Products"
 	var q = req.query.q;
+	var noMatch;
+
 	if (q) { // search occurred
 		console.log("search occurred")
-		const regex = new RegExp(q, 'i'); //case insensitive
-		User.find(
-			{$or:[
-				{ firstName : regex },
-				{ lastName : regex }
-			]},
-			function(err, res) {
-				if(err) {
-					console.log(err);
-				} else {
-					console.log(res);
-					// now need to pass res to the page content
+		const regex = new RegExp(q, 'gi');
+		
+		//find inside the db
+		User.find({$or:[{ firstName : regex }, { lastName : regex }]}, function(err, allProducts) {
+			if(err) {
+				console.log(err);
+			} else {
+				console.log(allProducts);
+				if(allProducts.length < 1){
+					noMatch = "No products match your search term, please try again!"
+					console.log(noMatch);
 				}
-			} 
-		)
-		;
-	} else { // not a search
-		console.log("default Products") // show default "Products" page
+				res.render("products", {title, noMatch: noMatch}); // pass products:allProducts?
+			}
+		});
+	} else { // not a search so show default Products page
+		console.log("default Products")
+		User.find({}, function(err, allProducts){
+			if(err){
+				console.log(err);
+			} else {
+				console.log(allProducts);
+				res.render("products", {title, noMatch: noMatch}); // pass products:allProducts?
+			}
+		});
 	}
-
-	res.render('products', {title})
 })
 
 app.get('/about', (req, res)=>{
