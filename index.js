@@ -7,6 +7,7 @@ const bcrypt = require('bcrypt');
 
 //Require other files
 const User = require('./models/user');
+// const Product = require('./models/product');
 const AppError = require('./AppError');
 
 // Validator for email and password:
@@ -82,6 +83,29 @@ app.get('/login', (req, res)=>{
 
 app.get('/products', (req, res)=>{
 	const title = "JABR Products"
+	var q = req.query.q;
+	if (q) { // search occurred
+		console.log("search occurred")
+		const regex = new RegExp(q, 'i'); //case insensitive
+		User.find(
+			{$or:[
+				{ firstName : regex },
+				{ lastName : regex }
+			]},
+			function(err, res) {
+				if(err) {
+					console.log(err);
+				} else {
+					console.log(res);
+					// now need to pass res to the page content
+				}
+			} 
+		)
+		;
+	} else { // not a search
+		console.log("default Products") // show default "Products" page
+	}
+
 	res.render('products', {title})
 })
 
