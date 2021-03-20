@@ -118,12 +118,14 @@ form.search-form button {
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
 }
+
 input, button, textarea {
-    font: 1.6rem Helvetica;
-    padding: 1rem;
+    font: 1.4rem Helvetica;
     border: 0.1rem #808080 solid;
     border-radius: 0.5rem;
+    padding: 7px;
 }
+
 #loginButton {
 	position: relative;
 	display: inline-block;
@@ -147,7 +149,7 @@ header .row{
 }
 
 .container{
-    max-width: 1300px;
+    max-width: 100%;
     margin: auto;
     padding: 0 25px;
 }
@@ -157,11 +159,12 @@ header .row{
     align-items: center;
     flex-wrap: wrap;
     justify-content: space-around;
+    margin: 0;
 }
 
 .col-2{
     flex-basis: 50%;
-    min-width: 300px;
+    max-width: 100%;
 } 
 
 .col-2 img{
@@ -208,7 +211,7 @@ header .row{
 
 .col-3 img{
     background-color: rgb(134, 188, 235);
-    padding: 125px;
+    padding: 25%;
     width: 100%;
     cursor: pointer;
 }
@@ -262,6 +265,8 @@ header .row{
 
 .col-5{
     width: 160px;
+    flex: 0;
+    max-width: 160px;
 }
 
 .col-5 img{
@@ -352,9 +357,7 @@ input {
     -webkit-rtl-ordering: logical;
     cursor: text;
     margin: 0em;
-    font: 400 13.3333px Arial;
-    padding: 1px 2px;
-    border-width: 2px;
+    padding: 7px;
     border-style: inset;
     border-color: -internal-light-dark(rgb(118, 118, 118), rgb(133, 133, 133));
     border-image: initial;
@@ -373,6 +376,7 @@ input {
 }
 
 #signin-form {
+    padding: 20px;
 	font: 1.6rem Helvetica;
 	box-sizing: border-box;
 	display: block;
@@ -382,6 +386,7 @@ input {
 }
 
 #register-form {
+    padding: 20px;
 	font: 1.6rem Helvetica;
 	box-sizing: border-box;
 	display: block;
@@ -411,13 +416,6 @@ input {
 
 button.primary {
     background-color: aliceblue;
-}
-
-input, button, textarea {
-    font: 1.6rem Helvetica;
-    padding: 1rem;
-    border: 0.1rem #808080 solid;
-    border-radius: 0.5rem;
 }
 
 
@@ -552,12 +550,12 @@ select:focus{
 	height: 15vh;
 }
 .contact-form-container{
+    padding: 20px;
 	font: 1.6rem Helvetica;
 	box-sizing: border-box;
 	display: flex;
 	flex-direction: column;
 	width: 70vw;
-	padding: 2rem;
 	border: 0.1rem #c0c0c0 solid;
 	border-radius: 0.5rem;
 	list-style-type: none;
