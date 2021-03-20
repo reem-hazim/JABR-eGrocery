@@ -22,6 +22,29 @@ h1.head {
 	text-align: left;
 }
 
+#logout {
+    display: inline-block;
+    border: none;
+    padding: 1rem 2rem;
+    margin: 0;
+    text-decoration: none;
+    background: none;
+    color: #2F5061;
+    font-family: Helvetica;
+    font-size: 1rem;
+    cursor: pointer;
+    text-align: center;
+    transition: background 250ms ease-in-out, 
+                transform 150ms ease;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+
+#logout:hover{
+    text-decoration: underline;
+    font-weight: 600;
+}
+
 /* ================================================================================================ */
 /* ================================================================================================ */
 /* NavBar */
@@ -80,7 +103,8 @@ h1.head {
 }
 
 .navbar-light .navbar-nav .nav-link:hover{
-    color: white;
+    text-decoration: underline;
+    font-weight: 600;
 }
 
 .navbar-light .navbar-nav .nav-link{
@@ -559,6 +583,10 @@ select:focus{
 	border: 0.1rem #c0c0c0 solid;
 	border-radius: 0.5rem;
 	list-style-type: none;
+}
+
+#q {
+    font-size: 1rem;
 }
 
 /* ================================================================================================ */

@@ -36,13 +36,14 @@
 			</form>
 		  </div>
 		<!-- Login/Register || View Cart -->
-		<div id="loginButton">
-			<a class="nav-link" href="/login">Login</a>
-		</div>
 		<% if (loggedIn) { -%>
 	        <form action="/logout" method="POST">
-	        	<button class="nav-link"> Log out </button>
+	        	<button id="logout"> Log out </button>
 	        </form>
-        <% } %>
+        <% } else {%>
+        	<div id="loginButton">
+				<a class="nav-link" href="/login">Login</a>
+			</div>
+		<% } %>
 	</div>
 </nav>
