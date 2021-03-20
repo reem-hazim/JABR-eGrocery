@@ -8,8 +8,9 @@ const flash = require('connect-flash');
 
 //Require other files
 const User = require('./models/user');
+const AppError = require('./utils/AppError');
+const wrapAsync = require('./utils/wrapAsync')
 // const Product = require('./models/product');
-const AppError = require('./AppError');
 
 // Validator for email and password:
 // https://www.npmjs.com/package/validator
@@ -27,6 +28,7 @@ mongoose.connect('mongodb://localhost:27017/abrajTest', {useNewUrlParser: true, 
 
 app.use(express.static(path.join(__dirname, '/static')));
 app.use(express.urlencoded({extended: true}));
+
 const sessionOptions = {secret: 'thisisnotagoodsecret', resave: false, saveUninitialized: false}
 app.use(session(sessionOptions));
 
@@ -35,29 +37,19 @@ app.use(flash());
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, '/views'));
 
-// Utilities
-function wrapAsync(fn){
-	return function(req, res, next){
-		fn(req, res, next).catch(e => next(e))
-	}
-}
-
 // Middleware
 app.use((req, res, next)=>{
 	res.locals.success = req.flash('success');
 	res.locals.error = req.flash('error');
+	if(req.session.user_id){
+		res.locals.loggedIn = true;
+	} else {
+		res.locals.loggedIn = false;
+	}
 	next();
 })
 
 // Routes
-
-// Home page
-app.get('/', (req, res)=>{
-	const title = "JABR eGrocery"
-	res.render('home', {title})
-})
-
-// Registration
 
 // Form
 app.get('/register', (req, res)=>{
@@ -85,7 +77,7 @@ app.post('/register', wrapAsync(async (req, res, next)=> {
 	res.redirect('/login');
 }))
 
-// NavBarTab pages
+// Login form
 app.get('/login', (req, res)=>{
 	//Retrieve email cookie
 	const {email=""} = req.session;
@@ -93,21 +85,39 @@ app.get('/login', (req, res)=>{
 	res.render('login', {title, email})
 })
 
-app.post('/login', async (req, res)=>{
+// Login logic
+app.post('/login', (req, res)=>{
 	const {email, password} = req.body;
-	const user = await User.findOne({email});
-	const validPassword = await bcrypt.compare(password, user.password);
-	if(validPassword){
-		req.session.user_id = user._id;
-		req.flash('success', 'Successfully logged in!');
-		res.redirect('/account/' + user._id)
-	} else {
+	User.findOne({email})
+	.then(async user=>{
+		const validPassword = await bcrypt.compare(password, user.password);
+		if(validPassword){
+			req.session.user_id = user._id;
+			req.flash('success', 'Successfully logged in!');
+			res.redirect('/account/' + user._id)
+		} else {
+			throw Error("incorrect Username or password")
+		}
+	})
+	.catch(err=>{
 		req.flash('error', 'The username or password is incorrect');
 		res.redirect("/login");
-	}
-	
+	})
 })
 
+app.post('/logout', (req, res)=>{
+	req.session.user_id= null;
+	// Redirect to home
+	res.redirect('/');
+})
+
+// Home page
+app.get('/', (req, res)=>{
+	const title = "JABR eGrocery"
+	res.render('home', {title})
+})
+
+// Products page
 app.get('/products', wrapAsync(async (req, res, next)=>{
 	const title = "JABR Products"
 	let q = req.query.q;
@@ -132,6 +142,7 @@ app.get('/products', wrapAsync(async (req, res, next)=>{
 	}
 }))
 
+// Account page
 app.get('/account/:id', (req, res)=>{
 	const {id:req_id} = req.params;
 	const {user_id=""} = req.session;
