@@ -27,13 +27,13 @@ mongoose.connect('mongodb://localhost:27017/abrajTest', {useNewUrlParser: true, 
 
 app.use(express.static(path.join(__dirname, '/static')));
 app.use(express.urlencoded({extended: true}));
+const sessionOptions = {secret: 'thisisnotagoodsecret', resave: false, saveUninitialized: false}
+app.use(session(sessionOptions));
+
 app.use(flash());
 
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, '/views'));
-
-const sessionOptions = {secret: 'thisisnotagoodsecret', resave: false, saveUninitialized: false}
-app.use(session(sessionOptions));
 
 // Utilities
 function wrapAsync(fn){
@@ -44,9 +44,6 @@ function wrapAsync(fn){
 
 // Middleware
 app.use((req, res, next)=>{
-	console.log("Running app.use");
-	console.log("successes" + req.flash('success'))
-	console.log("Errors" + req.flash('error'))
 	res.locals.success = req.flash('success');
 	res.locals.error = req.flash('error');
 	next();
@@ -125,7 +122,7 @@ app.get('/products', wrapAsync(async (req, res, next)=>{
 			console.log("no products");
 			req.flash('error', "No products match your search term, please try again!");
 		}
-		res.render("products", {title, allProducts}); 
+		res.render("products", {title, allProducts, error: req.flash('error')}); 
 
 	} else { // not a search so show default Products page
 		console.log("default Products")
