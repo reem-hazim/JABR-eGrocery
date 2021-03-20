@@ -2,8 +2,9 @@
 const express = require("express");
 const path = require('path');
 const mongoose = require('mongoose');
-const cookieParser= require('cookie-parser');
 const bcrypt = require('bcrypt');
+const session = require('express-session');
+const flash = require('connect-flash');
 
 //Require other files
 const User = require('./models/user');
@@ -26,10 +27,13 @@ mongoose.connect('mongodb://localhost:27017/abrajTest', {useNewUrlParser: true, 
 
 app.use(express.static(path.join(__dirname, '/static')));
 app.use(express.urlencoded({extended: true}));
-app.use(cookieParser());
+app.use(flash());
 
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, '/views'));
+
+const sessionOptions = {secret: 'thisisnotagoodsecret', resave: false, saveUninitialized: false}
+app.use(session(sessionOptions));
 
 // Utilities
 function wrapAsync(fn){
@@ -37,6 +41,16 @@ function wrapAsync(fn){
 		fn(req, res, next).catch(e => next(e))
 	}
 }
+
+// Middleware
+app.use((req, res, next)=>{
+	console.log("Running app.use");
+	console.log("successes" + req.flash('success'))
+	console.log("Errors" + req.flash('error'))
+	res.locals.success = req.flash('success');
+	res.locals.error = req.flash('error');
+	next();
+})
 
 // Routes
 
@@ -58,7 +72,7 @@ app.get('/register', (req, res)=>{
 app.post('/register', wrapAsync(async (req, res, next)=> {
 	//set email as cookie
 	const {firstName, lastName, email, password} = req.body;
-	res.cookie("email", email);
+	req.session.email = email;
 	// Encrypt (hash) password
 	const hash = await bcrypt.hash(password, 12);
 	//save user to database
@@ -69,6 +83,7 @@ app.post('/register', wrapAsync(async (req, res, next)=> {
 		password: hash,
 	});
 	await newUser.save();
+	req.flash('success', "You've been successfully registered!");
 	//redirect to login
 	res.redirect('/login');
 }))
@@ -76,43 +91,58 @@ app.post('/register', wrapAsync(async (req, res, next)=> {
 // NavBarTab pages
 app.get('/login', (req, res)=>{
 	//Retrieve email cookie
-	const {email=""} = req.cookies;
+	const {email=""} = req.session;
 	const title = "JABR Login"
 	res.render('login', {title, email})
 })
 
-app.get('/products', (req, res)=>{
+app.post('/login', async (req, res)=>{
+	const {email, password} = req.body;
+	const user = await User.findOne({email});
+	const validPassword = await bcrypt.compare(password, user.password);
+	if(validPassword){
+		req.session.user_id = user._id;
+		req.flash('success', 'Successfully logged in!');
+		res.redirect('/account/' + user._id)
+	} else {
+		req.flash('error', 'The username or password is incorrect');
+		res.redirect("/login");
+	}
+	
+})
+
+app.get('/products', wrapAsync(async (req, res, next)=>{
 	const title = "JABR Products"
-	var q = req.query.q;
-	var noMatch;
+	let q = req.query.q;
 
 	if (q) { // search occurred
 		console.log("search occurred")
 		const regex = new RegExp(q, 'gi');
 		
 		//find inside the db
-		User.find({$or:[{ firstName : regex }, { lastName : regex }]}, function(err, allProducts) {
-			if(err) {
-				console.log(err);
-			} else {
-				console.log(allProducts);
-				if(allProducts.length < 1){
-					noMatch = "No products match your search term, please try again!"
-					console.log(noMatch);
-				}
-				res.render("products", {title, noMatch: noMatch}); // pass products:allProducts?
-			}
-		});
+		const allProducts = await User.find({$or:[{ firstName : regex }, { lastName : regex }]});
+		if(allProducts.length < 1){
+			console.log("no products");
+			req.flash('error', "No products match your search term, please try again!");
+		}
+		res.render("products", {title, allProducts}); 
+
 	} else { // not a search so show default Products page
 		console.log("default Products")
-		User.find({}, function(err, allProducts){
-			if(err){
-				console.log(err);
-			} else {
-				console.log(allProducts);
-				res.render("products", {title, noMatch: noMatch}); // pass products:allProducts?
-			}
-		});
+		const allProducts = await User.find({});
+		console.log(allProducts);
+		res.render("products", {title, allProducts}); 
+	}
+}))
+
+app.get('/account/:id', (req, res)=>{
+	const {id:req_id} = req.params;
+	const {user_id=""} = req.session;
+	if(req_id === user_id){
+		res.render('account', {title: "My Account", user_id});
+	} else {
+		req.flash('error', 'Please sign in first!');
+		res.redirect('/login');
 	}
 })
 

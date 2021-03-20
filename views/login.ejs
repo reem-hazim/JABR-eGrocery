@@ -4,7 +4,8 @@
 	<h1>Hey There. Welcome Back.</h1>
 	<div id="main_container">
 		<div class="form">
-			<form id="signin-form">
+			<form id="signin-form" action="/login" method="POST">
+				<%- include('partials/flash') %>
 				<ul class="form-container">
 					<li>
 					  <label for="email">Email</label>

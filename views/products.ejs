@@ -3,6 +3,7 @@
 	<%- include('partials/navbar') %>
 	<h1>Our Entire Store. At Your Fingertips.</h1>
 	<div class="small-container">
+        <%- include('partials/flash') %>
         <div class="row row-2">
             <h2>All Products</h2>
             <select>
@@ -13,11 +14,7 @@
                 <option>Sort By Sale</option>
             </select>
         </div>
-        <% if(noMatch !== undefined) { %>
-            <p><%= noMatch%><p>
-        <% } else { %>
-            <p>Here are your results!</p>
-        <% } %>
+        
         <div class="row">
             <div class="col-4">
                 <img src="./assets/product-1.jpg" alt="products">
