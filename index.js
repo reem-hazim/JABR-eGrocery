@@ -9,7 +9,8 @@ const flash = require('connect-flash');
 //Require other files
 const User = require('./models/user');
 const AppError = require('./utils/AppError');
-const wrapAsync = require('./utils/wrapAsync')
+const wrapAsync = require('./utils/wrapAsync');
+const requireLogin = require('./utils/requireLogin');
 // const Product = require('./models/product');
 
 // Validator for email and password:
@@ -37,7 +38,7 @@ app.use(flash());
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, '/views'));
 
-// Middleware
+
 app.use((req, res, next)=>{
 	res.locals.success = req.flash('success');
 	res.locals.error = req.flash('error');
@@ -60,17 +61,10 @@ app.get('/register', (req, res)=>{
 // Save new user to database
 app.post('/register', wrapAsync(async (req, res, next)=> {
 	//set email as cookie
-	const {firstName, lastName, email, password} = req.body;
+	const {email} = req.body;
 	req.session.email = email;
-	// Encrypt (hash) password
-	const hash = await bcrypt.hash(password, 12);
 	//save user to database
-	const newUser = new User({
-		firstName,
-		lastName,
-		email,
-		password: hash,
-	});
+	const newUser = new User(req.body)
 	await newUser.save();
 	req.flash('success', "You've been successfully registered!");
 	//redirect to login
@@ -86,24 +80,18 @@ app.get('/login', (req, res)=>{
 })
 
 // Login logic
-app.post('/login', (req, res)=>{
+app.post('/login', wrapAsync(async (req, res)=>{
 	const {email, password} = req.body;
-	User.findOne({email})
-	.then(async user=>{
-		const validPassword = await bcrypt.compare(password, user.password);
-		if(validPassword){
-			req.session.user_id = user._id;
-			req.flash('success', 'Successfully logged in!');
-			res.redirect('/account/' + user._id)
-		} else {
-			throw Error("incorrect Username or password")
-		}
-	})
-	.catch(err=>{
+	const foundUser = await User.findAndValidate(email, password);
+	if(foundUser){
+		req.session.user_id = foundUser._id;
+		req.flash('success', 'Successfully logged in!');
+		res.redirect('/account/' + foundUser._id)
+	} else {
 		req.flash('error', 'The username or password is incorrect');
 		res.redirect("/login");
-	})
-})
+	}
+}));
 
 app.post('/logout', (req, res)=>{
 	req.session.user_id= null;
@@ -143,14 +131,14 @@ app.get('/products', wrapAsync(async (req, res, next)=>{
 }))
 
 // Account page
-app.get('/account/:id', (req, res)=>{
+app.get('/account/:id', requireLogin, (req, res)=>{
 	const {id:req_id} = req.params;
-	const {user_id=""} = req.session;
+	const {user_id} = req.session;
 	if(req_id === user_id){
 		res.render('account', {title: "My Account", user_id});
 	} else {
-		req.flash('error', 'Please sign in first!');
-		res.redirect('/login');
+		req.flash('error', "You don't have access to view this page!");
+		res.redirect('/');
 	}
 })
 
