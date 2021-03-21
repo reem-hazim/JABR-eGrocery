@@ -50,6 +50,7 @@ const seedUsers = [
 	}
 ]
 
+
 const hashAndSaveUsers = async ()=>{
 	for (let user of seedUsers){
 		newPass = await bcrypt.hash(user.password, 12);

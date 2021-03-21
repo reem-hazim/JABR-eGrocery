@@ -16,6 +16,20 @@
         </div>
         
         <div class="row">
+            <% for (let product of allProducts) { -%>
+                <div class="col-4">
+                    <img src=<%=product.image%> alt="products"/>
+                    <h4><%=product.name%></h4>
+                    <div class="ratings">
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                        <i class="fa fa-star" aria-hidden="true"></i> 
+                        <i class="fa fa-star-o" aria-hidden="true"></i> 
+                    </div>
+                    <p>$<%=product.price%></p>
+                </div>
+            <% } -%>
             <div class="col-4">
                 <img src="./assets/product-1.jpg" alt="products">
                 <h4>Red Printed T-Shirt</h4>

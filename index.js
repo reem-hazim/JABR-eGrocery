@@ -11,7 +11,7 @@ const User = require('./models/user');
 const AppError = require('./utils/AppError');
 const wrapAsync = require('./utils/wrapAsync');
 const requireLogin = require('./utils/requireLogin');
-// const Product = require('./models/product');
+const Product = require('./models/product');
 
 // Validator for email and password:
 // https://www.npmjs.com/package/validator
@@ -115,7 +115,7 @@ app.get('/products', wrapAsync(async (req, res, next)=>{
 		const regex = new RegExp(q, 'gi');
 		
 		//find inside the db
-		const allProducts = await User.find({$or:[{ firstName : regex }, { lastName : regex }]});
+		const allProducts = await Product.find({$or:[{ brand : regex }, { name : regex }]});
 		if(allProducts.length < 1){
 			console.log("no products");
 			req.flash('error', "No products match your search term, please try again!");
@@ -124,7 +124,7 @@ app.get('/products', wrapAsync(async (req, res, next)=>{
 
 	} else { // not a search so show default Products page
 		console.log("default Products")
-		const allProducts = await User.find({});
+		const allProducts = await Product.find({});
 		console.log(allProducts);
 		res.render("products", {title, allProducts}); 
 	}
