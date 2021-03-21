@@ -1,2 +1,2 @@
-# Abraj-eGrocery
-Abraj eGrocery Web App
+# JABR-eGrocery
+JABR eGrocery Web App
