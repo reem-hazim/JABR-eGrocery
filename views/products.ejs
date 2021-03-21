@@ -14,8 +14,34 @@
                 <option>Sort By Sale</option>
             </select>
         </div>
-        
-        <div class="row">
+
+			 	<% let row = Math.floor(allProducts.length/4) -%>
+        <% for (var i=0; i<=row; i++) { -%>
+					<div class="row">
+
+						<% if (i!=row) {var col = 4}
+						else {var col = allProducts.length%4} -%>
+
+						<% for (var j=0; j<col; j++) { -%>
+							<div class="col-4">
+								<% var idx=(i*col)+j -%>
+
+								<img src=<%=allProducts[idx].image%> alt="products"/>
+								<h4><%=allProducts[idx].name%></h4>
+								<div class="ratings">
+										<i class="fa fa-star" aria-hidden="true"></i>
+										<i class="fa fa-star" aria-hidden="true"></i>
+										<i class="fa fa-star" aria-hidden="true"></i>
+										<i class="fa fa-star" aria-hidden="true"></i>
+										<i class="fa fa-star-o" aria-hidden="true"></i>
+								</div>
+								<p>$<%=allProducts[idx].price%></p>
+							</div>
+						<% } -%>
+
+					</div>
+				<% } -%>
+        <!-- <div class="row">
             <% for (let product of allProducts) { -%>
                 <div class="col-4">
                     <img src=<%=product.image%> alt="products"/>
@@ -24,8 +50,8 @@
                         <i class="fa fa-star" aria-hidden="true"></i>
                         <i class="fa fa-star" aria-hidden="true"></i>
                         <i class="fa fa-star" aria-hidden="true"></i>
-                        <i class="fa fa-star" aria-hidden="true"></i> 
-                        <i class="fa fa-star-o" aria-hidden="true"></i> 
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                        <i class="fa fa-star-o" aria-hidden="true"></i>
                     </div>
                     <p>$<%=product.price%></p>
                 </div>
@@ -37,8 +63,8 @@
                     <i class="fa fa-star" aria-hidden="true"></i>
                     <i class="fa fa-star" aria-hidden="true"></i>
                     <i class="fa fa-star" aria-hidden="true"></i>
-                    <i class="fa fa-star" aria-hidden="true"></i> 
-                    <i class="fa fa-star-o" aria-hidden="true"></i> 
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star-o" aria-hidden="true"></i>
                 </div>
                 <p>$50.00</p>
             </div>
@@ -49,8 +75,8 @@
                     <i class="fa fa-star" aria-hidden="true"></i>
                     <i class="fa fa-star" aria-hidden="true"></i>
                     <i class="fa fa-star" aria-hidden="true"></i>
-                    <i class="fa fa-star" aria-hidden="true"></i> 
-                    <i class="fa fa-star-o" aria-hidden="true"></i> 
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star-o" aria-hidden="true"></i>
                 </div>
                 <p>$50.00</p>
             </div>
@@ -61,8 +87,8 @@
                     <i class="fa fa-star" aria-hidden="true"></i>
                     <i class="fa fa-star" aria-hidden="true"></i>
                     <i class="fa fa-star" aria-hidden="true"></i>
-                    <i class="fa fa-star-half" aria-hidden="true"></i> 
-                    <i class="fa fa-star-o" aria-hidden="true"></i> 
+                    <i class="fa fa-star-half" aria-hidden="true"></i>
+                    <i class="fa fa-star-o" aria-hidden="true"></i>
                 </div>
                 <p>$50.00</p>
             </div>
@@ -73,8 +99,8 @@
                     <i class="fa fa-star" aria-hidden="true"></i>
                     <i class="fa fa-star" aria-hidden="true"></i>
                     <i class="fa fa-star" aria-hidden="true"></i>
-                    <i class="fa fa-star" aria-hidden="true"></i> 
-                    <i class="fa fa-half-star" aria-hidden="true"></i> 
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-half-star" aria-hidden="true"></i>
                 </div>
                 <p>$50.00</p>
             </div>
@@ -88,8 +114,8 @@
                     <i class="fa fa-star" aria-hidden="true"></i>
                     <i class="fa fa-star" aria-hidden="true"></i>
                     <i class="fa fa-star" aria-hidden="true"></i>
-                    <i class="fa fa-star" aria-hidden="true"></i> 
-                    <i class="fa fa-star-o" aria-hidden="true"></i> 
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star-o" aria-hidden="true"></i>
                 </div>
                 <p>$50.00</p>
             </div>
@@ -100,8 +126,8 @@
                     <i class="fa fa-star" aria-hidden="true"></i>
                     <i class="fa fa-star" aria-hidden="true"></i>
                     <i class="fa fa-star" aria-hidden="true"></i>
-                    <i class="fa fa-star" aria-hidden="true"></i> 
-                    <i class="fa fa-star-o" aria-hidden="true"></i> 
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star-o" aria-hidden="true"></i>
                 </div>
                 <p>$50.00</p>
             </div>
@@ -112,8 +138,8 @@
                     <i class="fa fa-star" aria-hidden="true"></i>
                     <i class="fa fa-star" aria-hidden="true"></i>
                     <i class="fa fa-star" aria-hidden="true"></i>
-                    <i class="fa fa-half-star" aria-hidden="true"></i> 
-                    <i class="fa fa-star-o" aria-hidden="true"></i> 
+                    <i class="fa fa-half-star" aria-hidden="true"></i>
+                    <i class="fa fa-star-o" aria-hidden="true"></i>
                 </div>
                 <p>$50.00</p>
             </div>
@@ -124,8 +150,8 @@
                     <i class="fa fa-star" aria-hidden="true"></i>
                     <i class="fa fa-star" aria-hidden="true"></i>
                     <i class="fa fa-star" aria-hidden="true"></i>
-                    <i class="fa fa-star" aria-hidden="true"></i> 
-                    <i class="fa fa-half-star" aria-hidden="true"></i> 
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-half-star" aria-hidden="true"></i>
                 </div>
                 <p>$50.00</p>
             </div>
@@ -139,8 +165,8 @@
                     <i class="fa fa-star" aria-hidden="true"></i>
                     <i class="fa fa-star" aria-hidden="true"></i>
                     <i class="fa fa-star" aria-hidden="true"></i>
-                    <i class="fa fa-star" aria-hidden="true"></i> 
-                    <i class="fa fa-star-o" aria-hidden="true"></i> 
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star-o" aria-hidden="true"></i>
                 </div>
                 <p>$50.00</p>
             </div>
@@ -151,8 +177,8 @@
                     <i class="fa fa-star" aria-hidden="true"></i>
                     <i class="fa fa-star" aria-hidden="true"></i>
                     <i class="fa fa-star" aria-hidden="true"></i>
-                    <i class="fa fa-star" aria-hidden="true"></i> 
-                    <i class="fa fa-star-o" aria-hidden="true"></i> 
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star-o" aria-hidden="true"></i>
                 </div>
                 <p>$50.00</p>
             </div>
@@ -163,8 +189,8 @@
                     <i class="fa fa-star" aria-hidden="true"></i>
                     <i class="fa fa-star" aria-hidden="true"></i>
                     <i class="fa fa-star" aria-hidden="true"></i>
-                    <i class="fa fa-half-star" aria-hidden="true"></i> 
-                    <i class="fa fa-star-o" aria-hidden="true"></i> 
+                    <i class="fa fa-half-star" aria-hidden="true"></i>
+                    <i class="fa fa-star-o" aria-hidden="true"></i>
                 </div>
                 <p>$50.00</p>
             </div>
@@ -175,13 +201,14 @@
                     <i class="fa fa-star" aria-hidden="true"></i>
                     <i class="fa fa-star" aria-hidden="true"></i>
                     <i class="fa fa-star" aria-hidden="true"></i>
-                    <i class="fa fa-star" aria-hidden="true"></i> 
-                    <i class="fa fa-half-star" aria-hidden="true"></i> 
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-half-star" aria-hidden="true"></i>
                 </div>
                 <p>$50.00</p>
             </div>
-        </div>
+        </div> -->
         <!-- Navigate the Products -->
+				<!-- Should include the page btn stuff inside the row/col/idx logic-->
         <div class="page-btn">
             <span>1</span>
             <span>2</span>
