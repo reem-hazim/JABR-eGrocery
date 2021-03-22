@@ -27,7 +27,11 @@
 								<% var idx=(i*col)+j -%>
 
 								<img src=<%=allProducts[idx].image%> alt="products"/>
-								<h4><%=allProducts[idx].name%></h4>
+								<h4>
+                                    <a href="/products/<%=allProducts[idx]._id%>">
+                                        <%=allProducts[idx].name%>
+                                    </a>
+                                </h4>
 								<div class="ratings">
 										<i class="fa fa-star" aria-hidden="true"></i>
 										<i class="fa fa-star" aria-hidden="true"></i>

@@ -89,7 +89,7 @@ app.post('/login', wrapAsync(async (req, res)=>{
 		res.redirect('/account/' + foundUser._id)
 	} else {
 		req.flash('error', 'The username or password is incorrect');
-		res.redirect("/login");
+		res.render("/login");
 	}
 }));
 
@@ -128,6 +128,17 @@ app.get('/products', wrapAsync(async (req, res, next)=>{
 		// console.log(allProducts);
 		res.render("products", {title, allProducts});
 	}
+}))
+
+app.get('/products/:id', wrapAsync(async (req, res, next)=>{
+	const {id} = req.params;
+	const product = await Product.findById(id);
+	if(!product){
+		req.flash('error', 'Product not available');
+		res.redirect('/products');
+	}
+	const title = product.name;
+	res.render("showProduct", {product, title});
 }))
 
 // Account page
