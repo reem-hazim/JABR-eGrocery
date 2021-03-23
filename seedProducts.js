@@ -30,6 +30,36 @@ const seedProducts = [
 		brand: "Jordan",
 		department: "Produce",
 		category: "Fruits",
+	},
+	{
+		image: "https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fwww.foodinis.com%2Fapp%2Fuploads%2F2016%2F12%2Fcucumbers.jpg&f=1&nofb=1",
+		name: "Cucumber",
+		price: 3.50,
+		defWeight: "kg",
+		qtyAvailable: 20,
+		brand: "Lebanon",
+		department: "Produce",
+		category: "Vegetables",
+	},
+	{
+		image: "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fharvestdelivery.ca%2Fwp-content%2Fuploads%2F2020%2F11%2FYellow-onion-3lb-bag.jpg&f=1&nofb=1",
+		name: "Onion",
+		price: 9.00,
+		defWeight: "kg",
+		qtyAvailable: 10,
+		brand: "UAE",
+		department: "Produce",
+		category: "Vegetables",
+	},
+	{
+		image: "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fupload.wikimedia.org%2Fwikipedia%2Fcommons%2Fthumb%2Fc%2Fc8%2FPotato_and_cross_section.jpg%2F1200px-Potato_and_cross_section.jpg&f=1&nofb=1",
+		name: "Potato",
+		price: 4.00,
+		defWeight: "kg",
+		qtyAvailable: 55,
+		brand: "Saudi Arabia",
+		department: "Produce",
+		category: "Vegetables",
 	}
 ];
 
