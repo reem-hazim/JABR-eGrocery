@@ -24,14 +24,14 @@
 
 						<% for (var j=0; j<col; j++) { -%>
 							<div class="col-4">
-								<% var idx=(i*col)+j -%>
-
+								<% var idx=(i*4)+j;
+								//console.log(i, col, j, idx); -%>
 								<img src=<%=allProducts[idx].image%> alt="products"/>
 								<h4>
-                                    <a href="/products/<%=allProducts[idx]._id%>">
-                                        <%=allProducts[idx].name%>
-                                    </a>
-                                </h4>
+                    <a href="/products/<%=allProducts[idx]._id%>">
+                        <%=allProducts[idx].name%>
+                    </a>
+                </h4>
 								<div class="ratings">
 										<i class="fa fa-star" aria-hidden="true"></i>
 										<i class="fa fa-star" aria-hidden="true"></i>
