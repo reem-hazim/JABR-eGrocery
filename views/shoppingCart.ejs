@@ -1,0 +1,35 @@
+<%- include('partials/head')%>
+<body class="aboutPage">
+	<%- include('partials/navbar') %>
+	<%- include('partials/flash') %>
+	<h1>
+		<%=user.firstName%>'s shopping Cart
+	</h1>
+	<div class="row">
+		<% for (let item of user.shoppingCart) { -%>
+			<div class="col-4">			
+				<img src=<%=item.product.image%> alt="products"/>
+				<h4>
+		            <a href="/products/<%=item.product._id%>">
+		                <%=item.product.name%>
+		            </a>
+		        </h4>
+				<div class="ratings">
+						<i class="fa fa-star" aria-hidden="true"></i>
+						<i class="fa fa-star" aria-hidden="true"></i>
+						<i class="fa fa-star" aria-hidden="true"></i>
+						<i class="fa fa-star" aria-hidden="true"></i>
+						<i class="fa fa-star-o" aria-hidden="true"></i>
+				</div>
+				<p>
+		            AED <%=item.product.price%>
+		            <% if (item.product.defWeight) { -%>
+		                per <%=item.product.defWeight%>
+		            <% } -%>
+		        </p>
+			</div>
+		<% } -%>
+	</div>
+	
+</body>
+</html>

@@ -8,7 +8,7 @@ const orderSchema = new mongoose.Schema({
 	},
 	products: [{
 		product: {
-			type: Schema.Types.ObjectId,
+			type: mongoose.Schema.Types.ObjectId,
 			ref: 'Product'
 		},
 		quantity: {
@@ -29,10 +29,11 @@ const orderSchema = new mongoose.Schema({
 			enum: ['confirmed', 'shipped', 'outForDelivery', 'delivered'],
 		},
 		shippingAddress: {
-			type: Schema.Types.ObjectId,
+			type: mongoose.Schema.Types.ObjectId,
 			ref: 'User'
 		},
 	},
 	pickupTime:{
 		type: String,
 	}
+})

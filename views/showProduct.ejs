@@ -18,7 +18,7 @@
 						<span> 81 reviews</span>
 					</div>
 				</a></li>
-				<p>Price: $<%= product.price %></p>
+				<p>Price: AED <%= product.price %></p>
 				<li>Description:<p>This is a great product.</p></li>
 				<li>Images:
 					<ul class="images">
@@ -36,7 +36,12 @@
 			<div class="card card-body">
 				<ul>
 					<h1><%= product.name %></h1>
-					<h3>Price: $<%= product.price %></h3>
+					<h3>
+						Price: AED <%= product.price %>
+						<% if (product.defWeight) { -%>
+							per <%=product.defWeight%>
+						<% } -%>
+					</h3>
 					<h3>Brand: <%= product.brand %></h3>
 						<!-- <div class="rating"><span><i class="fa fa-star"></i></span>
 							<span><i class="fa fa-star"></i></span>
@@ -47,7 +52,11 @@
 						</div> -->
 					<div class="row">
 						<div>Price</div>
-						<div>$<%= product.price %></div>
+						<div>AED <%= product.price %>
+							<% if (product.defWeight) { -%>
+								per <%=product.defWeight%>
+							<% } -%>
+						</div>
 					</div>
 					<div class="row">
 						<div>Status</div>
@@ -80,7 +89,16 @@
 							</select>
 						</div>
 					</div>
-					<button class="block primary" type="button">Add to Cart</button>
+					<form 
+					<% if (!loggedIn) { -%>
+						action="/login" method="GET"
+					<% } else { -%>
+						action= "/account/<%=user_id%>/shoppingcart/<%=product._id%>" method="POST"
+					<% } -%>>
+						<button class="block primary" type="submit"> 
+							Add to Cart
+						</button>
+					</form>
 				</ul>
 			</div>
 		</div>

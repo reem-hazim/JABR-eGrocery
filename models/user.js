@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
+const Product = require('./product');
 
 const userSchema = new mongoose.Schema({
 	firstName: {
@@ -63,7 +64,17 @@ const userSchema = new mongoose.Schema({
 			enum: ['dubai', 'abu dhabi', 'ajman', 'sharjah', 'ras al khaimah', 'umm al quwain', 'fujairah'],
 			default: "abu dhabi",
 		}	
-	}
+	},
+	shoppingCart: [{
+		product: {
+			type: mongoose.Schema.Types.ObjectId,
+			ref: 'Product'
+		},
+		quantity: {
+			type: Number,
+			min: 1,
+		}
+	}],
 });
 
 // Validate user

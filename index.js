@@ -44,6 +44,7 @@ app.use((req, res, next)=>{
 	res.locals.error = req.flash('error');
 	if(req.session.user_id){
 		res.locals.loggedIn = true;
+		res.locals.user_id = req.session.user_id
 	} else {
 		res.locals.loggedIn = false;
 	}
@@ -89,7 +90,7 @@ app.post('/login', wrapAsync(async (req, res)=>{
 		res.redirect('/account/' + foundUser._id)
 	} else {
 		req.flash('error', 'The username or password is incorrect');
-		res.render("/login");
+		res.redirect('/login');
 	}
 }));
 
@@ -152,6 +153,40 @@ app.get('/account/:id', requireLogin, (req, res)=>{
 		res.redirect('/');
 	}
 })
+
+app.get('/account/:id/shoppingcart', requireLogin, wrapAsync(async (req, res)=>{
+	const {id:req_id} = req.params;
+	const {user_id} = req.session;
+	if(req_id === user_id){
+		user = await User.findById(user_id)
+		.populate('shoppingCart.product')
+		res.render('shoppingCart', {title: "My Shopping Cart", user});
+	} else {
+		req.flash('error', "You don't have access to view this page!");
+		res.redirect('/');
+	}
+}))
+
+// add product to shopping cart
+app.post('/account/:user_id/shoppingcart/:product_id', requireLogin, wrapAsync(async (req, res)=>{
+	const {user_id:req_id, product_id} = req.params;
+	const {user_id} = req.session;
+	if(req_id === user_id){
+		// get user
+		user = await User.findById(user_id);
+		// get product
+		product = await Product.findById(product_id);
+		if(!user || !product)
+			throw AppError("User or Product not found", 505);
+		user.shoppingCart.push({product: product._id, quantity: 1});
+		await user.save();
+		req.flash('success', 'Successfully added to shopping cart!')
+		res.redirect(`/account/${user_id}/shoppingcart`)
+	} else {
+		req.flash('error', "You don't have access to view this page!");
+		res.redirect('/');
+	}
+}))
 
 app.get('/about', (req, res)=>{
 	const title = "JABR About"
