@@ -60,7 +60,28 @@ const seedProducts = [
 		brand: "Saudi Arabia",
 		department: "Produce",
 		category: "Vegetables",
-	}
+	},
+	{
+		image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRSVEcyoWRMx4NYaNaa0LjjLkQ1NHzI7pNqkHeYgIPOqd1_SgpkpeNsMb1oigSbO4VfdGQ7pkE&usqp=CAc",
+		name: "Head & Shoulders Smooth and Silky Shampoo",
+		price: 10.20,
+		defWeight: "",
+		qtyAvailable: 100,
+		brand: "Head & Shoulders"
+		department: "Health and Beauty",
+		category: "Shampoos"
+	},
+	{
+		image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTzGJLhKYsC3CPsgAID_N7dGNIdzMKhxhRiSv7D1urZ2lAIs9WKn5rSzW7ctg&usqp=CAc",
+		name: "Kellog's Coco Pops Chocos, 375 grams",
+		price: 23.75,
+		defWeight: "",
+		qtyAvailable: 50,
+		brand: "Kellog's"
+		department: "Snacks",
+		category: "Cereals"
+	},
+
 ];
 
 
