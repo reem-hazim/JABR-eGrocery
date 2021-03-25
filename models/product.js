@@ -13,7 +13,6 @@ const productSchema = new mongoose.Schema({
 	},
 	defWeight: {
 		type: String,
-		required: true,
 	},
 	qtyAvailable : {
 		type: Number,
