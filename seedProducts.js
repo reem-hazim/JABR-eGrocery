@@ -67,7 +67,7 @@ const seedProducts = [
 		price: 10.20,
 		defWeight: "",
 		qtyAvailable: 100,
-		brand: "Head & Shoulders"
+		brand: "Head & Shoulders",
 		department: "Health and Beauty",
 		category: "Shampoos"
 	},
@@ -77,7 +77,7 @@ const seedProducts = [
 		price: 23.75,
 		defWeight: "",
 		qtyAvailable: 50,
-		brand: "Kellog's"
+		brand: "Kellog's",
 		department: "Snacks",
 		category: "Cereals"
 	},
