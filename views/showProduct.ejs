@@ -36,8 +36,8 @@
 			<div class="card card-body">
 				<ul>
 					<h1><%= product.name %></h1>
-					<h3>Price: $<%= product.price %></h3>
-					<h3>Brand: <%= product.brand %></h3>
+					<!-- <h3>Price: $<%= product.price %></h3>
+					<h3>Brand: <%= product.brand %></h3> -->
 						<!-- <div class="rating"><span><i class="fa fa-star"></i></span>
 							<span><i class="fa fa-star"></i></span>
 							<span><i class="fa fa-star"></i></span>
@@ -47,10 +47,18 @@
 						</div> -->
 					<div class="row">
 						<div>Price</div>
-						<div>$<%= product.price %></div>
+						<div>$<%= product.price.toFixed(2)%>
+							<% if (product.defWeight != "") { -%>
+								per <%=product.defWeight%>
+							<% } -%>
+						</div>
 					</div>
 					<div class="row">
-						<div>Status</div>
+						<div>Brand</div>
+						<div><%= product.brand%></div>
+					</div>
+					<div class="row">
+						<div>In Stock</div>
 						<div><%= product.qtyAvailable %></div>
 					</div>
 					<div class="row">
