@@ -81,6 +81,36 @@ const seedProducts = [
 		department: "Snacks",
 		category: "Cereals"
 	},
+	{
+		image: "https://media.istockphoto.com/photos/red-apple-fruit-with-green-leaf-isolated-on-white-picture-id925389178",
+		name: "Apple",
+		price: 9.99,
+		defWeight: "kg",
+		qtyAvailable: 30,
+		brand: "Indian",
+		department: "Produce",
+		category: "Fruits",
+	},
+	{
+		image: "https://www.luluhypermarket.com/medias/7548-01.jpg-1200Wx1200H?context=bWFzdGVyfGltYWdlc3wyMzYwMTl8aW1hZ2UvanBlZ3xoNmUvaGFhLzk3NTc3NTM1NzM0MDYvNzU0OC0wMS5qcGdfMTIwMFd4MTIwMEh8OGJlOGJiNTdlOTMzMTk1MWM2ZjlhMDRlODFhZDlkZDNlOWZjOGNlNTA4ODAwODJhNDMyMTQ3MzhlODczYTQwYg",
+		name: "Milk",
+		price: 7.50,
+		defWeight: "L",
+		qtyAvailable: 14,
+		brand: "Almarai",
+		department: "Produce",
+		category: "Diary",
+	},
+	{
+		image: "https://www.ocado.com/productImages/954/95414011_0_640x640.jpg?identifier=120406857cc1594af97d383c022718e2",
+		name: "Dove Handwash Shea Butter with Warm Vanilla",
+		price: 15.00,
+		defWeight: "",
+		qtyAvailable: 55,
+		brand: "Dove",
+		department: "Health and Beauty",
+		category: "Handwash",
+	},
 
 ];
 
