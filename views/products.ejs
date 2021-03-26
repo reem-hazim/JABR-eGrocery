@@ -52,7 +52,15 @@
 								<% } -%>
 								<p>Brand: <%= allProducts[idx].brand%>
 								<div>
-									<button class="block primary" type="button">Add to Cart</button>
+                                    <form
+                                    <% if (!loggedIn) { -%>
+                                        action="/login" method="GET"
+                                    <% } else { -%>
+                                        action= "/account/<%=user_id%>/shoppingcart/<%=allProducts[idx]._id%>" method="POST"
+                                    <% } -%>>
+                                        <button class="block primary" type="submit">Add to Cart</button>
+                                    </form>
+									
 								</div>
 							</div>
 						<% } -%>

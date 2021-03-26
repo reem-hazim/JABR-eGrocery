@@ -97,6 +97,7 @@ app.post('/login', wrapAsync(async (req, res)=>{
 app.post('/logout', (req, res)=>{
 	req.session.user_id= null;
 	// Redirect to home
+	req.flash('success', 'Successfully logged out!')
 	res.redirect('/');
 })
 
@@ -170,6 +171,7 @@ app.get('/account/:id/shoppingcart', requireLogin, wrapAsync(async (req, res)=>{
 // add product to shopping cart
 app.post('/account/:user_id/shoppingcart/:product_id', requireLogin, wrapAsync(async (req, res)=>{
 	const {user_id:req_id, product_id} = req.params;
+	const {quantity=1} = req.body
 	const {user_id} = req.session;
 	if(req_id === user_id){
 		// get user
@@ -178,8 +180,25 @@ app.post('/account/:user_id/shoppingcart/:product_id', requireLogin, wrapAsync(a
 		product = await Product.findById(product_id);
 		if(!user || !product)
 			throw AppError("User or Product not found", 505);
-		user.shoppingCart.push({product: product._id, quantity: 1});
-		await user.save();
+
+		let foundItem;
+		//search for item in user's shopping cart
+		for(let item of user.shoppingCart){
+			if(String(item.product._id) === String(product._id)){
+				foundItem = item;
+				break;
+			}
+		}
+		// If this is a new item
+		if(!foundItem){
+			user.shoppingCart.push({product: product._id, quantity: quantity});
+			await user.save();
+		// If it's an existing item
+		} else { 
+			foundItem.quantity += 1
+			await user.save();
+		}
+
 		req.flash('success', 'Successfully added to shopping cart!')
 		res.redirect(`/account/${user_id}/shoppingcart`)
 	} else {
