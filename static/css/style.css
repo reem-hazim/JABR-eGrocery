@@ -154,8 +154,8 @@ input, button, textarea {
 	position: relative;
 	display: inline-block;
 	padding-right: 30px;
-	width: 10%;
-	text-align: right;
+	width: 15%;
+	text-align: center;
 }
 
 /* ================================================================================================ */
@@ -242,20 +242,53 @@ header .row{
 
 /* Features Products */
 .col-4{
+    display: inline-flex;
+    flex-direction: column;
+    align-content: space-between;
     flex-basis: 25%;
     padding: 10px;
-    min-width: 200px;
+    min-height: 50vh;
+    min-width: 25%;
     margin-bottom: 50px;
     transition: transform .5s;
+    justify-content: start;
 }
 
 .col-4 img{
-	height: 100px;
-    width: 100%;
-	padding: 25%;
-	background-color: aliceblue;
-    padding-top: 50%;
+    display: inline;
+    width: 12vw;
+    height: 12vw;
+    background-position: center;
+    background-size: cover;
     cursor: pointer;
+}
+
+.col-4 h4 a {
+    font-size: 1rem;
+    color: black;
+}
+
+.col-4 h4 a:hover {
+    color: rgb(134, 188, 235);
+}
+
+.col-4 p{
+    display: inline;
+    font-size: 14px;
+}
+
+.col-4 .ratings{
+    display: inline;
+    color: rgb(134, 188, 235);
+}
+
+.col-4 div {
+    display: inline;
+    height: 10%;
+}
+
+.col-4:hover{
+    transform: translateY(-5px);
 }
 
 .title{
@@ -477,6 +510,7 @@ button.primary {
 
 
 .small-container {
+    width: 60vw;
     max-width: 1080px;
     margin: auto;
     padding: 0 25px;
@@ -492,7 +526,7 @@ button.primary {
     display: flex;
     align-items: center;
     flex-wrap: wrap;
-    justify-content: space-around;
+    justify-content: space-evenly;
 }
 
 h4{
@@ -500,25 +534,7 @@ h4{
     font-weight: normal;
 }
 
-.col-4 p{
-    font-size: 14px;
-}
 
-.col-4 .ratings{
-    color: rgb(134, 188, 235);
-}
-
-.col-4:hover{
-    transform: translateY(-5px);
-}
-
-.col-4 {
-    flex-basis: 25%;
-    padding: 10px;
-    min-width: 200px;
-    margin-bottom: 50px;
-    transition: transform .5s;
-}
 
 .row-2{
     justify-content: space-between;
