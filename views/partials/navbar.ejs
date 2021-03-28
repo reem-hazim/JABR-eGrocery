@@ -37,9 +37,12 @@
 		  </div>
 		<!-- Login/Register || View Cart -->
 		<% if (loggedIn) { -%>
-			<form action="/account" method="POST">
+			<!-- <form action="/account" method="POST">
       	<button id="account"> Your Account </button>
-      </form>
+      </form> -->
+			<div>
+				<a class="nav-link" href="/account/<%=user_id%>">Your Account</a>
+			</div>
       <form action="/logout" method="POST">
       	<button id="logout"> Log out </button>
       </form>

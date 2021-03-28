@@ -95,10 +95,10 @@ app.post('/login', wrapAsync(async (req, res)=>{
 	}
 }));
 
-// Account logic
-app.post('/account', (req, res)=>{
-	res.redirect('/account/' + req.session.user_id);
-});
+// // Account logic
+// app.post('/account', (req, res)=>{
+// 	res.redirect('/account/' + req.session.user_id);
+// });
 
 app.post('/logout', (req, res)=>{
 	req.session.user_id= null;
