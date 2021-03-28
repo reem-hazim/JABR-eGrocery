@@ -31,17 +31,20 @@
 		<!-- Search Bar -->
 		<div class="search">
 			<form class="search-form" id="search-form" action="/products" method="GET">
-			  	<input type="text" name="q" id="q" placeholder="Search Catalog"> 
+			  	<input type="text" name="q" id="q" placeholder="Search Catalog">
 			  	<button type="submit" id="searchButton"><i class="fa fa-search"></i></button>
 			</form>
 		  </div>
 		<!-- Login/Register || View Cart -->
 		<% if (loggedIn) { -%>
-	        <form action="/logout" method="POST">
-	        	<button id="logout"> Log out </button>
-	        </form>
-        <% } else {%>
-        	<div>
+			<form action="/account" method="POST">
+      	<button id="account"> Your Account </button>
+      </form>
+      <form action="/logout" method="POST">
+      	<button id="logout"> Log out </button>
+      </form>
+    <% } else { %>
+    	<div>
 				<a class="nav-link" href="/login">Login</a>
 			</div>
 			<div> or </div>

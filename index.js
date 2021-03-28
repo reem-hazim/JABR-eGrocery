@@ -87,12 +87,18 @@ app.post('/login', wrapAsync(async (req, res)=>{
 	if(foundUser){
 		req.session.user_id = foundUser._id;
 		req.flash('success', 'Successfully logged in!');
-		res.redirect('/account/' + foundUser._id)
+		res.redirect('/'); //ideally we should lead them to the last page that they were in?
+		// res.redirect('/account/' + foundUser._id)
 	} else {
 		req.flash('error', 'The username or password is incorrect');
 		res.redirect('/login');
 	}
 }));
+
+// Account logic
+app.post('/account', (req, res)=>{
+	res.redirect('/account/' + req.session.user_id);
+});
 
 app.post('/logout', (req, res)=>{
 	req.session.user_id= null;
@@ -194,7 +200,7 @@ app.post('/account/:user_id/shoppingcart/:product_id', requireLogin, wrapAsync(a
 			user.shoppingCart.push({product: product._id, quantity: quantity});
 			await user.save();
 		// If it's an existing item
-		} else { 
+		} else {
 			foundItem.quantity += 1
 			await user.save();
 		}
