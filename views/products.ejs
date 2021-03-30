@@ -17,41 +17,36 @@
 
 			 	<% let row = Math.floor(allProducts.length/4) -%>
         <% for (var i=0; i<=row; i++) { -%>
-					<div class="row">
-
-						<% if (i!=row) {var col = 4}
+					<div class="card-group">
+                        <% if (i!=row) {var col = 4}
 						else {var col = allProducts.length%4} -%>
-
-						<% for (var j=0; j<col; j++) { -%>
-							<div class="col-4">
+                        <% for (var j=0; j<col; j++) { -%>
+							<div class="card" style="width: 18rem;">
 								<% var idx=(i*4)+j;
 								//console.log(i, col, j, idx); -%>
-								<img src=<%=allProducts[idx].image%> alt="products"/>
-								<h4>
-                                    <a href="/products/<%=allProducts[idx]._id%>">
-                                        <%=allProducts[idx].name%>
-                                    </a>
-                                </h4>
-								<div class="ratings">
-										<i class="fa fa-star" aria-hidden="true"></i>
-										<i class="fa fa-star" aria-hidden="true"></i>
-										<i class="fa fa-star" aria-hidden="true"></i>
-										<i class="fa fa-star" aria-hidden="true"></i>
-										<i class="fa fa-star-o" aria-hidden="true"></i>
-								</div>
-								<p>
-									$<%=allProducts[idx].price.toFixed(2)%>
-									<% if (allProducts[idx].defWeight != "") { -%>
-										per <%=allProducts[idx].defWeight%>
-									<% } -%>
-								</p>
-								<% if(allProducts[idx].inStock){ -%>
-									<p>In Stock</p>
-								<% }	else { -%>
-									<p>Out Of Stock</p>
-								<% } -%>
-								<p>Brand: <%= allProducts[idx].brand%>
-								<div>
+								<img class="product-img" src=<%=allProducts[idx].image%> alt="products"/>
+								<div class="card-body">
+                                    <h5 class="card-title">
+                                        <a href="/products/<%=allProducts[idx]._id%>">
+                                            <%=allProducts[idx].name%>
+                                        </a>
+                                    </h5>
+                                </div>
+                                <div class="card-body">
+                                    <p class="card-text">
+                                        $<%=allProducts[idx].price.toFixed(2)%>
+                                        <% if (allProducts[idx].defWeight != "") { -%>
+                                            per <%=allProducts[idx].defWeight%>
+                                        <% } -%>
+                                    </p>
+                                    <% if(allProducts[idx].inStock){ -%>
+                                        <p class="card-text">In Stock</p>
+                                    <% }	else { -%>
+                                        <p class="card-text">Out Of Stock</p>
+                                    <% } -%>
+								    <p class="card-text">Brand: <%= allProducts[idx].brand%></p>
+                                </div>
+                                <div class="addToCart">
                                     <form
                                     <% if (!loggedIn) { -%>
                                         action="/login" method="GET"
@@ -60,183 +55,15 @@
                                     <% } -%>>
                                         <button class="block primary" type="submit">Add to Cart</button>
                                     </form>
-									
-								</div>
+                                </div>
 							</div>
 						<% } -%>
-
-					</div>
-				<% } -%>
-        <!-- <div class="row">
-            <% for (let product of allProducts) { -%>
-                <div class="col-4">
-                    <img src=<%=product.image%> alt="products"/>
-                    <h4><%=product.name%></h4>
-                    <div class="ratings">
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        <i class="fa fa-star-o" aria-hidden="true"></i>
                     </div>
-                    <p>$<%=product.price%></p>
-                </div>
-            <% } -%>
-            <div class="col-4">
-                <img src="./assets/product-1.jpg" alt="products">
-                <h4>Red Printed T-Shirt</h4>
-                <div class="ratings">
-                    <i class="fa fa-star" aria-hidden="true"></i>
-                    <i class="fa fa-star" aria-hidden="true"></i>
-                    <i class="fa fa-star" aria-hidden="true"></i>
-                    <i class="fa fa-star" aria-hidden="true"></i>
-                    <i class="fa fa-star-o" aria-hidden="true"></i>
-                </div>
-                <p>$50.00</p>
-            </div>
-            <div class="col-4">
-                <img src="./assets/product-2.jpg" alt="products">
-                <h4>Red Printed T-Shirt</h4>
-                <div class="ratings">
-                    <i class="fa fa-star" aria-hidden="true"></i>
-                    <i class="fa fa-star" aria-hidden="true"></i>
-                    <i class="fa fa-star" aria-hidden="true"></i>
-                    <i class="fa fa-star" aria-hidden="true"></i>
-                    <i class="fa fa-star-o" aria-hidden="true"></i>
-                </div>
-                <p>$50.00</p>
-            </div>
-            <div class="col-4">
-                <img src="./assets/product-3.jpg" alt="products">
-                <h4>Red Printed T-Shirt</h4>
-                <div class="ratings">
-                    <i class="fa fa-star" aria-hidden="true"></i>
-                    <i class="fa fa-star" aria-hidden="true"></i>
-                    <i class="fa fa-star" aria-hidden="true"></i>
-                    <i class="fa fa-star-half" aria-hidden="true"></i>
-                    <i class="fa fa-star-o" aria-hidden="true"></i>
-                </div>
-                <p>$50.00</p>
-            </div>
-            <div class="col-4">
-                <img src="./assets/product-4.jpg" alt="products">
-                <h4>Red Printed T-Shirt</h4>
-                <div class="ratings">
-                    <i class="fa fa-star" aria-hidden="true"></i>
-                    <i class="fa fa-star" aria-hidden="true"></i>
-                    <i class="fa fa-star" aria-hidden="true"></i>
-                    <i class="fa fa-star" aria-hidden="true"></i>
-                    <i class="fa fa-half-star" aria-hidden="true"></i>
-                </div>
-                <p>$50.00</p>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-4">
-                <img src="./assets/product-5.jpg" alt="products">
-                <h4>Red Printed T-Shirt</h4>
-                <div class="ratings">
-                    <i class="fa fa-star" aria-hidden="true"></i>
-                    <i class="fa fa-star" aria-hidden="true"></i>
-                    <i class="fa fa-star" aria-hidden="true"></i>
-                    <i class="fa fa-star" aria-hidden="true"></i>
-                    <i class="fa fa-star-o" aria-hidden="true"></i>
-                </div>
-                <p>$50.00</p>
-            </div>
-            <div class="col-4">
-                <img src="./assets/product-6.jpg" alt="products">
-                <h4>Red Printed T-Shirt</h4>
-                <div class="ratings">
-                    <i class="fa fa-star" aria-hidden="true"></i>
-                    <i class="fa fa-star" aria-hidden="true"></i>
-                    <i class="fa fa-star" aria-hidden="true"></i>
-                    <i class="fa fa-star" aria-hidden="true"></i>
-                    <i class="fa fa-star-o" aria-hidden="true"></i>
-                </div>
-                <p>$50.00</p>
-            </div>
-            <div class="col-4">
-                <img src="./assets/product-7.jpg" alt="products">
-                <h4>Red Printed T-Shirt</h4>
-                <div class="ratings">
-                    <i class="fa fa-star" aria-hidden="true"></i>
-                    <i class="fa fa-star" aria-hidden="true"></i>
-                    <i class="fa fa-star" aria-hidden="true"></i>
-                    <i class="fa fa-half-star" aria-hidden="true"></i>
-                    <i class="fa fa-star-o" aria-hidden="true"></i>
-                </div>
-                <p>$50.00</p>
-            </div>
-            <div class="col-4">
-                <img src="./assets/product-8.jpg" alt="products">
-                <h4>Red Printed T-Shirt</h4>
-                <div class="ratings">
-                    <i class="fa fa-star" aria-hidden="true"></i>
-                    <i class="fa fa-star" aria-hidden="true"></i>
-                    <i class="fa fa-star" aria-hidden="true"></i>
-                    <i class="fa fa-star" aria-hidden="true"></i>
-                    <i class="fa fa-half-star" aria-hidden="true"></i>
-                </div>
-                <p>$50.00</p>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-4">
-                <img src="./assets/product-9.jpg" alt="products">
-                <h4>Red Printed T-Shirt</h4>
-                <div class="ratings">
-                    <i class="fa fa-star" aria-hidden="true"></i>
-                    <i class="fa fa-star" aria-hidden="true"></i>
-                    <i class="fa fa-star" aria-hidden="true"></i>
-                    <i class="fa fa-star" aria-hidden="true"></i>
-                    <i class="fa fa-star-o" aria-hidden="true"></i>
-                </div>
-                <p>$50.00</p>
-            </div>
-            <div class="col-4">
-                <img src="./assets/product-10.jpg" alt="products">
-                <h4>Red Printed T-Shirt</h4>
-                <div class="ratings">
-                    <i class="fa fa-star" aria-hidden="true"></i>
-                    <i class="fa fa-star" aria-hidden="true"></i>
-                    <i class="fa fa-star" aria-hidden="true"></i>
-                    <i class="fa fa-star" aria-hidden="true"></i>
-                    <i class="fa fa-star-o" aria-hidden="true"></i>
-                </div>
-                <p>$50.00</p>
-            </div>
-            <div class="col-4">
-                <img src="./assets/product-11.jpg" alt="products">
-                <h4>Red Printed T-Shirt</h4>
-                <div class="ratings">
-                    <i class="fa fa-star" aria-hidden="true"></i>
-                    <i class="fa fa-star" aria-hidden="true"></i>
-                    <i class="fa fa-star" aria-hidden="true"></i>
-                    <i class="fa fa-half-star" aria-hidden="true"></i>
-                    <i class="fa fa-star-o" aria-hidden="true"></i>
-                </div>
-                <p>$50.00</p>
-            </div>
-            <div class="col-4">
-                <img src="./assets/product-12.jpg" alt="products">
-                <h4>Red Printed T-Shirt</h4>
-                <div class="ratings">
-                    <i class="fa fa-star" aria-hidden="true"></i>
-                    <i class="fa fa-star" aria-hidden="true"></i>
-                    <i class="fa fa-star" aria-hidden="true"></i>
-                    <i class="fa fa-star" aria-hidden="true"></i>
-                    <i class="fa fa-half-star" aria-hidden="true"></i>
-                </div>
-                <p>$50.00</p>
-            </div>
-        </div> -->
+				<% } -%>
         <!-- Navigate the Products -->
 				<!-- Should include the page btn stuff inside the row/col/idx logic-->
-        <div class="page-btn">
-            <span>1</span>
+        <div class="page-btn" style="margin: auto;">
+            <span style="margin: 0">1</span>
             <span>2</span>
             <span>3</span>
             <span>4</span>

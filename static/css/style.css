@@ -121,27 +121,30 @@ h1.head {
 .search{
 	display: inline-flex;
 	width: 20%;
-	height: 40px;
+	height: 30px;
 	/* padding-right: 30px; */
 }
 form.search-form input[type='text'] {
     float: left;
-	height: 40px;
+	height: 30px;
     width: 80%;
     border-right: none;
     border-top-right-radius: 0;
     border-bottom-right-radius: 0;
 }
 form.search-form button {
+    color: aliceblue;
     float: left;
-	height: 40px;
-    width: 40px;
+	height: 30px;
+    width: 30px;
+    padding: 0;
     background: rgb(134, 188, 235);
     border-left: none;
     cursor: pointer;
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
 }
+
 
 input, button, textarea {
     font: 1.4rem Helvetica;
@@ -242,7 +245,7 @@ header .row{
 
 /* Features Products */
 .col-4{
-    display: inline-flex;
+    display: table;
     flex-direction: column;
     align-content: space-between;
     flex-basis: 25%;
@@ -254,25 +257,46 @@ header .row{
     justify-content: start;
 }
 
-.col-4 img{
+.product-img{
     display: inline;
-    width: 12vw;
     height: 12vw;
+    width: 12vw;
+    margin: auto;
+    padding: 10px;
     background-position: center;
     background-size: cover;
     cursor: pointer;
 }
 
-.col-4 h4 a {
-    font-size: 1rem;
+.card {
+    max-width: 25%;
+    transition: 0.5s;
+}
+
+.addToCart {
+    text-align: center;
+    margin: auto;
+    padding: 10px;
+}
+
+.addToCart button {
+    text-align: center;
+    margin: auto;
+    padding: 5px;
+    font: 1rem Helvetica;
+}
+
+.card h5 a {
+    font-size: 1.2rem;
     color: black;
 }
 
-.col-4 h4 a:hover {
+.card h5 a:hover {
     color: rgb(134, 188, 235);
+    text-decoration: none;
 }
 
-.col-4 p{
+.card p{
     display: inline;
     font-size: 14px;
 }
@@ -287,8 +311,8 @@ header .row{
     height: 10%;
 }
 
-.col-4:hover{
-    transform: translateY(-5px);
+.card:hover{
+    transform: translateY(-2px);
 }
 
 .title{
@@ -538,7 +562,7 @@ h4{
 
 .row-2{
     justify-content: space-between;
-    margin: 100px auto 50px;
+    margin: 50px auto 10px;
 }
 
 select{
@@ -551,6 +575,8 @@ select:focus{
 }
 
 .page-btn{
+    padding-top: 25px;
+    padding-bottom: 25px;
     margin: 0 auto 80px;
 }
 
