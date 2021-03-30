@@ -184,6 +184,10 @@ header .row{
     height: 70vh;
 }
 
+header h1 {
+    background: none;
+}
+
 .container{
     max-width: 100%;
     margin: auto;
