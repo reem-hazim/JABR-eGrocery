@@ -1,5 +1,6 @@
 <%- include('partials/head')%>
 <body>
+    <div class="parallax">
 	<%- include('partials/navbar') %>
 	<h1>Our Entire Store. At Your Fingertips.</h1>
 	<div class="small-container">
@@ -31,19 +32,19 @@
                                             <%=allProducts[idx].name%>
                                         </a>
                                     </h5>
-                                </div>
-                                <div class="card-body">
                                     <p class="card-text">
                                         $<%=allProducts[idx].price.toFixed(2)%>
                                         <% if (allProducts[idx].defWeight != "") { -%>
                                             per <%=allProducts[idx].defWeight%>
                                         <% } -%>
                                     </p>
+                                    <br>
                                     <% if(allProducts[idx].inStock){ -%>
                                         <p class="card-text">In Stock</p>
                                     <% }	else { -%>
                                         <p class="card-text">Out Of Stock</p>
                                     <% } -%>
+                                    <br>
 								    <p class="card-text">Brand: <%= allProducts[idx].brand%></p>
                                 </div>
                                 <div class="addToCart">
@@ -72,5 +73,6 @@
 
     </div>
     <%- include('partials/footer') %>
+    </div>
 </body>
 </html>

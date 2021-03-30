@@ -8,7 +8,12 @@ body {
     display: block;
 	margin-top: calc(var(--navBarHeight)*1vw);
 	height: 150vh;
+    
 }
+
+.parallax {
+
+  }
 
 h1 {
 	display: block;
@@ -225,6 +230,7 @@ header .row{
 }
 
 .small-container{
+    background: none;
     max-width: 1080px;
     margin: auto;
     padding: 0 25px;
