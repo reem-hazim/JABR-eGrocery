@@ -17,6 +17,10 @@ body {
 
 h1 {
 	display: block;
+    background: white;
+    width: 70vw;
+    margin: auto;
+    margin-top: 30px;
 	padding: 20px;
 	text-align: center;
 }
@@ -227,13 +231,6 @@ header .row{
 /* Featured Categories */
 .categories{
     margin: 70px 0;
-}
-
-.small-container{
-    background: none;
-    max-width: 1080px;
-    margin: auto;
-    padding: 0 25px;
 }
 
 .col-3{
@@ -537,13 +534,28 @@ button.primary {
 /* ================================================================================================ */
 /* Products */
 
+.parallax {
+    position: fixed;
+    /* The image used */
+    background-image: url("/img/background1.jpeg");
+    width: 100vw;
+    /* Full height */
+    height: 250%;
+  
+    /* Create the parallax scrolling effect */
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    filter: blur(8px);
+    z-index: -99;
+  }
 
-
-.small-container {
-    width: 60vw;
-    max-width: 1080px;
+.small-container{
+    background: white;
+    width: 70vw;
     margin: auto;
-    padding: 0 25px;
+    padding: 25px;
 }
 
 .container{
