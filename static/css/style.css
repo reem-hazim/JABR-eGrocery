@@ -7,7 +7,7 @@
 body {
     display: block;
 	margin-top: calc(var(--navBarHeight)*1vw);
-	height: 150vh;
+	height: auto;
     font-family: 'Quicksand', sans-serif;
     
 }
@@ -207,13 +207,21 @@ header p {
     flex-direction: column;
     justify-content: baseline;
     align-items: center;
-    animation: emphasisDown 3s infinite;
+    animation: emphasisDown 7s infinite;
 }
 @keyframes emphasisDown {
-    50%{
+    25%{
         opacity: 0.5;
         transform: translateY(5px);
     }
+    50%{
+        opacity: 1;
+        transform: translateY(0px);
+    }
+    100%{
+        opacity: 1;
+    }
+
 }
 
 .arrow {
@@ -306,6 +314,7 @@ header p {
     50% {
         background: rgb(149, 199, 244);
         box-shadow: 0 0 10px #fff;
+        text-shadow: 0 0 10px #fff;
     }
 }
 .btn:hover{
@@ -456,7 +465,7 @@ footer{
     background: #2F5061;
     color: #8a8a8a;
     font-size: 14px;
-    padding: 60px 0 20px;
+    padding: 30px 0 30px;
     bottom: 0;
 }
 
@@ -471,6 +480,7 @@ footer p{
 footer h3{
     color: cornflowerblue;
     margin-bottom: 20px;
+    font-size: 2.5vh;
 }
 
 .footer-col-1 , .footer-col-2 , .footer-col-3, .footer-col-4{
@@ -559,6 +569,7 @@ input {
 #main_container {
 	position: relative;
 	display: block;
+    height: 100%;
 }
 
 .form {
@@ -620,7 +631,7 @@ button.primary {
 /* About */
 
 .mainLogo {
-    margin: 100px auto;
+    margin: auto;
     margin-bottom: 10px;
     height: 30vh;
     width: 30vh;
@@ -631,14 +642,10 @@ button.primary {
     width: 100%;
 }
 
-.aboutPage h1 {
-    padding: 0;
-}
-
 .aboutPage p {
     width: 50vw;
-    margin: 100px auto;
-    margin-top: 50px;
+    margin: auto;
+    margin-bottom: 50px;
 }
 
 
