@@ -4,7 +4,8 @@
 	<%- include('partials/flash') %>
 	<!-- Header -->
 	<header>
-		<div class="backgroundImage"></div>
+		<div id="backgroundImage"></div>
+		<div id="backgroundImageOverlay"></div>
 		<div class="container">
 			<div class="row">
 				<div class="col-2">
@@ -61,6 +62,23 @@
 
 	<script>
 		// change background
+		var counter = Math.floor(Math.random() * 4);
+		var filePath = "url(/img/background" + counter + ".jpeg)";
+				$("#backgroundImage").css({"background-image":filePath});
+		var imageShift = setInterval(changeImage, 10000);
+		function changeImage(){
+			counter++;
+			if(counter > 4){
+				counter = 0;
+			}
+			else{
+				$("#backgroundImage").fadeOut(1000, function(){
+					filePath = "url(/img/background" + counter + ".jpeg)";
+					$("#backgroundImage").css({"background-image":filePath});
+				});
+				$("#backgroundImage").fadeIn(1000);
+			}
+		}
 	</script>
 
 </body>
