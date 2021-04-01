@@ -2,9 +2,15 @@
 <body>
 	<%- include('partials/navbar') %>
 	<%- include('partials/flash') %>
-
-<%- include('partials/footer') %>
-Here's your account!
+	<div id="nameDiv">
+		<div>First Name: </div>
+		<div>Last Name: </div>
+	</div>
+	<!-- Display as *****? Allow viewing on click -->
+	<div id="passwordDiv">Password: </div>
+	<div id="addressDiv">Shipping Address: </div>
+	<div id="paymentDiv">Preferred Payment: </div>
 <a class="nav-link" href="/account/<%=user_id%>/shoppingcart/">Show Cart</a>
+<%- include('partials/footer') %>
 </body>
 </html>
