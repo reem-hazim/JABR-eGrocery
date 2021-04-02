@@ -2,7 +2,7 @@
 <body class="aboutPage">
 	<%- include('partials/navbar') %>
 	<div class="row top">
-		<div class="col-4">
+		<div class="productDescImg">
 			<img src=<%=product.image%> alt="products"/>
 		</div>
 		<!-- <div class="col-4">
@@ -32,10 +32,9 @@
 				</li>
 			</ul>
 		</div> -->
-		<div class="col-4">
 			<div class="card card-body">
 				<ul>
-					<h1><%= product.name %></h1>
+					<h3><%= product.name %></h3>
 					<!-- <h3>Price: $<%= product.price %></h3>
 					<h3>Brand: <%= product.brand %></h3> -->
 						<!-- <div class="rating"><span><i class="fa fa-star"></i></span>
@@ -45,7 +44,7 @@
 							<span><i class="fa fa-star-half-o"></i></span>
 							<span> 120 reviews</span>
 						</div> -->
-					<div class="row">
+					<div class="productDescRow">
 						<div>Price</div>
 						<div>$<%= product.price.toFixed(2)%>
 							<% if (product.defWeight != "") { -%>
@@ -53,11 +52,11 @@
 							<% } -%>
 						</div>
 					</div>
-					<div class="row">
+					<div class="productDescRow">
 						<div>Brand</div>
 						<div><%= product.brand%></div>
 					</div>
-					<div class="row">
+					<div class="productDescRow">
 						<div>In Stock</div>
 						<div><%= product.qtyAvailable %></div>
 					</div>
@@ -67,7 +66,7 @@
 					<% } else { -%>
 						action= "/account/<%=user_id%>/shoppingcart/<%=product._id%>" method="POST"
 					<% } -%>>
-						<div class="row">
+						<div class="productDescRow">
 							<div>Qty</div>
 							<div>
 								<select name="quantity">
@@ -94,13 +93,16 @@
 								</select>
 							</div>
 						</div>
-						<button class="block primary" type="submit"> 
-							Add to Cart
-						</button>
+						<div class="addToCart">
+							<button class="block primary" type="submit"> 
+								Add to Cart
+							</button>
+						</div>
+						
 					</form>
 				</ul>
 			</div>
-		</div>
 	</div>
+	<%- include('partials/footer') %>
 </body>
 </html>
