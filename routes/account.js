@@ -19,6 +19,53 @@ router.get('/:id', requireLogin, (req, res)=>{
 	}
 })
 
+// edit account form
+router.get('/:id/edit', requireLogin, wrapAsync(async (req, res)=>{
+	const {id:req_id} = req.params;
+	const {user_id} = req.session;
+	if(req_id === user_id){
+		const user = await User.findById(req_id)
+		res.render('editAccount', {title: "Edit Product", user})
+	} else {
+		req.flash('error', "You don't have access to view this page!");
+		res.redirect('/');
+	}
+
+}))
+
+router.put('/:id', requireLogin, wrapAsync(async (req, res)=>{
+	const {id:req_id} = req.params;
+	const {user_id} = req.session;
+	if(req_id === user_id){
+		const {firstName, 
+				lastName,
+				email,
+				phoneNumber,
+				address1, 
+				address2,
+				emirate } = req.body;
+
+		const update_data = {
+			firstName, 
+			lastName, 
+			email, 
+			phoneNumber,
+			shippingAddress: {
+				address1,
+				address2,
+				emirate
+			} 
+		};
+		await User.findByIdAndUpdate(user_id, update_data, {runValidators: true, new:true});
+		req.flash('success', "Successfully updated your account!");
+		res.redirect(`/account/${user_id}`)
+	} else {
+		req.flash('error', "You don't have access to view this page!");
+		res.redirect('/');
+	}
+}))
+
+// view shopping cart
 router.get('/:id/shoppingcart', requireLogin, wrapAsync(async (req, res)=>{
 	const {id:req_id} = req.params;
 	const {user_id} = req.session;
@@ -43,17 +90,7 @@ router.post('/:user_id/shoppingcart/:product_id', requireLogin, wrapAsync(async 
 		if(!user || !product)
 			throw AppError("User or Product not found", 505);
 
-		let foundItem = user.findShoppingCartItem(product._id)
-		// If this is a new item
-		if(!foundItem){
-			user.shoppingCart.push({product: product._id, quantity: quantity});
-			await user.save();
-		// If it's an existing item
-		} else {
-			foundItem.quantity += 1
-			await user.save();
-		}
-
+		await user.findItemAndAddToCart(product._id, quantity)
 		req.flash('success', 'Successfully added to shopping cart!')
 		res.redirect(`/account/${user_id}/shoppingcart`)
 	} else {
@@ -61,5 +98,6 @@ router.post('/:user_id/shoppingcart/:product_id', requireLogin, wrapAsync(async 
 		res.redirect('/');
 	}
 }))
+
 
 module.exports = router;

@@ -85,16 +85,23 @@ userSchema.statics.findAndValidate = async function(email, password){
 	return isValid ? foundUser : false;
 }
 
-userSchema.methods.findShoppingCartItem = function(product_id){
+userSchema.methods.findItemAndAddToCart = async function(product_id, quantity){
 	let foundItem;
-		//search for item in user's shopping cart
-		for(let item of this.shoppingCart){
-			if(String(item.product._id) === String(product_id)){
-				foundItem = item;
-				break;
-			}
+	//search for item in user's shopping cart
+	for(let item of this.shoppingCart){
+		if(String(item.product._id) === String(product_id)){
+			foundItem = item;
+			break;
 		}
-	return foundItem ? foundItem : false;
+	}
+	if(!foundItem){
+		this.shoppingCart.push({product: product_id, quantity: quantity});
+		await this.save();
+	// If it's an existing item
+	} else {
+		foundItem.quantity += 1
+		await this.save();
+	}
 }
 
 // Encrypt Password

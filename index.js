@@ -5,7 +5,7 @@ const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 const session = require('express-session');
 const flash = require('connect-flash');
-
+const methodOverride = require('method-override')
 //Require models
 const User = require('./models/user');
 const Product = require('./models/product');
@@ -35,6 +35,7 @@ mongoose.connect('mongodb://localhost:27017/abrajTest', {useNewUrlParser: true, 
 		console.log(err)
 	})
 
+app.use(methodOverride('_method'))
 app.use(express.static(path.join(__dirname, '/static')));
 app.use(express.urlencoded({extended: true}));
 
@@ -64,11 +65,6 @@ app.use('/register', registerRoutes);
 app.use('/', loginRoutes);
 app.use('/products', productRoutes);
 app.use('/account', accountRoutes);
-
-// // Account logic
-// app.post('/account', (req, res)=>{
-// 	res.redirect('/account/' + req.session.user_id);
-// });
 
 // Home page
 app.get('/', wrapAsync(async (req, res, next)=>{
