@@ -85,6 +85,18 @@ userSchema.statics.findAndValidate = async function(email, password){
 	return isValid ? foundUser : false;
 }
 
+userSchema.methods.findShoppingCartItem = function(product_id){
+	let foundItem;
+		//search for item in user's shopping cart
+		for(let item of this.shoppingCart){
+			if(String(item.product._id) === String(product_id)){
+				foundItem = item;
+				break;
+			}
+		}
+	return foundItem ? foundItem : false;
+}
+
 // Encrypt Password
 userSchema.pre('save', async function(next){
 	if(!this.isModified('password')) return next();
