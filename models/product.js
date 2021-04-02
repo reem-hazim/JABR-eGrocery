@@ -30,6 +30,12 @@ const productSchema = new mongoose.Schema({
 	category: {
 		type: String,
 		required: true,
+	},
+	featured: {
+		type: Boolean,
+	},
+	added: {
+		type: Date,
 	}
 });
 

@@ -20,7 +20,6 @@
 			<br>
 			<p>Or Scroll Down for More</p>
 			<i class="arrow down"></i>
-			
 		</div>
 	</header>
 	<br>
@@ -44,19 +43,114 @@
 	</div>
 
 	<!-- Featured Products -->
-	<div class="small-container">
+	<!-- Featured Products -->
+		<div class="small-container">
+			<h2 class="title">Featured Products</h2>
 
-		<h2 class="title">Featured Products</h2>
-		<div class="row">
-		</div>
+			<% let featuredRow = Math.floor(featuredProducts.length/4) -%>
+			<% for (var i=0; i<=featuredRow; i++) { -%>
 
-		<h2 class="title">Latest Products</h2>
-		<div class="row">
-		</div>
-		<div class="row">
-		</div>
+				<div class="card-group">
+				<% if (i!=featuredRow) {var col = 4}
+				else {var col = featuredProducts.length%4} -%>
 
-	</div>
+				<% for (var j=0; j<col; j++) { -%>
+						<div class="card" style="width: 18rem;">
+							<% var idx=(i*4)+j;
+							//console.log(i, col, j, idx); -%>
+							<img class="product-img" src=<%=featuredProducts[idx].image%> alt="products"/>
+							<div class="card-body">
+								<h5 class="card-title">
+										<a href="/products/<%=featuredProducts[idx]._id%>">
+												<%=featuredProducts[idx].name%>
+										</a>
+								</h5>
+								<p class="card-text">
+										$<%=featuredProducts[idx].price.toFixed(2)%>
+										<% if (featuredProducts[idx].defWeight != "") { -%>
+												per <%=featuredProducts[idx].defWeight%>
+										<% } -%>
+								</p>
+								<br>
+								<% if(featuredProducts[idx].inStock){ -%>
+										<p class="card-text">In Stock</p>
+								<% }	else { -%>
+										<p class="card-text">Out Of Stock</p>
+								<% } -%>
+								<br>
+								<p class="card-text">
+									Brand: <%= featuredProducts[idx].brand%>
+								</p>
+							</div>
+							<div class="addToCart">
+									<form
+									<% if (!loggedIn) { -%>
+											action="/login" method="GET"
+									<% } else { -%>
+											action= "/account/<%=user_id%>/shoppingcart/<%=featuredProducts[idx]._id%>" method="POST"
+									<% } -%>>
+											<button class="block primary" type="submit">Add to Cart</button>
+									</form>
+							</div>
+						</div>
+					<% } -%>
+					</div>
+			<% } -%>
+
+			<h2 class="title">Latest Products</h2>
+			<% let latestRow = Math.floor(latestProducts.length/4) -%>
+			<% for (var i=0; i<=latestRow; i++) { -%>
+
+				<div class="card-group">
+				<% if (i!=latestRow) {var col = 4}
+				else {var col = latestProducts.length%4} -%>
+
+				<% for (var j=0; j<col; j++) { -%>
+						<div class="card" style="width: 18rem;">
+							<% var idx=(i*4)+j;
+							//console.log(i, col, j, idx); -%>
+							<img class="product-img" src=<%=latestProducts[idx].image%> alt="products"/>
+							<div class="card-body">
+								<h5 class="card-title">
+										<a href="/products/<%=latestProducts[idx]._id%>">
+												<%=latestProducts[idx].name%>
+										</a>
+								</h5>
+								<p class="card-text">
+										$<%=latestProducts[idx].price.toFixed(2)%>
+										<% if (latestProducts[idx].defWeight != "") { -%>
+												per <%=latestProducts[idx].defWeight%>
+										<% } -%>
+								</p>
+								<br>
+								<% if(latestProducts[idx].inStock){ -%>
+										<p class="card-text">In Stock</p>
+								<% }	else { -%>
+										<p class="card-text">Out Of Stock</p>
+								<% } -%>
+								<br>
+								<p class="card-text">
+									Brand: <%= latestProducts[idx].brand%>
+								</p>
+							</div>
+							<div class="addToCart">
+									<form
+									<% if (!loggedIn) { -%>
+											action="/login" method="GET"
+									<% } else { -%>
+											action= "/account/<%=user_id%>/shoppingcart/<%=latestProducts[idx]._id%>" method="POST"
+									<% } -%>>
+											<button class="block primary" type="submit">Add to Cart</button>
+									</form>
+							</div>
+						</div>
+					<% } -%>
+					</div>
+			<% } -%>
+
+
+
+		</div>
 
 	<%- include('partials/footer') %>
 
@@ -80,6 +174,5 @@
 			}
 		}
 	</script>
-
 </body>
 </html>

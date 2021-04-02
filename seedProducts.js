@@ -20,6 +20,7 @@ const seedProducts = [
 		brand: "Spain",
 		department: "Produce",
 		category: "Fruits",
+		featured: true,
 	},
 	{
 		image: "https://media.istockphoto.com/photos/tomato-isolated-on-white-background-picture-id466175630?k=6&m=466175630&s=612x612&w=0&h=fu_mQBjGJZIliOWwCR0Vf2myRvKWyQDsymxEIi8tZ38=",
@@ -40,6 +41,7 @@ const seedProducts = [
 		brand: "Lebanon",
 		department: "Produce",
 		category: "Vegetables",
+		featured: true,
 	},
 	{
 		image: "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fharvestdelivery.ca%2Fwp-content%2Fuploads%2F2020%2F11%2FYellow-onion-3lb-bag.jpg&f=1&nofb=1",
@@ -60,6 +62,7 @@ const seedProducts = [
 		brand: "Saudi Arabia",
 		department: "Produce",
 		category: "Vegetables",
+		featured: true,
 	},
 	{
 		image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRSVEcyoWRMx4NYaNaa0LjjLkQ1NHzI7pNqkHeYgIPOqd1_SgpkpeNsMb1oigSbO4VfdGQ7pkE&usqp=CAc",
@@ -69,7 +72,8 @@ const seedProducts = [
 		qtyAvailable: 100,
 		brand: "Head & Shoulders",
 		department: "Health and Beauty",
-		category: "Shampoos"
+		category: "Shampoos",
+		featured: true,
 	},
 	{
 		image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTzGJLhKYsC3CPsgAID_N7dGNIdzMKhxhRiSv7D1urZ2lAIs9WKn5rSzW7ctg&usqp=CAc",
@@ -79,7 +83,8 @@ const seedProducts = [
 		qtyAvailable: 50,
 		brand: "Kellog's",
 		department: "Snacks",
-		category: "Cereals"
+		category: "Cereals",
+		added: "2021-03-27",
 	},
 	{
 		image: "https://media.istockphoto.com/photos/red-apple-fruit-with-green-leaf-isolated-on-white-picture-id925389178",
@@ -90,6 +95,7 @@ const seedProducts = [
 		brand: "Indian",
 		department: "Produce",
 		category: "Fruits",
+		added: "2021-03-30",
 	},
 	{
 		image: "https://www.luluhypermarket.com/medias/7548-01.jpg-1200Wx1200H?context=bWFzdGVyfGltYWdlc3wyMzYwMTl8aW1hZ2UvanBlZ3xoNmUvaGFhLzk3NTc3NTM1NzM0MDYvNzU0OC0wMS5qcGdfMTIwMFd4MTIwMEh8OGJlOGJiNTdlOTMzMTk1MWM2ZjlhMDRlODFhZDlkZDNlOWZjOGNlNTA4ODAwODJhNDMyMTQ3MzhlODczYTQwYg",
@@ -100,6 +106,7 @@ const seedProducts = [
 		brand: "Almarai",
 		department: "Produce",
 		category: "Diary",
+		added: "2021-03-29",
 	},
 	{
 		image: "https://www.ocado.com/productImages/954/95414011_0_640x640.jpg?identifier=120406857cc1594af97d383c022718e2",
@@ -110,6 +117,7 @@ const seedProducts = [
 		brand: "Dove",
 		department: "Health and Beauty",
 		category: "Handwash",
+		added: "2021-03-28",
 	},
 
 ];

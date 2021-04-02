@@ -71,10 +71,12 @@ app.use('/account', accountRoutes);
 // });
 
 // Home page
-app.get('/', (req, res)=>{
+app.get('/', wrapAsync(async (req, res, next)=>{
 	const title = "JABR eGrocery"
-	res.render('home', {title})
-})
+	const featuredProducts = await Product.find({featured : true});
+	const latestProducts = await Product.aggregate([{ $match: {'added': {$exists: true}}}, { $sort: { added : -1} }]);
+	res.render('home', {title, featuredProducts, latestProducts})
+}))
 
 app.get('/about', (req, res)=>{
 	const title = "JABR About"
