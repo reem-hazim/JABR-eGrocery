@@ -7,8 +7,13 @@
 body {
     display: block;
 	margin-top: calc(var(--navBarHeight)*1vw);
-	height: 150vh;
+	height: auto;
+    font-family: 'Quicksand', sans-serif;
     
+}
+
+a {
+    color: cornflowerblue;
 }
 
 .parallax {
@@ -16,6 +21,7 @@ body {
   }
 
 h1 {
+    font-family: 'Fredoka One', cursive;
 	display: block;
     background: white;
     width: 70vw;
@@ -39,7 +45,7 @@ h1.head {
     text-decoration: none;
     background: none;
     color: #2F5061;
-    font-family: Helvetica;
+    font-family: 'Quicksand', sans-serif;
     font-size: 1rem;
     cursor: pointer;
     text-align: center;
@@ -108,7 +114,6 @@ h1.head {
 	display: inline-block;
 	color: gray;
 	transition: 1s;
-	
 }
 
 .navbar-light .navbar-nav .nav-link:hover{
@@ -156,7 +161,7 @@ form.search-form button {
 
 
 input, button, textarea {
-    font: 1.4rem Helvetica;
+    font: 1.4rem;
     border: 0.1rem #808080 solid;
     border-radius: 0.5rem;
     padding: 7px;
@@ -175,8 +180,8 @@ input, button, textarea {
 /* Home */
 
 header{
-    height: 70vh;
-    background: radial-gradient(#fff , rgb(170, 208, 241));
+    height: calc((100 - var(--navBarHeight)) * 1vh);
+    /* background: radial-gradient(#fff , rgb(170, 208, 241)); */
 }
 
 header .row{
@@ -185,13 +190,79 @@ header .row{
 }
 
 header h1 {
+    color: aliceblue;
     background: none;
 }
 
+header p {
+    color: aliceblue;
+}
+
+#scrollDown {
+    width: 20vw;
+    height: 3vh;
+    bottom: 1vh;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: baseline;
+    align-items: center;
+    animation: emphasisDown 7s infinite;
+}
+@keyframes emphasisDown {
+    25%{
+        opacity: 0.5;
+        transform: translateY(5px);
+    }
+    50%{
+        opacity: 1;
+        transform: translateY(0px);
+    }
+    100%{
+        opacity: 1;
+    }
+
+}
+
+.arrow {
+    border: solid aliceblue;
+    border-width: 0 3px 3px 0;
+    display: inline-block;
+    padding: 3px;
+  }
+
+.down {
+    transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+  }
+
+#backgroundImage {
+    position: absolute;
+    background-image: url("/img/background0.jpeg");
+    width: 100vw;
+    height: 100%;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    filter: blur(5px) brightness(80%);
+    z-index: -99;
+} 
+#backgroundImageOverlay {
+    position: absolute;
+    width: 100vw;
+    height: 100%;
+    background: white;
+    opacity: 0;
+} 
+
 .container{
     max-width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     margin: auto;
-    padding: 0 25px;
+    z-index: 1;
 }
 
 .row{
@@ -203,6 +274,10 @@ header h1 {
 }
 
 .col-2{
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: space-around;
     flex-basis: 50%;
     max-width: 100%;
 } 
@@ -213,23 +288,38 @@ header h1 {
 }
 
 .col-2 h1{
-    font-size: 50px;
+    text-align: center;
+    font-size: 8vh;
     line-height: 60px;
-    margin: 25px 0;
+    margin: 40px 0;
+}
+
+.col-2 p {
+    text-align: center;
+    width: 100%;
 }
 
 .btn{
-    display: inline-block;
+    display: block;
     background: rgb(134, 188, 235);
     color: #fff;
-    padding: 8px 30px;
+    padding: 2vh 5vh;
+    font-size: 2vh;
     margin: 30px 0;
     border-radius: 30px;
-    transition: background .5s;
+    transition: .5s;
+    animation: buttonEmphasis 3s linear infinite;
 }
-
+@keyframes buttonEmphasis {
+    50% {
+        background: rgb(149, 199, 244);
+        box-shadow: 0 0 10px #fff;
+        text-shadow: 0 0 10px #fff;
+    }
+}
 .btn:hover{
     background: aliceblue;
+    animation: none;
 }
 
 /* Featured Categories */
@@ -287,10 +377,11 @@ header h1 {
 }
 
 .addToCart button {
+    font-family: 'Quicksand', sans-serif;
     text-align: center;
     margin: auto;
     padding: 5px;
-    font: 1rem Helvetica;
+    font: 1rem;
 }
 
 .card h5 a {
@@ -360,7 +451,7 @@ header h1 {
 .col-5 img{
     /* width: 100%; */
     padding: 10%;
-    background-color: aliceblue;
+    background-color: rgb(134, 188, 235);
     cursor: pointer;
     filter: grayscale(100%);
 }
@@ -374,16 +465,22 @@ footer{
     background: #2F5061;
     color: #8a8a8a;
     font-size: 14px;
-    padding: 60px 0 20px;
+    padding: 30px 0 30px;
+    bottom: 0;
+}
+
+footer a {
+    color: aliceblue;
 }
 
 footer p{
-    color: #8a8a8a;
+    color: aliceblue;
 }
 
 footer h3{
-    color: #fff;
+    color: cornflowerblue;
     margin-bottom: 20px;
+    font-size: 2.5vh;
 }
 
 .footer-col-1 , .footer-col-2 , .footer-col-3, .footer-col-4{
@@ -406,8 +503,26 @@ footer h3{
 }
 
 .footer-col-3, .footer-col-4{
+    color: aliceblue;
+    padding: 5px;
     flex-basis: 12%;
     text-align: center;
+}
+
+.footer-col-3 ul, .footer-col-4 ul{
+    padding: 0;
+    list-style-type: none;
+}
+
+.footer-col-3 button {
+    color: aliceblue;
+    background: none;
+    border: none;
+    padding: 0;
+}
+.footer-col-3 button:hover {
+    color: mediumblue;
+    text-decoration: underline;
 }
 
 .app-logo{
@@ -454,6 +569,7 @@ input {
 #main_container {
 	position: relative;
 	display: block;
+    height: 100%;
 }
 
 .form {
@@ -464,8 +580,9 @@ input {
 }
 
 #signin-form {
+    font-family: 'Quicksand', sans-serif;
     padding: 20px;
-	font: 1.6rem Helvetica;
+	font: 1.6rem;
 	box-sizing: border-box;
 	display: block;
 	justify-content: center;
@@ -474,8 +591,9 @@ input {
 }
 
 #register-form {
+    font-family: 'Quicksand', sans-serif;
     padding: 20px;
-	font: 1.6rem Helvetica;
+	font: 1.6rem;
 	box-sizing: border-box;
 	display: block;
 	justify-content: center;
@@ -484,7 +602,8 @@ input {
 }
 
 .form-container{
-	font: 1.6rem Helvetica;
+    font-family: 'Quicksand', sans-serif;
+	font: 1.6rem;
 	box-sizing: border-box;
 	display: flex;
 	flex-direction: column;
@@ -512,7 +631,7 @@ button.primary {
 /* About */
 
 .mainLogo {
-    margin: 100px auto;
+    margin: auto;
     margin-bottom: 10px;
     height: 30vh;
     width: 30vh;
@@ -523,14 +642,10 @@ button.primary {
     width: 100%;
 }
 
-.aboutPage h1 {
-    padding: 0;
-}
-
 .aboutPage p {
     width: 50vw;
-    margin: 100px auto;
-    margin-top: 50px;
+    margin: auto;
+    margin-bottom: 50px;
 }
 
 
@@ -551,7 +666,7 @@ button.primary {
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    filter: blur(8px);
+    filter: blur(3px);
     z-index: -99;
   }
 
@@ -623,7 +738,7 @@ select:focus{
 
 
 #contact-form {
-	font: 1.6rem Helvetica;
+	font: 1.6rem;
 	box-sizing: border-box;
 	display: block;
 	justify-content: center;
@@ -639,7 +754,7 @@ select:focus{
 }
 .contact-form-container{
     padding: 20px;
-	font: 1.6rem Helvetica;
+	font: 1.6rem;
 	box-sizing: border-box;
 	display: flex;
 	flex-direction: column;

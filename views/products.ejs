@@ -41,9 +41,9 @@
                                     </p>
                                     <br>
                                     <% if(allProducts[idx].inStock){ -%>
-                                        <p class="card-text">In Stock</p>
+                                        <p class="card-text" style="color: rgb(6, 147, 6)">In Stock</p>
                                     <% }	else { -%>
-                                        <p class="card-text">Out Of Stock</p>
+                                        <p class="card-text" style="color: rgb(203, 5, 5);">Out Of Stock</p>
                                     <% } -%>
                                     <br>
 								    <p class="card-text">Brand: <%= allProducts[idx].brand%></p>
