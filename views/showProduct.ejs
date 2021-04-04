@@ -2,7 +2,7 @@
 <body class="aboutPage">
 	<%- include('partials/navbar') %>
 	<div class="parallax"></div>
-	<h1>Buy It Today. Get It Tomorrow.</h1>
+	<h1>Only The Best. All For You.</h1>
 	<div class="small-container">
 		<div class="row top">
 			<div class="productDescImg">
@@ -60,10 +60,14 @@
 							<div><%= product.brand%></div>
 						</div>
 						<div class="productDescRow">
-							<div>In Stock</div>
-							<div><%= product.qtyAvailable %></div>
+							<% if(product.inStock){ -%>
+								<p class="card-text" style="color: rgb(6, 147, 6)">In Stock</p>
+								<div><%= product.qtyAvailable %></div>
+							<% }	else { -%>
+								<p class="card-text" style="color: rgb(203, 5, 5);">Out Of Stock</p>
+							<% } -%>
 						</div>
-						<form 
+						<form
 						<% if (!loggedIn) { -%>
 							action="/login" method="GET"
 						<% } else { -%>

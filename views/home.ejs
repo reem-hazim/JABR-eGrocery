@@ -171,6 +171,11 @@
 				$("#backgroundImage").fadeIn(1000);
 			}
 		}
+		$("#scrollDown").click(function(){
+			const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0)
+			const vh = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0)
+			scrollTo(0, 1.1*vh);
+		});
 	</script>
 </body>
 </html>

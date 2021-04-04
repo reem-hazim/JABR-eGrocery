@@ -3,35 +3,37 @@
 	<%- include('partials/navbar') %>
 	<%- include('partials/flash') %>
 	<h1>
-		<%=user.firstName%>'s shopping Cart
+		Buy It Today. Get It Tomorrow.
 	</h1>
-	<div class="row">
-		<% for (let item of user.shoppingCart) { -%>
-			<div class="col-4">			
-				<img src=<%=item.product.image%> alt="products"/>
-				<h4>
-		            <a href="/products/<%=item.product._id%>">
-		                <%=item.product.name%>
-		            </a>
-		        </h4>
-				<div class="ratings">
-						<i class="fa fa-star" aria-hidden="true"></i>
-						<i class="fa fa-star" aria-hidden="true"></i>
-						<i class="fa fa-star" aria-hidden="true"></i>
-						<i class="fa fa-star" aria-hidden="true"></i>
-						<i class="fa fa-star-o" aria-hidden="true"></i>
+	<div class="small-container">
+		<div class="col">
+			<% for (let item of user.shoppingCart) { -%>
+				<div class="row-2">			
+					<img src=<%=item.product.image%> alt="products"/>
+					<h4>
+						<a href="/products/<%=item.product._id%>">
+							<%=item.product.name%>
+						</a>
+					</h4>
+					<div class="ratings">
+							<i class="fa fa-star" aria-hidden="true"></i>
+							<i class="fa fa-star" aria-hidden="true"></i>
+							<i class="fa fa-star" aria-hidden="true"></i>
+							<i class="fa fa-star" aria-hidden="true"></i>
+							<i class="fa fa-star-o" aria-hidden="true"></i>
+					</div>
+					<p>
+						AED <%=item.product.price%>
+						<% if (item.product.defWeight) { -%>
+							per <%=item.product.defWeight%>
+						<% } -%>
+					</p>
+					<p>
+						qty: <%=item.quantity%>
+					</p>
 				</div>
-				<p>
-		            AED <%=item.product.price%>
-		            <% if (item.product.defWeight) { -%>
-		                per <%=item.product.defWeight%>
-		            <% } -%>
-		        </p>
-		        <p>
-		        	qty: <%=item.quantity%>
-		        </p>
-			</div>
-		<% } -%>
+			<% } -%>
+		</div>
 	</div>
 	
 </body>

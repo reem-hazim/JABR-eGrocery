@@ -4,12 +4,16 @@
     --quarterGutterWidth: 25;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     display: block;
 	margin-top: calc(var(--navBarHeight)*1vw);
 	height: auto;
     font-family: 'Quicksand', sans-serif;
-    
+
 }
 
 a {
@@ -179,7 +183,7 @@ input, button, textarea {
 header{
     height: calc((100 - var(--navBarHeight)) * 1vh);
     /* background: radial-gradient(#fff , rgb(170, 208, 241)); */
-    margin-bottom: 20vh;
+    margin-bottom: 10vh;
 }
 
 header .row{
@@ -205,6 +209,7 @@ header p {
     flex-direction: column;
     justify-content: baseline;
     align-items: center;
+    cursor: pointer;
     animation: emphasisDown 7s infinite;
 }
 @keyframes emphasisDown {
