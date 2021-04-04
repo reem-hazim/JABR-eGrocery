@@ -1,0 +1,14 @@
+<%- include('partials/head')%>
+<body>
+	<%- include('partials/navbar') %>
+	<%- include('partials/flash') %>
+	<div class="parallax"></div>
+	<h1>Hey, <%=user.firstName%>. Thanks for placing the order.</h1>
+	<%- include('partials/footer') %>
+	<script>
+		var counter = Math.floor(Math.random() * 4);
+		$(document).ready(function(){
+			filePath = "url(/img/background" + counter + ".jpeg)";
+			$(".parallax").css({"background-image":filePath});
+		});
+	</script>

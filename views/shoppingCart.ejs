@@ -11,7 +11,7 @@
 			<div class="cartCol">
 				<% for (let item of user.shoppingCart) { -%>
 					<div class="card">
-						<div class="cartItem">	
+						<div class="cartItem">
 							<div class="itemImg"><img src=<%=item.product.image%> alt="products"/></div>
 							<div><h5>
 								<a href="/products/<%=item.product._id%>">
@@ -24,7 +24,7 @@
 									per <%=item.product.defWeight%>
 								<% } -%>
 							</p></div>
-							
+
 							<div class="qty"><p>
 								qty: <%=item.quantity%>
 							</p></div>
@@ -45,16 +45,18 @@
 					<p>Total Cost: </p>
 				</div>
 				<div class="addToCart">
-					<button class="block primary" type="submit"> 
-						Check Out
-					</button>
+						<form action= "/account/<%=user_id%>/checkout" method="POST">
+							<button class="block primary" type="submit">
+								Check Out
+							</button>
+						</form>
 				</div>
 			</div>
 		</div>
 
 
 	</div>
-	
+
 	<%- include('partials/footer') %>
 	<script>
 		var counter = Math.floor(Math.random() * 4);

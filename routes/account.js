@@ -100,5 +100,19 @@ router.post('/:user_id/shoppingcart/:product_id', requireLogin, wrapAsync(async 
 	}
 }))
 
+// checkout
+router.post('/:user_id/checkout', requireLogin, wrapAsync(async (req, res)=>{
+	const {user_id:req_id, product_id} = req.params;
+	const {user_id} = req.session;
+	if(req_id === user_id){
+		user = await User.findById(user_id);
+		await user.checkout()
+		res.render('checkout', {title: "Checkout", user});
+	} else {
+		req.flash('error', "You don't have access to view this page!");
+		res.redirect('/');
+	}
+}))
+
 
 module.exports = router;
