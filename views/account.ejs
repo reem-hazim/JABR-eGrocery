@@ -2,7 +2,9 @@
 <body>
 	<%- include('partials/navbar') %>
 	<%- include('partials/flash') %>
-	<h1><%=user.firstName%>'s Account</h1>
+<<<<<<< HEAD
+	<div class="parallax"></div>
+	<h1>Hey, <%=user.firstName%>. It's All About You.</h1>
 	<div class="container" style="display:block;">
 		<div>
 			<form>
@@ -47,5 +49,12 @@
 	</div>
 
 <%- include('partials/footer') %>
+<script>
+	var counter = Math.floor(Math.random() * 4);
+	$(document).ready(function(){
+		filePath = "url(/img/background" + counter + ".jpeg)";
+		$(".parallax").css({"background-image":filePath});
+	});
+</script>
 </body>
 </html>

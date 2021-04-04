@@ -4,21 +4,21 @@
     --quarterGutterWidth: 25;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     display: block;
 	margin-top: calc(var(--navBarHeight)*1vw);
 	height: auto;
     font-family: 'Quicksand', sans-serif;
-    
+
 }
 
 a {
     color: cornflowerblue;
 }
-
-.parallax {
-
-  }
 
 h1 {
     font-family: 'Fredoka One', cursive;
@@ -135,7 +135,7 @@ h1.head {
 }
 .search{
 	display: inline-flex;
-	width: 20%;
+	width: 15%;
 	height: 30px;
 	/* padding-right: 30px; */
 }
@@ -151,7 +151,7 @@ form.search-form button {
     color: aliceblue;
     float: left;
 	height: 30px;
-    width: 30px;
+    width: 20%;
     padding: 0;
     background: rgb(134, 188, 235);
     border-left: none;
@@ -183,7 +183,7 @@ input, button, textarea {
 header{
     height: calc((100 - var(--navBarHeight)) * 1vh);
     /* background: radial-gradient(#fff , rgb(170, 208, 241)); */
-    margin-bottom: 20vh;
+    margin-bottom: 10vh;
 }
 
 header .row{
@@ -209,6 +209,7 @@ header p {
     flex-direction: column;
     justify-content: baseline;
     align-items: center;
+    cursor: pointer;
     animation: emphasisDown 7s infinite;
 }
 @keyframes emphasisDown {
@@ -509,7 +510,6 @@ footer hr{
 /* Sign-In + Register */
 
 input {
-    -webkit-writing-mode: horizontal-tb !important;
     text-rendering: auto;
     color: -internal-light-dark(black, white);
     letter-spacing: normal;

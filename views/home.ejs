@@ -24,7 +24,7 @@
 	</header>
 
 	<!-- Featured Categories -->
-	<div class="categories">
+	<!-- <div class="categories">
 		<div class="small-container">
 			<div class="row">
 				<div class="col-3">
@@ -38,7 +38,7 @@
 				</div>
 			</div>
 		</div>
-	</div>
+	</div> -->
 
 	<!-- Featured Products -->
 	<!-- Featured Products -->
@@ -70,11 +70,11 @@
 										<% } -%>
 								</p>
 								<br>
-								<% if(featuredProducts[idx].inStock){ -%>
-										<p class="card-text">In Stock</p>
+								<% if(featuredProducts[idx].qtyAvailable > 0){ -%>
+									<p class="card-text" style="color: rgb(6, 147, 6)">In Stock</p>
 								<% }	else { -%>
-										<p class="card-text">Out Of Stock</p>
-								<% } -%>
+									<p class="card-text" style="color: rgb(203, 5, 5);">Out Of Stock</p>
+									<% } -%>
 								<br>
 								<p class="card-text">
 									Brand: <%= featuredProducts[idx].brand%>
@@ -121,10 +121,10 @@
 										<% } -%>
 								</p>
 								<br>
-								<% if(latestProducts[idx].inStock){ -%>
-										<p class="card-text">In Stock</p>
-								<% }	else { -%>
-										<p class="card-text">Out Of Stock</p>
+								<% if(latestProducts[idx].qtyAvailable > 0){ -%>
+									<p class="card-text" style="color: rgb(6, 147, 6)">In Stock</p>
+								<% } else { -%>
+									<p class="card-text" style="color: rgb(203, 5, 5);">Out Of Stock</p>
 								<% } -%>
 								<br>
 								<p class="card-text">
@@ -171,6 +171,11 @@
 				$("#backgroundImage").fadeIn(1000);
 			}
 		}
+		$("#scrollDown").click(function(){
+			const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0)
+			const vh = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0)
+			scrollTo(0, 1.1*vh);
+		});
 	</script>
 </body>
 </html>
