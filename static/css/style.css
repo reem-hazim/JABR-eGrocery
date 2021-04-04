@@ -367,7 +367,7 @@ h2 {
     height: 12vw;
     width: 12vw;
     margin: auto;
-    padding: 10px;
+    margin: 20px auto 10px;
     background-position: center;
     background-size: cover;
     cursor: pointer;
@@ -701,7 +701,7 @@ h4{
 
 .row-2{
     justify-content: space-between;
-    margin: 50px auto 10px;
+    margin: 30px auto 10px;
 }
 
 select{
@@ -769,8 +769,10 @@ select:focus{
 }
 
 .productDescImg img {
-    width: 20vh;
-    height: 20vh;
+    width: 25%;
+    height: 25%;
+    border: 1px solid rgba(0,0,0,.125);
+    border-radius: .25rem;
 }
 /* ================================================================================================ */
 /* ================================================================================================ */
