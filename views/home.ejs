@@ -70,7 +70,7 @@
 										<% } -%>
 								</p>
 								<br>
-								<% if(featuredProducts[idx].inStock){ -%>
+								<% if(featuredProducts[idx].qtyAvailable > 0){ -%>
 									<p class="card-text" style="color: rgb(6, 147, 6)">In Stock</p>
 								<% }	else { -%>
 									<p class="card-text" style="color: rgb(203, 5, 5);">Out Of Stock</p>
@@ -121,9 +121,9 @@
 										<% } -%>
 								</p>
 								<br>
-								<% if(latestProducts[idx].inStock){ -%>
+								<% if(latestProducts[idx].qtyAvailable > 0){ -%>
 									<p class="card-text" style="color: rgb(6, 147, 6)">In Stock</p>
-								<% }	else { -%>
+								<% } else { -%>
 									<p class="card-text" style="color: rgb(203, 5, 5);">Out Of Stock</p>
 								<% } -%>
 								<br>
