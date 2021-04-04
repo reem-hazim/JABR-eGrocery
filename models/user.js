@@ -45,8 +45,7 @@ const userSchema = new mongoose.Schema({
 			},
 			emirate: {
 				type: String,
-				lowercase: true,
-				enum: ['dubai', 'abu dhabi', 'ajman', 'sharjah', 'ras al khaimah', 'umm al quwain', 'fujairah'],
+				enum: ['Dubai', 'Abu Dhabi', 'Ajman', 'Sharjah', 'Ras Al Khaimah', 'Umm Al Quwain', 'Fujairah'],
 			}
 		}
 	},

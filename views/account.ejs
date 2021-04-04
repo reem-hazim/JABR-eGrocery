@@ -2,16 +2,50 @@
 <body>
 	<%- include('partials/navbar') %>
 	<%- include('partials/flash') %>
-	<div id="nameDiv">
-		<div>First Name: </div>
-		<div>Last Name: </div>
+	<h1><%=user.firstName%>'s Account</h1>
+	<div class="container" style="display:block;">
+		<div>
+			<form>
+				<fieldset>
+					<label for="firstName">First Name </label>
+					<input class="form-control" type="text" name="firstName" id="firstName" value="<%=user.firstName%>" readonly>
+
+					<label for="lastName">Last Name </label>
+					<input class="form-control" type="text" name="lastName" id="lastName" value="<%=user.lastName%>" readonly>
+
+					<label for="email">Email </label>
+					<input class="form-control" type="email" name="email" id="email" value="<%=user.email%>" readonly>
+
+					<label for="phoneNumber">Phone Number </label>
+					<input class="form-control" type="tel" name="phoneNumber" id="phoneNumber" value="<%=user.phoneNumber%>" readonly>
+				</fieldset>
+
+				<fieldset id="shippingAddress">
+					<h3>Shipping Address</h3>
+					<label for="address1">Address Line 1 </label>
+					<input class="form-control" type="text" id="address1" name="address1" value="<%=user.shippingAddress.address1%>" readonly>
+
+					<label for="address2">Address Line 2 </label>
+					<input class="form-control" type="text" id="address2" name="address2" value="<%=user.shippingAddress.address2%>" readonly>
+
+					<label for="emirate">Emirate</label>
+					<input class="form-control" type="text" id="emirate" name="emirate" value="<%=user.shippingAddress.emirate%>" readonly>
+					
+				</fieldset> 
+			
+			<!-- <fieldset id="paymentDetails">
+				Payment Details
+				<label for="paymentDetails">Payment Details</label>
+			</fieldset> -->
+			<button type="submit" style="display:none;">Save Changes</button>
+			</form>
+		</div>
+		<a type="button" href="/account/<%=user_id%>/shoppingcart/">Show Cart</a>
+		<br>
+		<a type="button" href="/account/<%=user_id%>/edit">Edit Account</a>
+		
 	</div>
-	<!-- Display as *****? Allow viewing on click -->
-	<div id="passwordDiv">Password: </div>
-	<div id="addressDiv">Shipping Address: </div>
-	<div id="paymentDiv">Preferred Payment: </div>
-<a class="nav-link" href="/account/<%=user_id%>/shoppingcart/">Show Cart</a>
-<a href="/account/<%=user_id%>/edit">Edit Account</a>
+
 <%- include('partials/footer') %>
 </body>
 </html>

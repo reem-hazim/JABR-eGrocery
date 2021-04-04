@@ -8,16 +8,17 @@ const Product = require('../models/product');
 const AppError = require('../utils/AppError');
 
 // Account page
-router.get('/:id', requireLogin, (req, res)=>{
+router.get('/:id', requireLogin, wrapAsync(async (req, res)=>{
 	const {id:req_id} = req.params;
 	const {user_id} = req.session;
 	if(req_id === user_id){
-		res.render('account', {title: "My Account", user_id});
+		const user = await User.findById(user_id)
+		res.render('account', {title: "My Account", user});
 	} else {
 		req.flash('error', "You don't have access to view this page!");
 		res.redirect('/');
 	}
-})
+}))
 
 // edit account form
 router.get('/:id/edit', requireLogin, wrapAsync(async (req, res)=>{
