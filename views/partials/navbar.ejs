@@ -41,13 +41,24 @@
       	<button id="account"> Your Account </button>
       </form> -->
 			<div>
-				<a class="nav-link" href="/account/<%=user_id%>">Your Account</a>
+				<a class="nav-link" href="/account/<%=user_id%>/shoppingcart/">
+					<i class="fas fa-shopping-cart" style="color: rgb(134, 188, 235); font-size: 20px;">
+					</i>
+				</a>
 			</div>
-			<div><a class="nav-link" href="/account/<%=user_id%>/shoppingcart/">Show Cart</a></div>
+			<div>
+				<a class="nav-link" href="/account/<%=user_id%>">
+					<i class="fas fa-user-circle" style="color: rgb(134, 188, 235); font-size: 20px;"></i>
+				</a>
+			</div>
 			
-      <form action="/logout" method="POST">
-      	<button id="logout"> Log out </button>
-      </form>
+		  <form action="/logout" method="POST">
+		  	<button id="logout"> 
+		  		<i class="fas fa-sign-out-alt" style="color: rgb(134, 188, 235); font-size: 20px;">
+		  		</i> 
+		  	</button>
+		  </form>
+		  
     <% } else { %>
     	<div>
 				<a class="nav-link" href="/login">Login</a>
