@@ -16,10 +16,6 @@ a {
     color: cornflowerblue;
 }
 
-.parallax {
-
-  }
-
 h1 {
     font-family: 'Fredoka One', cursive;
 	display: block;
@@ -509,7 +505,6 @@ footer hr{
 /* Sign-In + Register */
 
 input {
-    -webkit-writing-mode: horizontal-tb !important;
     text-rendering: auto;
     color: -internal-light-dark(black, white);
     letter-spacing: normal;

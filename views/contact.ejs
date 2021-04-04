@@ -1,8 +1,9 @@
 <%- include('partials/head')%>
 <body>
 	<%- include('partials/navbar') %>
+	<div class="parallax"></div>
 	<h1>Hit Us Up. We're Always Listening.</h1>
-	<div id="main_container">
+	<div class="small-container">
 		<div class="form">
 			<form id="contact-form">
 				<ul class="contact-form-container">
@@ -39,5 +40,12 @@
      	
     </div>
 	<%- include('partials/footer') %>
+	<script>
+        var counter = Math.floor(Math.random() * 4);
+        $(document).ready(function(){
+            filePath = "url(/img/background" + counter + ".jpeg)";
+		    $(".parallax").css({"background-image":filePath});
+        });
+    </script>
 </body>
 </html>

@@ -1,8 +1,9 @@
 <%- include('partials/head')%>
 <body>
 	<%- include('partials/navbar') %>
+  <div class="parallax"></div>
 	<h1>One Account. Endless Possibilities.</h1>
-    <main id="main_container">
+    <main class="small-container">
       <div class="form">
         <form id="register-form" action="/register" method="POST">
           <ul class="form-container">
@@ -77,5 +78,12 @@
     </script>
   </div>
 	<%- include('partials/footer') %>
+  <script>
+    var counter = Math.floor(Math.random() * 4);
+    $(document).ready(function(){
+        filePath = "url(/img/background" + counter + ".jpeg)";
+    $(".parallax").css({"background-image":filePath});
+    });
+</script>
 </body>
 </html>

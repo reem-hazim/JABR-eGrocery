@@ -2,16 +2,27 @@
 <body>
 	<%- include('partials/navbar') %>
 	<%- include('partials/flash') %>
-	<div id="nameDiv">
-		<div>First Name: </div>
-		<div>Last Name: </div>
+	<div class="parallax"></div>
+	<h1>Buy It Today. Get It Tomorrow.</h1>
+	<div class="small-container">
+		<div id="nameDiv">
+			<div>First Name: </div>
+			<div>Last Name: </div>
+		</div>
+		<!-- Display as *****? Allow viewing on click -->
+		<div id="passwordDiv">Password: </div>
+		<div id="addressDiv">Shipping Address: </div>
+		<div id="paymentDiv">Preferred Payment: </div>
+		<a class="nav-link" href="/account/<%=user_id%>/shoppingcart/">Show Cart</a>
+		<a href="/account/<%=user_id%>/edit">Edit Account</a>
 	</div>
-	<!-- Display as *****? Allow viewing on click -->
-	<div id="passwordDiv">Password: </div>
-	<div id="addressDiv">Shipping Address: </div>
-	<div id="paymentDiv">Preferred Payment: </div>
-<a class="nav-link" href="/account/<%=user_id%>/shoppingcart/">Show Cart</a>
-<a href="/account/<%=user_id%>/edit">Edit Account</a>
-<%- include('partials/footer') %>
+	<%- include('partials/footer') %>
+	<script>
+		var counter = Math.floor(Math.random() * 4);
+		$(document).ready(function(){
+			filePath = "url(/img/background" + counter + ".jpeg)";
+			$(".parallax").css({"background-image":filePath});
+		});
+	</script>
 </body>
 </html>
