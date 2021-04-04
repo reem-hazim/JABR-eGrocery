@@ -103,6 +103,11 @@ userSchema.methods.findItemAndAddToCart = async function(product_id, quantity){
 	}
 }
 
+userSchema.methods.checkout = async function(){
+	this.set({shoppingCart: []});
+	await this.save();
+}
+
 // Encrypt Password
 userSchema.pre('save', async function(next){
 	if(!this.isModified('password')) return next();
