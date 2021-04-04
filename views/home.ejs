@@ -24,7 +24,7 @@
 	</header>
 
 	<!-- Featured Categories -->
-	<div class="categories">
+	<!-- <div class="categories">
 		<div class="small-container">
 			<div class="row">
 				<div class="col-3">
@@ -38,7 +38,7 @@
 				</div>
 			</div>
 		</div>
-	</div>
+	</div> -->
 
 	<!-- Featured Products -->
 	<!-- Featured Products -->
@@ -71,10 +71,10 @@
 								</p>
 								<br>
 								<% if(featuredProducts[idx].inStock){ -%>
-										<p class="card-text">In Stock</p>
+									<p class="card-text" style="color: rgb(6, 147, 6)">In Stock</p>
 								<% }	else { -%>
-										<p class="card-text">Out Of Stock</p>
-								<% } -%>
+									<p class="card-text" style="color: rgb(203, 5, 5);">Out Of Stock</p>
+									<% } -%>
 								<br>
 								<p class="card-text">
 									Brand: <%= featuredProducts[idx].brand%>
@@ -122,9 +122,9 @@
 								</p>
 								<br>
 								<% if(latestProducts[idx].inStock){ -%>
-										<p class="card-text">In Stock</p>
+									<p class="card-text" style="color: rgb(6, 147, 6)">In Stock</p>
 								<% }	else { -%>
-										<p class="card-text">Out Of Stock</p>
+									<p class="card-text" style="color: rgb(203, 5, 5);">Out Of Stock</p>
 								<% } -%>
 								<br>
 								<p class="card-text">
