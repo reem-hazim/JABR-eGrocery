@@ -509,6 +509,10 @@ footer hr{
 /* ================================================================================================ */
 /* Sign-In + Register */
 
+.inputForm .small-container {
+    padding-bottom: 20px;
+}
+
 input {
     text-rendering: auto;
     color: -internal-light-dark(black, white);
@@ -578,7 +582,7 @@ input {
 	box-sizing: border-box;
 	display: flex;
 	flex-direction: column;
-	width: 32rem;
+	width: 100%;
     margin: auto;
 	padding: 2rem;
 	border: 0.1rem #c0c0c0 solid;
