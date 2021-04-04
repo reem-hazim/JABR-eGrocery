@@ -1,0 +1,61 @@
+<% for (var i=0; i<=Math.floor(products.length/4); i++) { -%>
+  <div class="card-group">
+  <% if (i!=Math.floor(products.length/4)) {var col = 4}
+  else {var col = products.length%4} -%>
+
+  <% for (var j=0; j<col; j++) { -%>
+      <div class="card" style="width: 18rem;">
+        <% var idx=(i*4)+j;
+        //console.log(i, col, j, idx); -%>
+        <img class="product-img" src=<%=products[idx].image%> alt="products"/>
+        <div class="card-body">
+          <h5 class="card-title">
+              <a href="/products/<%=products[idx]._id%>">
+                  <%=products[idx].name%>
+              </a>
+          </h5>
+          <p class="card-text">
+              $<%=products[idx].price.toFixed(2)%>
+              <% if (products[idx].defWeight != "") { -%>
+                  per <%=products[idx].defWeight%>
+              <% } -%>
+          </p>
+          <br>
+          <% if(products[idx].qtyAvailable > 0){ -%>
+            <p class="card-text" style="color: rgb(6, 147, 6)">In Stock</p>
+          <% }	else { -%>
+            <p class="card-text" style="color: rgb(203, 5, 5);">Out Of Stock</p>
+            <% } -%>
+          <br>
+          <p class="card-text">
+            Brand: <%= products[idx].brand%>
+          </p>
+        </div>
+        <div class="addToCart">
+          <form
+          <% if (!loggedIn) { -%>
+              action="/login" method="GET"
+          <% } else { -%>
+              action= "/account/<%=user_id%>/shoppingcart/<%=products[idx]._id%>" method="POST"
+          <% } -%>>
+            <button class="block primary" type="submit">Add to Cart</button>
+            <select name="quantity" required>
+              <!--<% for (var val=1; val<=products[idx].quantity; val++) { -%>
+                <% console.log(val);-%>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="<%=val%>"><%=val%></option>
+              <% } -%> -->
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+            </select>
+          </form>
+        </div>
+      </div>
+    <% } -%>
+    </div>
+<% } -%>

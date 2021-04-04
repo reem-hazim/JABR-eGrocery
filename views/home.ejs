@@ -41,126 +41,12 @@
 	</div> -->
 
 	<!-- Featured Products -->
-	<!-- Featured Products -->
 		<div class="small-container">
 			<h2 class="title">Featured Products</h2>
-
-			<% let featuredRow = Math.floor(featuredProducts.length/4) -%>
-			<% for (var i=0; i<=featuredRow; i++) { -%>
-
-				<div class="card-group">
-				<% if (i!=featuredRow) {var col = 4}
-				else {var col = featuredProducts.length%4} -%>
-
-				<% for (var j=0; j<col; j++) { -%>
-						<div class="card" style="width: 18rem;">
-							<% var idx=(i*4)+j;
-							//console.log(i, col, j, idx); -%>
-							<img class="product-img" src=<%=featuredProducts[idx].image%> alt="products"/>
-							<div class="card-body">
-								<h5 class="card-title">
-										<a href="/products/<%=featuredProducts[idx]._id%>">
-												<%=featuredProducts[idx].name%>
-										</a>
-								</h5>
-								<p class="card-text">
-										$<%=featuredProducts[idx].price.toFixed(2)%>
-										<% if (featuredProducts[idx].defWeight != "") { -%>
-												per <%=featuredProducts[idx].defWeight%>
-										<% } -%>
-								</p>
-								<br>
-								<% if(featuredProducts[idx].qtyAvailable > 0){ -%>
-									<p class="card-text" style="color: rgb(6, 147, 6)">In Stock</p>
-								<% }	else { -%>
-									<p class="card-text" style="color: rgb(203, 5, 5);">Out Of Stock</p>
-									<% } -%>
-								<br>
-								<p class="card-text">
-									Brand: <%= featuredProducts[idx].brand%>
-								</p>
-							</div>
-							<div class="addToCart">
-								<form
-								<% if (!loggedIn) { -%>
-										action="/login" method="GET"
-								<% } else { -%>
-										action= "/account/<%=user_id%>/shoppingcart/<%=featuredProducts[idx]._id%>" method="POST"
-								<% } -%>>
-									<button class="block primary" type="submit">Add to Cart</button>
-									<select name="quantity" required>
-									 	<!--<% for (var val=1; val<=featuredProducts[idx].quantity; val++) { -%>
-											<% console.log(val);-%>
-											<option value="1">1</option>
-											<option value="2">2</option>
-											<option value="3">3</option>
-											<option value="<%=val%>"><%=val%></option>
-										<% } -%> -->
-										<option value="1">1</option>
-										<option value="2">2</option>
-										<option value="3">3</option>
-										<option value="4">4</option>
-										<option value="5">5</option>
-									</select>
-								</form>
-							</div>
-						</div>
-					<% } -%>
-					</div>
-			<% } -%>
+			<%- include('partials/productTile', {products: featuredProducts}); %>
 
 			<h2 class="title">Latest Products</h2>
-			<% let latestRow = Math.floor(latestProducts.length/4) -%>
-			<% for (var i=0; i<=latestRow; i++) { -%>
-
-				<div class="card-group">
-				<% if (i!=latestRow) {var col = 4}
-				else {var col = latestProducts.length%4} -%>
-
-				<% for (var j=0; j<col; j++) { -%>
-						<div class="card" style="width: 18rem;">
-							<% var idx=(i*4)+j;
-							//console.log(i, col, j, idx); -%>
-							<img class="product-img" src=<%=latestProducts[idx].image%> alt="products"/>
-							<div class="card-body">
-								<h5 class="card-title">
-										<a href="/products/<%=latestProducts[idx]._id%>">
-												<%=latestProducts[idx].name%>
-										</a>
-								</h5>
-								<p class="card-text">
-										$<%=latestProducts[idx].price.toFixed(2)%>
-										<% if (latestProducts[idx].defWeight != "") { -%>
-												per <%=latestProducts[idx].defWeight%>
-										<% } -%>
-								</p>
-								<br>
-								<% if(latestProducts[idx].qtyAvailable > 0){ -%>
-									<p class="card-text" style="color: rgb(6, 147, 6)">In Stock</p>
-								<% } else { -%>
-									<p class="card-text" style="color: rgb(203, 5, 5);">Out Of Stock</p>
-								<% } -%>
-								<br>
-								<p class="card-text">
-									Brand: <%= latestProducts[idx].brand%>
-								</p>
-							</div>
-							<div class="addToCart">
-									<form
-									<% if (!loggedIn) { -%>
-											action="/login" method="GET"
-									<% } else { -%>
-											action= "/account/<%=user_id%>/shoppingcart/<%=latestProducts[idx]._id%>" method="POST"
-									<% } -%>>
-											<button class="block primary" type="submit">Add to Cart</button>
-									</form>
-							</div>
-						</div>
-					<% } -%>
-					</div>
-			<% } -%>
-
-
+			<%- include('partials/productTile', {products: latestProducts}); %>
 
 		</div>
 
