@@ -3,7 +3,10 @@
 	<%- include('partials/navbar') %>
 	<%- include('partials/flash') %>
 	<div class="parallax"></div>
-	<h1>Hey, <%=user.firstName%>. Thanks for placing the order.</h1>
+	<h1>Hey, <%=user.firstName%>. Thanks For Placing Your Order.</h1>
+	<div class="small-container" style="display: flex; justify-content: center;">
+		<img src="/img/checkout_truck.gif" style="margin: auto;">
+	</div>
 	<%- include('partials/footer') %>
 	<script>
 		var counter = Math.floor(Math.random() * 4);

@@ -676,6 +676,7 @@ button.primary{
 .small-container{
     background: white;
     width: 70vw;
+    min-height: 60vh;
     margin: auto;
     padding: 25px;
     padding-bottom: 20vh;

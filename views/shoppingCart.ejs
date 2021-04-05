@@ -6,10 +6,12 @@
 	<h1>
 		Buy It Today. Get It Tomorrow.
 	</h1>
+	<% var count = 0; -%>
 	<div class="cartPage">
 		<div class="small-container">
 			<div class="cartCol">
 				<% for (let item of user.shoppingCart) { -%>
+					<% count++; -%>
 					<div class="card">
 						<div class="cartItem">
 							<div class="itemImg"><img src=<%=item.product.image%> alt="products"/></div>
@@ -31,29 +33,37 @@
 						</div>
 					</div>
 				<% } -%>
+				<% if(count == 0){ -%>
+					<div class="card">
+						<div class="card-body">
+							<p>Woohoo! No Items Here! Add some items to the cart through our <a href="/products">Products Page</a>. </p>
+						</div>
+					</div>
+				<% } -%>
 			</div>
 		</div>
-		<div id="checkoutBox">
-			<div class="card">
-				<div class="card-body">
-					<p>Item Cost: </p>
-					<br>
-					<br>
-					<p>Shipping Cost: </p>
-					<br>
-					<br>
-					<p>Total Cost: </p>
-				</div>
-				<div class="addToCart">
-						<form action= "/account/<%=user_id%>/checkout" method="POST">
-							<button class="block primary" type="submit">
-								Check Out
-							</button>
-						</form>
+		<% if(count > 0){ -%>
+			<div id="checkoutBox">
+				<div class="card">
+					<div class="card-body">
+						<p>Item Cost: </p>
+						<br>
+						<br>
+						<p>Shipping Cost: </p>
+						<br>
+						<br>
+						<p>Total Cost: </p>
+					</div>
+					<div class="addToCart">
+							<form action= "/account/<%=user_id%>/checkout" method="POST">
+								<button class="block primary" type="submit">
+									Check Out
+								</button>
+							</form>
+					</div>
 				</div>
 			</div>
-		</div>
-
+		<% } -%>
 
 	</div>
 
