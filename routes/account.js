@@ -13,52 +13,52 @@ router.get('/:id', requireLogin, wrapAsync(async (req, res)=>{
 	const {user_id} = req.session;
 	if(req_id === user_id){
 		const user = await User.findById(user_id)
-		res.render('account', {title: "My Account", user});
+		const emirates = ['Dubai', 'Abu Dhabi', 'Ajman', 'Sharjah', 'Ras Al Khaimah', 'Umm Al Quwain', 'Fujairah'];
+		res.render('account', {title: "My Account", user, emirates});
 	} else {
 		req.flash('error', "You don't have access to view this page!");
 		res.redirect('/');
 	}
 }))
 
-// edit account form
-router.get('/:id/edit', requireLogin, wrapAsync(async (req, res)=>{
+// Edit account details
+router.put('/:id/details', requireLogin, wrapAsync(async (req, res)=>{
 	const {id:req_id} = req.params;
 	const {user_id} = req.session;
 	if(req_id === user_id){
-		const user = await User.findById(req_id)
-		res.render('editAccount', {title: "Edit Product", user})
+		await User.findByIdAndUpdate(user_id, req.body, {runValidators: true, new:true});
+		req.flash('success', "Successfully updated your account details!");
+		res.redirect(`/account/${user_id}`)
 	} else {
 		req.flash('error', "You don't have access to view this page!");
 		res.redirect('/');
 	}
-
 }))
 
-router.put('/:id', requireLogin, wrapAsync(async (req, res)=>{
+// Edit shipping address
+router.put('/:id/shippingaddress', requireLogin, wrapAsync(async (req, res)=>{
 	const {id:req_id} = req.params;
 	const {user_id} = req.session;
 	if(req_id === user_id){
-		const {firstName,
-				lastName,
-				email,
-				phoneNumber,
-				address1,
-				address2,
-				emirate } = req.body;
-
 		const update_data = {
-			firstName,
-			lastName,
-			email,
-			phoneNumber,
-			shippingAddress: {
-				address1,
-				address2,
-				emirate
-			}
-		};
+			shippingAddress: {...req.body}
+		}
 		await User.findByIdAndUpdate(user_id, update_data, {runValidators: true, new:true});
-		req.flash('success', "Successfully updated your account!");
+		req.flash('success', "Successfully updated your shipping address!");
+		res.redirect(`/account/${user_id}`)
+	} else {
+		req.flash('error', "You don't have access to view this page!");
+		res.redirect('/');
+	}
+}))
+
+// Edit payment details
+router.put('/:id/paymentdetails', requireLogin, wrapAsync(async (req, res)=>{
+	const {id:req_id} = req.params;
+	const {user_id} = req.session;
+	if(req_id === user_id){
+		// await User.findByIdAndUpdate(user_id, req.body, {runValidators: true, new:true});
+		req.flash('success', "Successfully updated your account details!");
 		res.redirect(`/account/${user_id}`)
 	} else {
 		req.flash('error', "You don't have access to view this page!");
