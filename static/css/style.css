@@ -781,9 +781,14 @@ select:focus{
     margin: auto;
 }
 
-.productDescImg img {
+.productDescImg {
     width: 25%;
     height: 25%;
+}
+
+.productDescImg img {
+    width: 15vw;
+    height: 15vw;
     border: 1px solid rgba(0,0,0,.125);
     border-radius: .25rem;
 }
