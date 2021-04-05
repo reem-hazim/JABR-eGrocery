@@ -4,8 +4,11 @@
 	<%- include('partials/flash') %>
 	<div class="parallax"></div>
 	<h1>Hey, <%=user.firstName%>. Thanks For Placing Your Order.</h1>
-	<div class="small-container" style="display: flex; justify-content: center;">
-		<img src="/img/checkout_truck.gif" style="margin: auto;">
+	<div class="small-container" style="display: flex; flex-direction: column; justify-content: center;">
+		<img src="/img/checkout_truck_noloop.gif" style="margin: auto;">
+		<div style="display: block; margin: auto;">
+			<a href="/products">Go Back to Products</a>
+		</div>
 	</div>
 	<%- include('partials/footer') %>
 	<script>

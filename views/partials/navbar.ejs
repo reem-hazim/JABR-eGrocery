@@ -1,5 +1,5 @@
 <!-- Standard bootstrap navbar -->
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav id="navBar" class="navbar navbar-expand-lg navbar-light bg-light">
 	<div class="container-fluid">
 		<div id="brandLogo">
 			<a class="navbar-brand" href="/"><img src="/logo/jabr-tr.png" alt="JABR" width="100" height="100"></a>
@@ -41,20 +41,20 @@
       	<button id="account"> Your Account </button>
       </form> -->
 			<div>
-				<a class="nav-link" href="/account/<%=user_id%>/shoppingcart/">
-					<i class="fas fa-shopping-cart" style="color: rgb(134, 188, 235); font-size: 20px;">
-					</i>
+				<a class="nav-link" href="/account/<%=user_id%>">
+					<i class="fas fa-user-circle navIcon"></i>
 				</a>
 			</div>
 			<div>
-				<a class="nav-link" href="/account/<%=user_id%>">
-					<i class="fas fa-user-circle" style="color: rgb(134, 188, 235); font-size: 20px;"></i>
+				<a class="nav-link" href="/account/<%=user_id%>/shoppingcart/">
+					<i class="fas fa-shopping-cart navIcon">
+					</i>
 				</a>
 			</div>
 			
 		  <form action="/logout" method="POST">
 		  	<button id="logout"> 
-		  		<i class="fas fa-sign-out-alt" style="color: rgb(134, 188, 235); font-size: 20px;">
+		  		<i class="fas fa-sign-out-alt navIcon">
 		  		</i> 
 		  	</button>
 		  </form>
