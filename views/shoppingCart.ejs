@@ -6,43 +6,50 @@
 	<h1>
 		Buy It Today. Get It Tomorrow.
 	</h1>
-	<% var count = 0; -%>
 	<div class="cartPage">
 		<div class="small-container">
 			<div class="cartCol">
-				<% for (let item of user.shoppingCart) { -%>
-					<% count++; -%>
-					<div class="card">
-						<div class="cartItem">
-							<div class="itemImg"><img src=<%=item.product.image%> alt="products"/></div>
-							<div><h5>
-								<a href="/products/<%=item.product._id%>">
-									<%=item.product.name%>
-								</a>
-							</h5></div>
-							<div><p>
-								AED <%=item.product.price%>
-								<% if (item.product.defWeight) { -%>
-									per <%=item.product.defWeight%>
-								<% } -%>
-							</p></div>
-
-							<div class="qty"><p>
-								qty: <%=item.quantity%>
-							</p></div>
-						</div>
-					</div>
-				<% } -%>
-				<% if(count == 0){ -%>
+				<% if(user.shoppingCart.length === 0){ -%>
 					<div class="card">
 						<div class="card-body">
 							<p>Woohoo! No Items Here! Add some items to the cart through our <a href="/products">Products Page</a>. </p>
 						</div>
 					</div>
+				<% } else {-%>
+					<% for (let item of user.shoppingCart) { -%>
+						<div class="card">
+							<div class="cartItem">
+								<div class="itemImg">
+									<img src=<%=item.product.image%> alt="products"/>
+								</div>
+								<div>
+									<h5>
+										<a href="/products/<%=item.product._id%>">
+											<%=item.product.name%>
+										</a>
+									</h5>
+								</div>
+								<div>
+									<p>
+									AED <%=item.product.price%>
+									<% if (item.product.defWeight) { -%>
+										per <%=item.product.defWeight%>
+									<% } -%>
+									</p>
+								</div>
+
+								<div class="qty">
+									<p>
+									qty: <%=item.quantity%>
+									</p>
+								</div>
+							</div>
+						</div>
+					<% } -%>
 				<% } -%>
 			</div>
 		</div>
-		<% if(count > 0){ -%>
+		<% if(user.shoppingCart.length > 0){ -%>
 			<div id="checkoutBox">
 				<div class="card">
 					<div class="card-body">
