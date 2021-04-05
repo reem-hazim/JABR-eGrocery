@@ -16,55 +16,8 @@
             </select>
         </div>
 
-			 	<% let row = Math.floor(allProducts.length/4) -%>
-        <% for (var i=0; i<=row; i++) { -%>
-					<div class="card-group">
-                        <% if (i!=row) {var col = 4}
-						else {var col = allProducts.length%4} -%>
-                        <% for (var j=0; j<col; j++) { -%>
-							<div class="card" style="width: 18rem;">
-								<% var idx=(i*4)+j;
-								//console.log(i, col, j, idx); -%>
-								<img class="product-img" src=<%=allProducts[idx].image%> alt="products"/>
-								<div class="card-body">
-                                    <h5 class="card-title">
-                                        <a href="/products/<%=allProducts[idx]._id%>">
-                                            <%=allProducts[idx].name%>
-                                        </a>
-                                    </h5>
-                                    <p class="card-text">
-                                        $<%=allProducts[idx].price.toFixed(2)%>
-                                        <% if (allProducts[idx].defWeight != "") { -%>
-                                            per <%=allProducts[idx].defWeight%>
-                                        <% } -%>
-                                    </p>
-                                    <br>
-                                    <% if(allProducts[idx].inStock){ -%>
-                                        <p class="card-text" style="color: rgb(6, 147, 6)">In Stock</p>
-                                    <% }	else { -%>
-                                        <p class="card-text" style="color: rgb(203, 5, 5);">Out Of Stock</p>
-                                    <% } -%>
-                                    <br>
-								    <p class="card-text">Brand: <%= allProducts[idx].brand%></p>
+        <%- include('partials/productTile', {products: allProducts}); %>
 
-                                <div class="addToCart">
-                                    <form
-                                    <% if (!loggedIn) { -%>
-                                        action="/login" method="GET"
-                                    <% } else { -%>
-                                        action= "/account/<%=user_id%>/shoppingcart/<%=allProducts[idx]._id%>" method="POST"
-                                    <% } -%>>
-                                        <button class="block primary" type="submit">
-                                        Add to Cart
-                                        <!-- <i class="fas fa-cart-plus" style="color: rgb(134, 188, 235); font-size: 20px;"></i> -->
-                                        </button>
-                                    </form>
-                                </div>
-                            </div>
-							</div>
-						<% } -%>
-                    </div>
-				<% } -%>
         <!-- Navigate the Products -->
 				<!-- Should include the page btn stuff inside the row/col/idx logic-->
         <div class="page-btn" style="margin: auto;">
@@ -76,7 +29,7 @@
         </div>
 
     </div>
-    
+
     <%- include('partials/footer') %>
 
     <script>

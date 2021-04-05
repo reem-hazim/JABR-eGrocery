@@ -62,7 +62,7 @@ const userSchema = new mongoose.Schema({
 			lowercase: true,
 			enum: ['dubai', 'abu dhabi', 'ajman', 'sharjah', 'ras al khaimah', 'umm al quwain', 'fujairah'],
 			default: "abu dhabi",
-		}	
+		}
 	},
 	shoppingCart: [{
 		product: {
@@ -98,9 +98,14 @@ userSchema.methods.findItemAndAddToCart = async function(product_id, quantity){
 		await this.save();
 	// If it's an existing item
 	} else {
-		foundItem.quantity += 1
+		foundItem.quantity += quantity;
 		await this.save();
 	}
+}
+
+userSchema.methods.checkout = async function(){
+	this.set({shoppingCart: []});
+	await this.save();
 }
 
 // Encrypt Password
