@@ -7,7 +7,9 @@
       <div class="card" style="width: 18rem;">
         <% var idx=(i*4)+j;
         //console.log(i, col, j, idx); -%>
-        <img class="product-img" src=<%=products[idx].image%> alt="products"/>
+        <a class="product-img" href="/products/<%=products[idx]._id%>">
+          <img class="product-img" src=<%=products[idx].image%> alt="products">
+        </a>
         <div class="card-body">
           <h5 class="card-title">
               <a href="/products/<%=products[idx]._id%>">

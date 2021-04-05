@@ -118,8 +118,8 @@ h1.head {
 }
 
 .navbar-light .navbar-nav .nav-link:hover{
-    text-decoration: underline;
     font-weight: 600;
+    color: rgb(134, 188, 235);
 }
 
 .navbar-light .navbar-nav .nav-link{
@@ -153,13 +153,25 @@ form.search-form button {
 	height: 30px;
     width: 20%;
     padding: 0;
-    background: rgb(134, 188, 235);
+    background: #2F5061;
     border-left: none;
     cursor: pointer;
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
 }
 
+form.search-form button:hover{
+    background: rgb(134, 188, 235);
+}
+
+.navIcon {
+    color: #2F5061;
+    font-size: 3vh;
+}
+
+.navIcon:hover{
+    color: rgb(134, 188, 235);
+}
 
 input, button, textarea {
     font: 1.4rem;
