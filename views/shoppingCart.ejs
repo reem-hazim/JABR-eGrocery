@@ -1,13 +1,13 @@
 <%- include('partials/head')%>
 <body class="shoppingCart">
 	<%- include('partials/navbar') %>
-	<%- include('partials/flash') %>
 	<div class="parallax"></div>
 	<h1>
 		Buy It Today. Get It Tomorrow.
 	</h1>
 	<div class="cartPage">
 		<div class="small-container">
+			<%- include('partials/flash') %>
 			<div class="cartCol">
 				<% if(user.shoppingCart.length === 0){ -%>
 					<div class="card">
@@ -43,6 +43,10 @@
 									qty: <%=item.quantity%>
 									</p>
 								</div>
+								<form action="/account/<%=user._id%>/shoppingcart/<%=item.product._id%>?_method=DELETE" method="POST">
+									<button type="submit">Delete item</button>
+								</form>
+								
 							</div>
 						</div>
 					<% } -%>

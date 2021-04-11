@@ -100,6 +100,21 @@ router.post('/:user_id/shoppingcart/:product_id', requireLogin, wrapAsync(async 
 	}
 }))
 
+// Delete product from shopping cart
+router.delete('/:user_id/shoppingcart/:product_id', requireLogin, wrapAsync(async (req, res)=>{
+	const {user_id:req_id, product_id} = req.params;
+	const {user_id} = req.session;
+	if(req_id === user_id){
+		await User.findByIdAndUpdate(user_id, { $pull: {shoppingCart: {product:product_id} }}, {new:true, useFindAndModify: false})
+		req.flash("success", "Successfully deleted this product")
+		res.redirect(`/account/${user_id}/shoppingcart`)
+
+	} else {
+		req.flash('error', "You don't have access to view this page!");
+		res.redirect('/');
+	}
+}))
+
 // checkout
 router.post('/:user_id/checkout', requireLogin, wrapAsync(async (req, res)=>{
 	const {user_id:req_id, product_id} = req.params;
