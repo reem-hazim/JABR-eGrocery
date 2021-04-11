@@ -43,10 +43,20 @@
 									qty: <%=item.quantity%>
 									</p>
 								</div>
+								<form action= "/account/<%=user_id%>/shoppingcart/<%=item.product._id%>" method="POST">
+									<button type="submit" name="fromCart" value=1>Modify Quantity</button> <!-- right now just adds quantity -->
+									<select name="quantity" required>
+			              <option value=1>1</option>
+			              <option value=2>2</option>
+			              <option value=3>3</option>
+			              <option value=4>4</option>
+			              <option value=5>5</option>
+			            </select>
+			          </form>
 								<form action="/account/<%=user._id%>/shoppingcart/<%=item.product._id%>?_method=DELETE" method="POST">
 									<button type="submit">Delete item</button>
 								</form>
-								
+
 							</div>
 						</div>
 					<% } -%>

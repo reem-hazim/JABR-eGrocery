@@ -83,7 +83,9 @@ router.get('/:id/shoppingcart', requireLogin, wrapAsync(async (req, res)=>{
 // add product to shopping cart
 router.post('/:user_id/shoppingcart/:product_id', requireLogin, wrapAsync(async (req, res)=>{
 	const {user_id:req_id, product_id} = req.params;
-	const {quantity} = req.body;
+	const data = req.body;
+	const fromCart = data.fromCart;
+	const quantity = data.quantity;
 	const {user_id} = req.session;
 	if(req_id === user_id){
 		user = await User.findById(user_id);
@@ -91,7 +93,7 @@ router.post('/:user_id/shoppingcart/:product_id', requireLogin, wrapAsync(async 
 		if(!user || !product)
 			throw AppError("User or Product not found", 505);
 
-		await user.findItemAndAddToCart(product._id, parseInt(quantity))
+		await user.findItemAndAddToCart(product._id, parseInt(quantity), fromCart)
 		req.flash('success', 'Successfully added to shopping cart!')
 		res.redirect(`/account/${user_id}/shoppingcart`)
 	} else {
