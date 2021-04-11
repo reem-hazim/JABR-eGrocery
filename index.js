@@ -89,6 +89,11 @@ app.get('*', (req, res)=>{
 	res.status(404).send("Sorry, the page you requested doesn't exist!")
 })
 
+app.use((err, req, res, next)=>{
+	console.log(err.name);
+	next(err);
+})
+
 // Error handler
 app.use((err, req, res, next)=>{
 	const {status = 500, message = "Something went wrong"} = err;
