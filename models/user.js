@@ -72,6 +72,10 @@ const userSchema = new mongoose.Schema({
 			min: 1,
 		}
 	}],
+	orders : [{
+		type: mongoose.Schema.Types.ObjectId,
+		ref: 'Order'
+	}]
 });
 
 // Validate user
