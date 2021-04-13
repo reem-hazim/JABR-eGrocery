@@ -38,23 +38,16 @@
 									</p>
 								</div>
 
-								<div class="qty">
-									<p>
-									qty: <%=item.quantity%>
-									</p>
+								<div>
+									<p>qty:</p>
+									<form action= "/account/<%=user_id%>/shoppingcart/<%=item.product._id%>" method="POST">
+										<input type="number" name="quantity" min="0" max="<%=item.product.quantity%>" step="1" value="<%=item.quantity%>" size="3">
+										<button type="submit" name="fromCart" value=1>Modify Quantity</button>
+				          </form>
 								</div>
-								<form action= "/account/<%=user_id%>/shoppingcart/<%=item.product._id%>" method="POST">
-									<button type="submit" name="fromCart" value=1>Modify Quantity</button> <!-- right now just adds quantity -->
-									<select name="quantity" required>
-			              <option value=1>1</option>
-			              <option value=2>2</option>
-			              <option value=3>3</option>
-			              <option value=4>4</option>
-			              <option value=5>5</option>
-			            </select>
-			          </form>
+
 								<form action="/account/<%=user._id%>/shoppingcart/<%=item.product._id%>?_method=DELETE" method="POST">
-									<button type="submit">Delete item</button>
+									<button type="submit">Delete Item</button>
 								</form>
 
 							</div>
