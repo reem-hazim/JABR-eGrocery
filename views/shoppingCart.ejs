@@ -41,7 +41,7 @@
 								<div>
 									<p>qty:</p>
 									<form action= "/account/<%=user_id%>/shoppingcart/<%=item.product._id%>" method="POST">
-										<input type="number" name="quantity" min="0" max="<%=item.product.quantity%>" step="1" value="<%=item.quantity%>" size="3">
+										<input type="number" name="quantity" min="1" max="<%=item.product.quantity%>" step="1" value="<%=item.quantity%>" size="3">
 										<button type="submit" name="fromCart" value=1>Modify Quantity</button>
 				          </form>
 								</div>
