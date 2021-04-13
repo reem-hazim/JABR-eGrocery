@@ -15,7 +15,11 @@
 			  </li>
 		        <li class="nav-item" id="products">
 		          	<a class="nav-link" href="/products">Products</a>
-					<div class="productsList"></div>
+					<div class="dropdown-content">
+						<a href="#">Link 1</a>
+						<a href="#">Link 2</a>
+						<a href="#">Link 3</a>
+					  </div>
 		        </li>
 		        <li class="nav-item">
 		          	<a class="nav-link" href="/about">About</a>
@@ -70,6 +74,19 @@
 		<% } %>
 	</div>
 </nav>
+
+<script>
+	$("#products").hover(function(){
+		$("#categoriesBar").css({"display":"block"});
+	}, function(){
+
+	});
+	$("#categoriesBar").hover(function(){
+		$("#categoriesBar").css({"display":"block"});
+	}, function(){
+		$("#categoriesBar").css({"display":"none"});
+	});
+</script>
 
 <!-- <div id="toTop">
 	To Top
