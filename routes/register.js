@@ -8,7 +8,7 @@ const User = require('../models/user');
 // Form
 router.get('/', (req, res)=>{
 	const title = "JABR Register"
-	res.render('register', {title})
+	res.render('accounts/register', {title})
 })
 
 // Save new user to database

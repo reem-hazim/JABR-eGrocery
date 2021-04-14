@@ -19,13 +19,13 @@ router.get('/', wrapAsync(async (req, res, next)=>{
 			// console.log("no products");
 			req.flash('error', "No products match your search term, please try again!");
 		}
-		res.render("products", {title, allProducts, error: req.flash('error')});
+		res.render("products/index", {title, allProducts, error: req.flash('error')});
 
 	} else { // not a search so show default Products page
 		// console.log("default Products")
 		const allProducts = await Product.find({});
 		// console.log(allProducts);
-		res.render("products", {title, allProducts});
+		res.render("products/index", {title, allProducts});
 	}
 }))
 
@@ -37,7 +37,7 @@ router.get('/:id', wrapAsync(async (req, res, next)=>{
 		res.redirect('/products');
 	}
 	const title = product.name;
-	res.render("showProduct", {product, title});
+	res.render("products/show", {product, title});
 }))
 
 module.exports = router;

@@ -10,7 +10,7 @@ router.get('/login', (req, res)=>{
 	//Retrieve email cookie
 	const {email=""} = req.session;
 	const title = "JABR Login"
-	res.render('login', {title, email})
+	res.render('accounts/login', {title, email})
 })
 
 // Login logic

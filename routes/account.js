@@ -14,7 +14,7 @@ router.get('/:id', requireLogin, wrapAsync(async (req, res)=>{
 	if(req_id === user_id){
 		const user = await User.findById(user_id)
 		const emirates = ['Dubai', 'Abu Dhabi', 'Ajman', 'Sharjah', 'Ras Al Khaimah', 'Umm Al Quwain', 'Fujairah'];
-		res.render('account', {title: "My Account", user, emirates});
+		res.render('accounts/index', {title: "My Account", user, emirates});
 	} else {
 		req.flash('error', "You don't have access to view this page!");
 		res.redirect('/');
@@ -42,7 +42,7 @@ router.get('/:id/shoppingcart', requireLogin, wrapAsync(async (req, res)=>{
 	if(req_id === user_id){
 		user = await User.findById(user_id)
 		.populate('shoppingCart.product')
-		res.render('shoppingCart', {title: "My Shopping Cart", user});
+		res.render('accounts/shoppingCart', {title: "My Shopping Cart", user});
 	} else {
 		req.flash('error', "You don't have access to view this page!");
 		res.redirect('/');
@@ -94,7 +94,7 @@ router.post('/:user_id/checkout', requireLogin, wrapAsync(async (req, res)=>{
 	if(req_id === user_id){
 		user = await User.findById(user_id);
 		await user.checkout()
-		res.render('checkout', {title: "Checkout", user});
+		res.render('orders/checkout', {title: "Checkout", user});
 	} else {
 		req.flash('error', "You don't have access to view this page!");
 		res.redirect('/');

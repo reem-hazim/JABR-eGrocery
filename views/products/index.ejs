@@ -1,10 +1,10 @@
-<%- include('partials/head')%>
-<%- include('partials/navbar') %>
+<%- include('../partials/head')%>
+<%- include('../partials/navbar') %>
 <body>
     <div class="parallax"></div>
 	<h1>Our Entire Store. At Your Fingertips.</h1>
 	<div class="small-container">
-        <%- include('partials/flash') %>
+        <%- include('../partials/flash') %>
         <div class="row row-2">
             <h2>All Products</h2>
             <select>
@@ -16,7 +16,7 @@
             </select>
         </div>
 
-        <%- include('partials/productTile', {products: allProducts}); %>
+        <%- include('../partials/productTile', {products: allProducts}); %>
 
         <!-- Navigate the Products -->
 				<!-- Should include the page btn stuff inside the row/col/idx logic-->
@@ -30,7 +30,7 @@
 
     </div>
 
-    <%- include('partials/footer') %>
+    <%- include('../partials/footer') %>
 
     <script>
         var counter = Math.floor(Math.random() * 4);

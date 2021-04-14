@@ -1,7 +1,7 @@
-<%- include('partials/head')%>
+<%- include('../partials/head')%>
 <body>
-	<%- include('partials/navbar') %>
-	<%- include('partials/flash') %>
+	<%- include('../partials/navbar') %>
+	<%- include('../partials/flash') %>
 	<div class="parallax"></div>
 	<h1>Hey, <%=user.firstName%>. It's All About You.</h1>
 	<div class="small-container" style="display:block;">
@@ -69,7 +69,7 @@
 		
 	</div>
 
-<%- include('partials/footer') %>
+<%- include('../partials/footer') %>
 <script>
 	var counter = Math.floor(Math.random() * 4);
 	$(document).ready(function(){

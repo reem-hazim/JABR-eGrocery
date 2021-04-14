@@ -1,10 +1,10 @@
-<%- include('partials/head')%>
+<%- include('../partials/head')%>
 <body class="inputForm">
-	<%- include('partials/navbar') %>
+	<%- include('../partials/navbar') %>
   <div class="parallax"></div>
 	<h1>One Account. Endless Possibilities.</h1>
     <main class="small-container">
-      <%- include('partials/flash') %>
+      <%- include('../partials/flash') %>
       <div class="form">
         <form id="register-form" action="/register" method="POST">
           <ul class="form-container">
@@ -78,7 +78,7 @@
 
     </script>
   </div>
-	<%- include('partials/footer') %>
+	<%- include('../partials/footer') %>
   <script>
     var counter = Math.floor(Math.random() * 4);
     $(document).ready(function(){
