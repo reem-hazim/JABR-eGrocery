@@ -7,8 +7,8 @@
   <div class="small-container">
     <p>Please indicate your method of payment:</p>
     <p>
-      <LABEL><INPUT TYPE=radio NAME="payment_method" ID="card" VALUE="credit card" onclick="methodSelected()"> Credit card</LABEL>
-      <LABEL><INPUT TYPE=radio NAME="payment_method" VALUE="pay in person" onclick="methodSelected()"> Pay in person</LABEL>
+      <LABEL><INPUT TYPE=radio NAME="payment_method" ID="card" VALUE="card" onclick="paymentSelected()"> Credit card</LABEL>
+      <LABEL><INPUT TYPE=radio NAME="payment_method" VALUE="pay in person" onclick="paymentSelected()"> Pay in person</LABEL>
     </p>
 
     <div class="form-group" id="paymentDetails" style="display:none">
@@ -21,6 +21,30 @@
       readonly>
       <label for="expiryDate">Expiry Date </label>
       <input class="form-control" type="month" id="expiryDate" name="paymentDetails[expiryDate]" value="<%=user.paymentDetails.expiryDate%>" readonly>
+    </div>
+
+    <p>Please indicate your preference:</p>
+    <p>
+      <LABEL><INPUT TYPE=radio NAME="preference" ID="delivery" VALUE="delivery" onclick="prefSelected()"> Delivery</LABEL>
+      <LABEL><INPUT TYPE=radio NAME="preference" VALUE="pickup" onclick="prefSelected()"> Pick Up</LABEL>
+    </p>
+
+    <div class="form-group" id="shippingAddress" style="display:none">
+      <h3>Shipping Address</h3>
+      <label for="address1">Address Line 1 </label>
+      <input class="form-control" type="text" id="address1" name="shippingAddress[address1]" value="<%=user.shippingAddress.address1%>" readonly>
+
+      <label for="address2">Address Line 2 </label>
+      <input class="form-control" type="text" id="address2" name="shippingAddress[address2]" value="<%=user.shippingAddress.address2%>" readonly>
+
+      <label for="emirate">Emirate</label>
+      <select class="form-control" name="shippingAddress[emirate]" id="emirate" disabled readonly>
+        <% for (let emirate of emirates) { -%>
+          <option value="<%=emirate%>"
+            <%= user.shippingAddress.emirate === emirate ? 'selected': ''%>
+            ><%=emirate%></option>
+        <% } -%>
+      </select>
     </div>
 
     <p>
@@ -45,12 +69,24 @@
 			$(".parallax").css({"background-image":filePath});
 		});
 
-    function methodSelected() {
+    function paymentSelected() {
       var card = document.getElementById("card");
       var form = document.getElementById("paymentDetails");
 
       // If the checkbox is checked, display the output text
       if (card.checked == true){
+        form.style.display = "block";
+      } else {
+        form.style.display = "none";
+      }
+    }
+
+    function prefSelected() {
+      var delivery = document.getElementById("delivery");
+      var form = document.getElementById("shippingAddress");
+
+      // If the checkbox is checked, display the output text
+      if (delivery.checked == true){
         form.style.display = "block";
       } else {
         form.style.display = "none";

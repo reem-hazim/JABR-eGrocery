@@ -93,8 +93,8 @@ router.post('/:user_id/specifyOrder', requireLogin, wrapAsync(async (req, res)=>
 	const {user_id} = req.session;
 	if(req_id === user_id){
 		user = await User.findById(user_id);
-		await user.checkout()
-		res.render('orders/specifyOrder', {title: "One More Step", user});
+		const emirates = ['Dubai', 'Abu Dhabi', 'Ajman', 'Sharjah', 'Ras Al Khaimah', 'Umm Al Quwain', 'Fujairah'];
+		res.render('orders/specifyOrder', {title: "One More Step", user, emirates});
 	} else {
 		req.flash('error', "You don't have access to view this page!");
 		res.redirect('/');
