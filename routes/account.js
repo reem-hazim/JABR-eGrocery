@@ -87,6 +87,20 @@ router.delete('/:user_id/shoppingcart/:product_id', requireLogin, wrapAsync(asyn
 	}
 }))
 
+// specifyOrder
+router.post('/:user_id/specifyOrder', requireLogin, wrapAsync(async (req, res)=>{
+	const {user_id:req_id, product_id} = req.params;
+	const {user_id} = req.session;
+	if(req_id === user_id){
+		user = await User.findById(user_id);
+		await user.checkout()
+		res.render('orders/specifyOrder', {title: "One More Step", user});
+	} else {
+		req.flash('error', "You don't have access to view this page!");
+		res.redirect('/');
+	}
+}))
+
 // checkout
 router.post('/:user_id/checkout', requireLogin, wrapAsync(async (req, res)=>{
 	const {user_id:req_id, product_id} = req.params;

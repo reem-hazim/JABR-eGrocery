@@ -1,0 +1,59 @@
+<%- include('../partials/head')%>
+<body>
+	<%- include('../partials/navbar') %>
+	<%- include('../partials/flash') %>
+	<div class="parallax"></div>
+	<h1>Hey, <%=user.firstName%>. Just A Few More Things.</h1>
+  <div class="small-container">
+    <p>Please indicate your method of payment:</p>
+    <p>
+      <LABEL><INPUT TYPE=radio NAME="payment_method" ID="card" VALUE="credit card" onclick="methodSelected()"> Credit card</LABEL>
+      <LABEL><INPUT TYPE=radio NAME="payment_method" VALUE="pay in person" onclick="methodSelected()"> Pay in person</LABEL>
+    </p>
+
+    <div class="form-group" id="paymentDetails" style="display:none">
+      <h3>Payment Details</h3>
+      <label for="cardNumber">Credit Card</label>
+      <input class="form-control" type="text" id="cardNumber" name="paymentDetails[cardNumber]"
+      <% if (user.paymentDetails.cardNumber) { -%>
+        value="<%=user.paymentDetails.cardNumber%>"
+      <% } %>
+      readonly>
+      <label for="expiryDate">Expiry Date </label>
+      <input class="form-control" type="month" id="expiryDate" name="paymentDetails[expiryDate]" value="<%=user.paymentDetails.expiryDate%>" readonly>
+    </div>
+
+    <p>
+      <LABEL><INPUT TYPE=checkbox NAME="send_receipt" VALUE="yes" CHECKED> Send receipt by e-mail</LABEL>
+    </p>
+
+    <div class="addToCart">
+        <form action= "/account/<%=user_id%>/checkout" method="POST">
+          <button class="block primary" type="submit">
+            Check Out
+          </button>
+        </form>
+    </div>
+
+  </div>
+
+	<%- include('../partials/footer') %>
+	<script>
+		var counter = Math.floor(Math.random() * 4);
+		$(document).ready(function(){
+			filePath = "url(/img/background" + counter + ".jpeg)";
+			$(".parallax").css({"background-image":filePath});
+		});
+
+    function methodSelected() {
+      var card = document.getElementById("card");
+      var form = document.getElementById("paymentDetails");
+
+      // If the checkbox is checked, display the output text
+      if (card.checked == true){
+        form.style.display = "block";
+      } else {
+        form.style.display = "none";
+      }
+    }
+	</script>
