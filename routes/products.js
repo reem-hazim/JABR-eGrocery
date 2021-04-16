@@ -10,21 +10,17 @@ router.get('/', wrapAsync(async (req, res, next)=>{
 	let q = req.query.q;
 
 	if (q) { // search occurred
-		// console.log("search occurred")
 		const regex = new RegExp(q, 'gi');
 
 		//find inside the db
 		const allProducts = await Product.find({$or:[{ brand : regex }, { name : regex }]});
 		if(allProducts.length < 1){
-			// console.log("no products");
 			req.flash('error', "No products match your search term, please try again!");
 		}
 		res.render("products/index", {title, allProducts, error: req.flash('error')});
 
 	} else { // not a search so show default Products page
-		// console.log("default Products")
 		const allProducts = await Product.find({});
-		// console.log(allProducts);
 		res.render("products/index", {title, allProducts});
 	}
 }))

@@ -36,18 +36,18 @@ const userSchema = new mongoose.Schema({
 		expiryDate: {
 			type: Date,
 		},
-		billingAddress: {
-			address1: {
-				type: String,
-			},
-			address2: {
-				type: String,
-			},
-			emirate: {
-				type: String,
-				enum: ['Dubai', 'Abu Dhabi', 'Ajman', 'Sharjah', 'Ras Al Khaimah', 'Umm Al Quwain', 'Fujairah'],
-			}
-		}
+		// billingAddress: {
+		// 	address1: {
+		// 		type: String,
+		// 	},
+		// 	address2: {
+		// 		type: String,
+		// 	},
+		// 	emirate: {
+		// 		type: String,
+		// 		enum: ['Dubai', 'Abu Dhabi', 'Ajman', 'Sharjah', 'Ras Al Khaimah', 'Umm Al Quwain', 'Fujairah'],
+		// 	}
+		// }
 	},
 	shippingAddress: {
 		address1: {
@@ -98,20 +98,28 @@ userSchema.methods.findItemAndAddToCart = async function(product_id, quantity, f
 	if(!foundItem){
 		this.shoppingCart.push({product: product_id, quantity: quantity});
 		await this.save();
+		return "Successfully added to shopping cart!";
 	// If it's an existing item
 	} else {
 		if(fromCart){
 			foundItem.quantity = quantity;
 			await this.save();
+			return "Successfully updated quantity!";
 		} else {
 			foundItem.quantity += quantity;
 			await this.save();
+			return "Successfully added to shopping cart!";
 		}
 	}
 }
 
-userSchema.methods.checkout = async function(){
+userSchema.methods.checkout = async function(order_id, options, body){
+	this.orders.push(order_id)
 	this.set({shoppingCart: []});
+	if (options.save_card)
+		this.paymentDetails = body.paymentDetails;
+	if (options.save_address)
+		this.shippingAddress = body.shippingAddress;
 	await this.save();
 }
 
@@ -120,6 +128,18 @@ userSchema.pre('save', async function(next){
 	if(!this.isModified('password')) return next();
 	this.password = await bcrypt.hash(this.password, 12);
 	next();
+})
+
+userSchema.virtual('stringExpiryDate').get(function(){
+	if(this.paymentDetails.expiryDate){
+		const expiryDate = this.paymentDetails.expiryDate;
+		const year = expiryDate.getFullYear();
+		let month = expiryDate.getMonth();
+		if(parseInt(month) < 10)
+			month = '0' + month;
+		return `${year}-${month}`
+	}
+	return "";
 })
 
 const User = mongoose.model('User', userSchema);

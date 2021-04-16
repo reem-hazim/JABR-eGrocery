@@ -20,6 +20,7 @@ const registerRoutes = require('./routes/register');
 const loginRoutes = require('./routes/login');
 const productRoutes = require('./routes/products');
 const accountRoutes = require('./routes/account')
+const orderRoutes = require('./routes/order')
 
 // Validator for email and password:
 // https://www.npmjs.com/package/validator
@@ -66,6 +67,7 @@ app.use('/register', registerRoutes);
 app.use('/', loginRoutes);
 app.use('/products', productRoutes);
 app.use('/account', accountRoutes);
+app.use('/order', orderRoutes);
 
 // Home page
 app.get('/', wrapAsync(async (req, res, next)=>{
