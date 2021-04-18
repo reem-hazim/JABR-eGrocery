@@ -12,18 +12,22 @@
 		        </li> -->
 				<li class="nav-item">
 					<a class="nav-link" href="/">Home</a>
-			  </li>
+			  	</li>
+				<li class="nav-item divider">|</li>
 		        <li class="nav-item" id="products">
 		          	<a class="nav-link" href="/products">Products</a>
 					<div class="dropdown-content">
-						<a href="#">Link 1</a>
-						<a href="#">Link 2</a>
-						<a href="#">Link 3</a>
+						<!-- ??? How do I search by category -->
+						<a href="/products?q=Produce">Produce</a>
+						<a href="/products?q=Snacks">Snacks</a>
+						<a href="/products?q=Health and Beauty">Health and Beauty</a>
 					  </div>
 		        </li>
+				<li class="nav-item">|</li>
 		        <li class="nav-item">
 		          	<a class="nav-link" href="/about">About</a>
 		        </li>
+				<li class="nav-item">|</li>
 		        <li class="nav-item">
 		         	 <a class="nav-link" href="/contact">Contact</a>
 		        </li>
@@ -74,19 +78,6 @@
 		<% } %>
 	</div>
 </nav>
-
-<script>
-	$("#products").hover(function(){
-		$("#categoriesBar").css({"display":"block"});
-	}, function(){
-
-	});
-	$("#categoriesBar").hover(function(){
-		$("#categoriesBar").css({"display":"block"});
-	}, function(){
-		$("#categoriesBar").css({"display":"none"});
-	});
-</script>
 
 <!-- <div id="toTop">
 	To Top
