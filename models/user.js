@@ -123,6 +123,13 @@ userSchema.methods.checkout = async function(order_id, options, body){
 	await this.save();
 }
 
+userSchema.virtual('totalPrice').get(function(){
+	let total = 0;
+	for (let item of this.shoppingCart)
+		total += (item.quantity*item.product.price);
+	return total;
+});
+
 // Encrypt Password
 userSchema.pre('save', async function(next){
 	if(!this.isModified('password')) return next();

@@ -63,12 +63,26 @@ const orderSchema = new mongoose.Schema({
 	sendReceipt: Boolean,
 })
 
-orderSchema.methods.calculateTotalPrice = function(){
+orderSchema.methods.calculateTotalPrice = async function(){
 	let total = 0;
-	for (let product of this.products)
-		total += product.quantity;
+	for (let item of this.products)
+		total += (item.quantity * item.product.price);
 	this.totalPrice = total;
+	await this.save();
 	return total;
 }
+
+orderSchema.methods.checkout = async function(user){
+	this.set('products', user.shoppingCart)
+	await this.save();
+	for (let item of this.products){
+		let product = await Product.findById(item.product);
+		product.qtyAvailable -= item.quantity;
+		await product.save();
+	}
+	await this.populate('products.product', {price: 1}).execPopulate();
+	await this.calculateTotalPrice();	
+}
+
 
 module.exports = mongoose.model('Order', orderSchema)
