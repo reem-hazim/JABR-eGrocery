@@ -8,6 +8,7 @@ const Product = require('../models/product');
 router.get('/', wrapAsync(async (req, res, next)=>{
 	const title = "JABR Products"
 	let q = req.query.q;
+	let d = req.query.d;
 
 	if (q) { // search occurred
 		const regex = new RegExp(q, 'gi');
@@ -18,8 +19,16 @@ router.get('/', wrapAsync(async (req, res, next)=>{
 			req.flash('error', "No products match your search term, please try again!");
 		}
 		res.render("products/index", {title, allProducts, error: req.flash('error')});
-
-	} else { // not a search so show default Products page
+	}
+	else if (d) { // department search occurred
+		//find inside the db
+		const allProducts = await Product.find({department : d});
+		if(allProducts.length < 1){
+			req.flash('error', "No products match your search term, please try again!");
+		}
+		res.render("products/index", {title, allProducts, error: req.flash('error')});
+	}
+	else { // not a search so show default Products page
 		const allProducts = await Product.find({});
 		res.render("products/index", {title, allProducts});
 	}
