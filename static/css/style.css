@@ -833,6 +833,10 @@ select:focus{
     background-color: rgb(134, 188, 235);
     color: aliceblue;
 }
+button:hover{
+    background-color: rgb(134, 188, 235);
+    color: aliceblue;
+}
 
 
 /* ================================================================================================ */
