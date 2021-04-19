@@ -62,16 +62,16 @@
 			<div id="checkoutBox">
 				<div class="card">
 					<div class="card-body">
-						<p>Item Cost: </p>
+						<p>Item Cost: AED <%=total%> </p>
 						<br>
 						<br>
-						<p>Shipping Cost: </p>
+						<p>Shipping Cost: AED <%=shippingCost%> </p>
 						<br>
 						<br>
-						<p>Total Cost: </p>
+						<p>Total Cost: <%=total + shippingCost%></p>
 					</div>
 					<div class="addToCart">
-							<form action= "/order/<%=user_id%>">
+							<form action= "/order/<%=user_id%>/create">
 								<button class="block primary" type="submit">
 									Check Out
 								</button>

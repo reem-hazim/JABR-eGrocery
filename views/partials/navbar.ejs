@@ -16,12 +16,10 @@
 				<li class="nav-item divider">|</li>
 		        <li class="nav-item" id="products">
 		          	<a class="nav-link" href="/products">Products</a>
-					<div class="dropdown-content" style="height: auto;">
-						<!-- ??? How do I search by category -->
-						<a href="/products">All Products</a>
-						<a href="/products?q=Produce">Produce</a>
-						<a href="/products?q=Snacks">Snacks</a>
-						<a href="/products?q=Health and Beauty">Health and Beauty</a>
+						<div class="dropdown-content">
+							<a href="/products?d=Produce">Produce</a>
+							<a href="/products?d=Snacks">Snacks</a>
+							<a href="/products?d=Health and Beauty">Health and Beauty</a>
 					  </div>
 		        </li>
 				<li class="nav-item divider">|</li>
@@ -65,14 +63,14 @@
 					</i>
 				</a>
 			</div>
-			
+
 		  <form action="/logout" method="POST">
-		  	<button id="logout"> 
+		  	<button id="logout">
 		  		<i class="fas fa-sign-out-alt navIcon">
-		  		</i> 
+		  		</i>
 		  	</button>
 		  </form>
-		  
+
     <% } else { %>
     	<div>
 				<a class="nav-link" href="/login">Login</a>
@@ -88,4 +86,3 @@
 <!-- <div id="toTop">
 	To Top
 </div> -->
-

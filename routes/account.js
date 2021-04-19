@@ -17,7 +17,7 @@ router.get('/:user_id', requireLogin, authenticateUser(async (req, res)=>{
 }))
 
 // Edit account details
-router.put('/:user_id', requireLogin, authenticateUser(async (req, res)=>{
+router.put('/:user_id', requireLogin, authenticateUser(async (req, res, next)=>{
 	const {user_id} = req.params;
 	await User.findByIdAndUpdate(user_id, req.body, {runValidators: true, new:true});
 	req.flash('success', "Successfully updated your account details!");
@@ -25,11 +25,13 @@ router.put('/:user_id', requireLogin, authenticateUser(async (req, res)=>{
 }))
 
 // view shopping cart
-router.get('/:user_id/shoppingcart', requireLogin, authenticateUser(async (req, res)=>{
+router.get('/:user_id/shoppingcart', requireLogin, authenticateUser(async (req, res, next)=>{
 	const {user_id} = req.params;
 	user = await User.findById(user_id)
 	.populate('shoppingCart.product')
-	res.render('accounts/shoppingCart', {title: "My Shopping Cart", user});
+	const shippingCost = 15;
+	const total = user.totalPrice;
+	res.render('accounts/shoppingCart', {title: "My Shopping Cart", user, shippingCost, total});
 }))
 
 // add product to shopping cart
