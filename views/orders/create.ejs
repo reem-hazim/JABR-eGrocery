@@ -4,92 +4,118 @@
 	<%- include('../partials/flash') %>
 	<div class="parallax"></div>
 	<h1>Hey, <%=user.firstName%>. Just A Few More Things.</h1>
-  <div class="small-container">
+  <div class="small-container" style="display: flex; justify-content: center; align-items: center;">
 
-    <form action="/order/<%=user._id%>/create" method="POST">
+    <form action="/order/<%=user._id%>/create" method="POST" style="width: 80%; max-width: 100%; display: flex; flex-direction:column; justify-content: center;">
+      <div class="card" style="width: 100%; max-width: 100%;">
+        <div class="card-body" style="display: flex; flex-direction: column; justify-content: center;">
+          <div class="form-group" style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
+            <h3>First, Choose How You'll Pay.</h3>
+            <div style="padding: 15px 0px; width: 50%; display: flex; justify-content: space-between;">
+              <label >
+                <input type=radio name="paymentMethod" id="card" value="card" onclick="paymentSelected()"> 
+                Credit/Debit Card
+              </label>
+      
+              <label>
+                <input type=radio name="paymentMethod" value="in person" onclick="paymentSelected()">
+                Pay in Person 
+              </label>
+            </div>
+          </div>
 
-      <div class="form-group">
-        <p>Please indicate your method of payment:</p>
-
-        <label>
-          <input type=radio name="paymentMethod" id="card" value="card" onclick="paymentSelected()"> 
-          Credit/Debit Card
-        </label>
-
-        <label>
-          <input type=radio name="paymentMethod" value="in person" onclick="paymentSelected()">
-          Pay in Person 
-        </label>
-      </div>
-
-      <div class="form-group" id="paymentDetails" style="display:none">
-        <div class="card ">
-          <div class="card-body">
-            <p>Payment Details</p>
-          <label for="cardNumber">Credit Card</label>
-          <input class="form-control" type="text" id="cardNumber" name="paymentDetails[cardNumber] style"
-          <% if (user.paymentDetails.cardNumber) { -%>
-            value="<%=user.paymentDetails.cardNumber%>"
-          <% } %>
-          >
-          <label for="expiryDate">Expiry Date </label>
-          <input class="form-control" type="month" id="expiryDate" name="paymentDetails[expiryDate]" value="<%=user.stringExpiryDate%>" style="max-width: 170px;" >
-
-          <label for="cvv">CVV </label>
-          <input class="form-control" type="password" id="cvv" name="paymentDetails[CVV]" style="width: 50px;">
-
-          <label>
-            Save this credit card to my account
-            <input TYPE=checkbox NAME="options[save_card]" checked> 
-          </LABEL>
+          <div class="form-group" id="paymentDetails" style="display:none">
+            <div class="card" style="width: 80%; max-width: 100%; margin: auto;">
+              <div class="card-body">
+                <p>Payment Details</p>
+              <label for="cardNumber">Credit Card</label>
+              <input class="form-control" type="text" id="cardNumber" name="paymentDetails[cardNumber] style"
+              <% if (user.paymentDetails.cardNumber) { -%>
+                value="<%=user.paymentDetails.cardNumber%>"
+              <% } %>
+              >
+              <label for="expiryDate">Expiry Date </label>
+              <input class="form-control" type="month" id="expiryDate" name="paymentDetails[expiryDate]" value="<%=user.stringExpiryDate%>" style="max-width: 170px;" >
+    
+              <label for="cvv">CVV </label>
+              <input class="form-control" type="password" id="cvv" name="paymentDetails[CVV]" style="width: 50px;">
+    
+              <label>
+                Save This Credit Card
+                <input TYPE=checkbox NAME="options[save_card]" checked> 
+              </LABEL>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
+        </div>
 
-      <div class="form-group">
-        <p>Please indicate your preference:</p>
-        <label>
-          <input TYPE=radio NAME="orderType" ID="delivery" VALUE="delivery" onclick="prefSelected()"> 
-          Delivery
-        </label>
-        <label>
-          <input TYPE=radio NAME="orderType" VALUE="pickup" onclick="prefSelected()"> 
-          Pick Up
-        </label>
-      </div>
+        
 
-      <div class="form-group" id="shippingAddress" style="display:none">
-        <p>Shipping Address</p>
-        <label for="address1">Address Line 1 </label>
-        <input class="form-control" type="text" id="address1" name="shippingAddress[address1]" value="<%=user.shippingAddress.address1%>">
+        <div class="card" style="width: 100%; max-width: 100%;">
+          <div class="card-body">
+            <div class="form-group" style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
+              <h3>Next, Tell Us How You Want It.</h3>
+              <div style="padding: 15px 0px; width: 50%; display: flex; justify-content: space-between;">
+                <label>
+                  <input TYPE=radio NAME="orderType" ID="delivery" VALUE="delivery" onclick="prefSelected()"> 
+                  Delivery
+                </label>
+                <label>
+                  <input TYPE=radio NAME="orderType" VALUE="pickup" onclick="prefSelected()"> 
+                  Pick Up
+                </label>
+              </div>
+            </div>
+      
+            <div class="form-group" id="shippingAddress" style="display:none">
+              <div class="card" style="width: 80%; max-width: 100%; margin: auto;">
+                <div class="card-body">
+                  <p>Shipping Address</p>
+                  <label for="address1">Address Line 1 </label>
+                  <input class="form-control" type="text" id="address1" name="shippingAddress[address1]" value="<%=user.shippingAddress.address1%>">
+          
+                  <label for="address2">Address Line 2 </label>
+                  <input class="form-control" type="text" id="address2" name="shippingAddress[address2]" value="<%=user.shippingAddress.address2%>">
+          
+                  <label for="emirate">Emirate</label>
+                  <select class="form-control" name="shippingAddress[emirate]" id="emirate">
+                    <% for (let emirate of emirates) { -%>
+                      <option value="<%=emirate%>"
+                        <%= user.shippingAddress.emirate === emirate ? 'selected': ''%>
+                        ><%=emirate%></option>
+                    <% } -%>
+                  </select>
+          
+                  <label>
+                    Save This Shipping Address
+                    <input TYPE=checkbox NAME="options[save_address]" checked> 
+                  </label>
+                </div>
+              </div>
+            </div>
 
-        <label for="address2">Address Line 2 </label>
-        <input class="form-control" type="text" id="address2" name="shippingAddress[address2]" value="<%=user.shippingAddress.address2%>">
+          </div>
+        </div>
 
-        <label for="emirate">Emirate</label>
-        <select class="form-control" name="shippingAddress[emirate]" id="emirate">
-          <% for (let emirate of emirates) { -%>
-            <option value="<%=emirate%>"
-              <%= user.shippingAddress.emirate === emirate ? 'selected': ''%>
-              ><%=emirate%></option>
-          <% } -%>
-        </select>
+        <div class="card" style="width: 100%; max-width: 100%;">
+          <div class="card-body">
+            <div class="form-group" style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
+              <h3>Then, Opt in for Updates.</h3>
+              <div style="padding: 15px 0px; width: 50%; display: flex; justify-content: center;">
+                <label>
+                  Send Me That Receipt!
+                  <br>
+                  <input TYPE=checkbox NAME="sendReceipt" VALUE='true' checked> 
+                </LABEL>
+              </div>
+            </div>
+          </div>
+        </div>
+        
 
-        <label>
-          Save this shipping address to my account
-          <input TYPE=checkbox NAME="options[save_address]" checked> 
-        </label>
-      </div>
-
-    <div class="form-group">
-      <label>
-        Send receipt by e-mail
-        <input TYPE=checkbox NAME="sendReceipt" VALUE='true' checked> 
-      </LABEL>
-    </div>
- 
-    <button class="block primary" type="submit">
-      Check Out
+    <button class="block primary" type="submit" style="margin: 10px 0;">
+      <h3>And Finally, You're All Good to Go.</h3>
     </button>
 
 
