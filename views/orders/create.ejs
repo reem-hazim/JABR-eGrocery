@@ -12,14 +12,14 @@
           <div class="form-group" style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
             <h3>First, Choose How You'll Pay.</h3>
             <div style="padding: 15px 0px; width: 50%; display: flex; justify-content: space-between;">
-              <label >
-                <input type=radio name="paymentMethod" id="card" value="card" onclick="paymentSelected()"> 
+              <label style="text-align: center;">
+                <input type=radio name="paymentMethod" id="card" value="card"  onclick="paymentSelected()"> 
                 Credit/Debit Card
               </label>
       
-              <label>
-                <input type=radio name="paymentMethod" value="in person" onclick="paymentSelected()">
-                Pay in Person 
+              <label style="text-align: center;">
+                <input type=radio name="paymentMethod" value="in person"  onclick="paymentSelected()">
+                Cash on Delivery
               </label>
             </div>
           </div>
@@ -40,7 +40,7 @@
               <label for="cvv">CVV </label>
               <input class="form-control" type="password" id="cvv" name="paymentDetails[CVV]" style="width: 50px;">
     
-              <label>
+              <label style="text-align: center;">
                 Save This Credit Card
                 <input TYPE=checkbox NAME="options[save_card]" checked> 
               </LABEL>
@@ -57,13 +57,13 @@
             <div class="form-group" style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
               <h3>Next, Tell Us How You Want It.</h3>
               <div style="padding: 15px 0px; width: 50%; display: flex; justify-content: space-between;">
-                <label>
+                <label style="text-align: center;">
                   <input TYPE=radio NAME="orderType" ID="delivery" VALUE="delivery" onclick="prefSelected()"> 
-                  Delivery
+                  Delivered to My Door!
                 </label>
-                <label>
+                <label style="text-align: center;">
                   <input TYPE=radio NAME="orderType" VALUE="pickup" onclick="prefSelected()"> 
-                  Pick Up
+                  I'll Come Pick it Up!
                 </label>
               </div>
             </div>
