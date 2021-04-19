@@ -16,18 +16,19 @@
 				<li class="nav-item divider">|</li>
 		        <li class="nav-item" id="products">
 		          	<a class="nav-link" href="/products">Products</a>
-					<div class="dropdown-content">
+					<div class="dropdown-content" style="height: auto;">
 						<!-- ??? How do I search by category -->
+						<a href="/products">All Products</a>
 						<a href="/products?q=Produce">Produce</a>
 						<a href="/products?q=Snacks">Snacks</a>
 						<a href="/products?q=Health and Beauty">Health and Beauty</a>
 					  </div>
 		        </li>
-				<li class="nav-item">|</li>
+				<li class="nav-item divider">|</li>
 		        <li class="nav-item">
 		          	<a class="nav-link" href="/about">About</a>
 		        </li>
-				<li class="nav-item">|</li>
+				<li class="nav-item divider">|</li>
 		        <li class="nav-item">
 		         	 <a class="nav-link" href="/contact">Contact</a>
 		        </li>
@@ -48,10 +49,15 @@
 			<!-- <form action="/account" method="POST">
       	<button id="account"> Your Account </button>
       </form> -->
-			<div>
-				<a class="nav-link" href="/account/<%=user_id%>">
+			<div id="account">
+				<a  class="nav-link" href="/account/<%=user_id%>">
 					<i class="fas fa-user-circle navIcon"></i>
 				</a>
+				<div id="accountOptions" style="height: auto;">
+					<a href="/account/<%=user_id%>">Your Account</a>
+					<a href="/orders/<%=user_id%>">Your Orders</a>
+				  </div>
+				
 			</div>
 			<div>
 				<a class="nav-link" href="/account/<%=user_id%>/shoppingcart/">

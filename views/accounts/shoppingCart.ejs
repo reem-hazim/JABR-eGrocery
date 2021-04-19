@@ -38,17 +38,19 @@
 									</p>
 								</div>
 
-								<div>
-									<p>qty:</p>
-									<form action= "/account/<%=user_id%>/shoppingcart/<%=item.product._id%>" method="POST">
-										<input type="number" name="quantity" min="1" max="<%=item.product.quantity%>" step="1" value="<%=item.quantity%>" size="3">
-										<button type="submit" name="fromCart" value=1>Modify Quantity</button>
-				          </form>
+								<div  >
+									<form action= "/account/<%=user_id%>/shoppingcart/<%=item.product._id%>" method="POST" style="display: flex;">
+										
+										Qty: <input type="number" name="quantity" min="1" max="<%=item.product.quantity%>" step="1" value="<%=item.quantity%>" size="3" style="width: 50%; display: inline-block;">
+										<button class="block primary" type="submit" name="fromCart" value=1 style="width: 50%; display: inline-block;" >Modify</button>
+				          			</form>
 								</div>
-
-								<form action="/account/<%=user._id%>/shoppingcart/<%=item.product._id%>?_method=DELETE" method="POST">
-									<button type="submit">Delete Item</button>
-								</form>
+								<div>
+									<form action="/account/<%=user._id%>/shoppingcart/<%=item.product._id%>?_method=DELETE" method="POST">
+										<button class="block primary" type="submit">Delete Item</button>
+									</form>
+								</div>
+								
 
 							</div>
 						</div>
