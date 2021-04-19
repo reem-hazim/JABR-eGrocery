@@ -264,7 +264,7 @@ input, button, textarea {
 header{
     height: calc((100 - var(--navBarHeight)) * 1vh);
     /* background: radial-gradient(#fff , rgb(170, 208, 241)); */
-    margin-bottom: 10vh;
+    margin-bottom: 12vh;
 }
 
 header .row{
