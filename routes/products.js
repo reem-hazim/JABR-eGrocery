@@ -24,24 +24,22 @@ router.get('/', wrapAsync(async (req, res, next)=>{
 		allProducts = await Product.find({});
 	}
 
-	if (s) { // sorting occurred
-		switch(s){
-			case "last":
-				allProducts = await Product.find({}).sort({added: -1}); break;
-			case "priceHigh":
-				allProducts = await Product.find({}).sort({price: -1}); break;
-			case "priceLow":
-				allProducts = await Product.find({}).sort({price: 1}); break;
-			case "default":
-				allProducts = await Product.find({}); break;
-		}
+	switch(s){
+		case "last":
+			allProducts = await Product.find({}).sort({added: -1}); break;
+		case "priceHigh":
+			allProducts = await Product.find({}).sort({price: -1}); break;
+		case "priceLow":
+			allProducts = await Product.find({}).sort({price: 1}); break;
+		default:
+			allProducts = await Product.find({}); break;
 	}
 
 	if (allProducts.length < 1){
 		req.flash('error', "No products match your search term, please try again!");
 		res.render("products/index", {title, allProducts, error: req.flash('error')});
 	} else {
-		res.render("products/index", {title, allProducts});
+		res.render("products/index", {title, allProducts, s});
 	}
 
 }))
