@@ -7,6 +7,8 @@ const requireLogin = require('../utils/requireLogin');
 const User = require('../models/user');
 const Product = require('../models/product');
 const AppError = require('../utils/AppError');
+const constants = require('../utils/constants');
+
 
 // Account page
 router.get('/:user_id', requireLogin, authenticateUser(async (req, res)=>{
@@ -29,9 +31,8 @@ router.get('/:user_id/shoppingcart', requireLogin, authenticateUser(async (req, 
 	const {user_id} = req.params;
 	user = await User.findById(user_id)
 	.populate('shoppingCart.product')
-	const shippingCost = 15;
 	const total = user.totalPrice;
-	res.render('accounts/shoppingCart', {title: "My Shopping Cart", user, shippingCost, total});
+	res.render('accounts/shoppingCart', {title: "My Shopping Cart", user, shippingCost: constants.shippingCost, total});
 }))
 
 // add product to shopping cart

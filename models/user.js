@@ -36,18 +36,6 @@ const userSchema = new mongoose.Schema({
 		expiryDate: {
 			type: Date,
 		},
-		// billingAddress: {
-		// 	address1: {
-		// 		type: String,
-		// 	},
-		// 	address2: {
-		// 		type: String,
-		// 	},
-		// 	emirate: {
-		// 		type: String,
-		// 		enum: ['Dubai', 'Abu Dhabi', 'Ajman', 'Sharjah', 'Ras Al Khaimah', 'Umm Al Quwain', 'Fujairah'],
-		// 	}
-		// }
 	},
 	shippingAddress: {
 		address1: {

@@ -2,6 +2,10 @@ const mongoose = require('mongoose');
 const Product = require('./product');
 
 const orderSchema = new mongoose.Schema({
+	shippingCost: {
+		type: Number,
+		min: 0,
+	},
 	totalPrice: {
 		type: Number,
 		min: 0,
@@ -65,11 +69,12 @@ const orderSchema = new mongoose.Schema({
 
 orderSchema.methods.calculateTotalPrice = async function(){
 	let total = 0;
+	await this.populate('products.product', {price: 1}).execPopulate();
 	for (let item of this.products)
 		total += (item.quantity * item.product.price);
-	this.totalPrice = total;
+	this.totalPrice = total + this.shippingCost;
 	await this.save();
-	return total;
+	return this.totalPrice;
 }
 
 orderSchema.methods.checkout = async function(user){
@@ -80,7 +85,6 @@ orderSchema.methods.checkout = async function(user){
 		product.qtyAvailable -= item.quantity;
 		await product.save();
 	}
-	await this.populate('products.product', {price: 1}).execPopulate();
 	await this.calculateTotalPrice();	
 }
 

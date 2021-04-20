@@ -7,6 +7,7 @@ const User = require('../models/user');
 const Product = require('../models/product');
 const Order = require('../models/order')
 const AppError = require('../utils/AppError');
+const constants = require('../utils/constants')
 
 // checkout
 router.get('/:user_id/checkout', requireLogin, authenticateUser(async (req, res)=>{
@@ -31,6 +32,7 @@ router.post('/:user_id/create', requireLogin, authenticateUser(async (req, res)=
 	const {options} = req.body;
 	let body = req.body;
 	delete body.options;
+	body.shippingCost = constants.shippingCost;
 	//create new order	
 	let order = new Order(body);
 	await order.checkout(user);
@@ -38,6 +40,17 @@ router.post('/:user_id/create', requireLogin, authenticateUser(async (req, res)=
 	await user.checkout(order._id, options, body);
 	req.flash("success", "Successfully made an order! Please make sure you have received a confirmation email.");
 	res.redirect(`/order/${user_id}/checkout`);
+}))
+
+// View order history
+router.get('/:user_id/', requireLogin, authenticateUser(async (req, res)=>{
+	const {user_id} = req.params;
+	//find user
+	user = await User.findById(user_id);
+	await user.populate('orders').execPopulate();
+	for (let order of user.orders)
+		await order.populate('products.product').execPopulate();
+	res.render('orders/index', {title: "Order History", user})
 }))
 
 module.exports = router;
