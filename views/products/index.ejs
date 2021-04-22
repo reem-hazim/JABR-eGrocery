@@ -39,7 +39,20 @@
             </form>
         </div>
 
-        <%- include('../partials/productTile', {products: allProducts}); %>
+        <% var sortedProducts;
+          switch(s) {
+          		case "last":
+                sortedPoducts = sortResults('added', false); break;
+          		case "priceHigh":
+                sortedProducts = sortResults('price', false); break;
+          	 	case "priceLow":
+                sortedProducts = sortResults('price', true); break;
+          	 	default:
+                sortedProducts = allProducts; break;
+           }
+        %>
+        <%- include('../partials/productTile', {products: sortedProducts}); %>
+
 
         <!-- Navigate the Products -->
 				<!-- Should include the page btn stuff inside the row/col/idx logic-->
@@ -55,6 +68,17 @@
     <%- include('../partials/footer') %>
 
     <script>
+        function sortResults(prop, asc) {
+          allProducts.sort(function(a, b){
+              if (asc) {
+                return (a[prop] > b[prop]) ? 1 : ((a[prop] < b[prop]) ? -1 : 0);
+              } else {
+                return (b[prop] > a[prop]) ? 1 : ((b[prop] < a[prop]) ? -1 : 0);
+              }
+          });
+          renderResults();
+        };
+
         var counter = Math.floor(Math.random() * 4);
         $(document).ready(function(){
             filePath = "url(/img/background" + counter + ".jpeg)";
