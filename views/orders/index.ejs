@@ -1,15 +1,37 @@
 <%- include('../partials/head')%>
 <body>
-	<% for (let order of user.orders) { -%>
-		<p><%=order.totalPrice%></p>
-		<p><%=order.orderType%></p>
-		<% for (let item of order.products) { -%>
-			<p><%=item.product.name%></p>
-			<p><%=item.product.price%></p>
-			<p><%=item.quantity%></p>
-		<% } -%>
-		
-	<% } -%>
+	<%- include('../partials/navbar') %>
+	<%- include('../partials/flash') %>
+	<div class="parallax"></div>
+	<h1>Hey, <%=user.firstName%>. Here Are Your Orders.</h1>
+  	<div class="small-container" style="display: flex; justify-content: center; align-items: center;">
+
+		<div style="display: flex; width: 100%; flex-direction: column; justify-content: center; align-items: center;">
+			<% for (let order of user.orders.slice().reverse()) { -%>
+				<div class="card" style="max-width: 80%; width: 80%;">
+					<div class="card-body">
+						<h5>Total: AED <%=order.totalPrice%></h5>
+						<p>Delivery Method: <%=order.orderType%></p>
+						<br>
+						<p>Items:</p>
+						<br>
+						<% for (let item of order.products) { -%>
+							<div class="card" style="max-width: 100%;">
+								<div style="padding: 5px;">
+									<p style="font-size: medium;"><b><%=item.product.name%></b></p>
+									<br>
+									<p>Price: AED <%=item.product.price%></p>
+									<br>
+									<p>Quantity: <%=item.quantity%></p>
+								</div>
+							</div>
+						<% } -%>
+					</div>
+				</div>
+			<% } -%>
+		</div>
+
+	</div>
 
 </body>
 </html>

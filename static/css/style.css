@@ -14,7 +14,6 @@ body {
 	margin-top: calc(var(--navBarHeight)*1vh);
 	height: auto;
     font-family: 'Quicksand', sans-serif;
-
 }
 
 a {
