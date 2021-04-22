@@ -32,30 +32,18 @@ router.get('/', wrapAsync(async (req, res, next)=>{
 		allProducts = await Product.find({});
 	}
 
-	function sortResults(prop, asc) {
-		allProducts.sort(function(a, b){
-				if (asc) {
-					return (a[prop] > b[prop]) ? 1 : ((a[prop] < b[prop]) ? -1 : 0);
-				} else {
-					return (b[prop] > a[prop]) ? 1 : ((b[prop] < a[prop]) ? -1 : 0);
-				}
-		});
-	};
-
-	var sortedProducts;
 	switch (s) {
 			case "last":
-				sortedProducts = sortResults('added', false); break;
+				allProducts.sort((a, b) => b.added - a.added); break;
 			case "priceHigh":
-				sortedProducts = sortResults('price', false); break;
+				allProducts.sort((a, b) => parseFloat(b.price) - parseFloat(a.price)); break;
 			case "priceLow":
-				sortedProducts = sortResults('price', true); break;
+				allProducts.sort((a, b) => parseFloat(a.price) - parseFloat(b.price)); break;
 			default:
-				sortedProducts = allProducts; break;
-	 }
+				break;
+	}
 
-	console.log(sortedProducts);
-	res.render("products/index", {title, sortedProducts, s});
+	res.render("products/index", {title, allProducts, s});
 }))
 
 router.get('/:id', wrapAsync(async (req, res, next)=>{
