@@ -21,6 +21,7 @@ const seedProducts = [
 		department: "Produce",
 		category: "Fruits",
 		featured: true,
+		added: "2021-04-14",
 	},
 	{
 		image: "https://media.istockphoto.com/photos/tomato-isolated-on-white-background-picture-id466175630?k=6&m=466175630&s=612x612&w=0&h=fu_mQBjGJZIliOWwCR0Vf2myRvKWyQDsymxEIi8tZ38=",
@@ -31,6 +32,7 @@ const seedProducts = [
 		brand: "Jordan",
 		department: "Produce",
 		category: "Fruits",
+		added: "2021-04-19",
 	},
 	{
 		image: "https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fwww.foodinis.com%2Fapp%2Fuploads%2F2016%2F12%2Fcucumbers.jpg&f=1&nofb=1",
@@ -42,6 +44,7 @@ const seedProducts = [
 		department: "Produce",
 		category: "Vegetables",
 		featured: true,
+		added: "2021-04-21",
 	},
 	{
 		image: "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fharvestdelivery.ca%2Fwp-content%2Fuploads%2F2020%2F11%2FYellow-onion-3lb-bag.jpg&f=1&nofb=1",
@@ -52,6 +55,7 @@ const seedProducts = [
 		brand: "UAE",
 		department: "Produce",
 		category: "Vegetables",
+		added: "2021-04-11",
 	},
 	{
 		image: "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fupload.wikimedia.org%2Fwikipedia%2Fcommons%2Fthumb%2Fc%2Fc8%2FPotato_and_cross_section.jpg%2F1200px-Potato_and_cross_section.jpg&f=1&nofb=1",
@@ -63,6 +67,7 @@ const seedProducts = [
 		department: "Produce",
 		category: "Vegetables",
 		featured: true,
+		added: "2021-04-10",
 	},
 	{
 		image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRSVEcyoWRMx4NYaNaa0LjjLkQ1NHzI7pNqkHeYgIPOqd1_SgpkpeNsMb1oigSbO4VfdGQ7pkE&usqp=CAc",
@@ -74,6 +79,7 @@ const seedProducts = [
 		department: "Health and Beauty",
 		category: "Shampoos",
 		featured: true,
+		added: "2021-04-01",
 	},
 	{
 		image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTzGJLhKYsC3CPsgAID_N7dGNIdzMKhxhRiSv7D1urZ2lAIs9WKn5rSzW7ctg&usqp=CAc",
