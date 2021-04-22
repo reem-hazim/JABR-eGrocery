@@ -71,9 +71,9 @@ app.use('/order', orderRoutes);
 
 // Home page
 app.get('/', wrapAsync(async (req, res, next)=>{
-	const title = "JABR eGrocery"
-	const featuredProducts = await Product.find({featured : true});
-	const latestProducts = await Product.aggregate([{ $match: {'added': {$exists: true}}}, { $sort: { added : -1} }]);
+	const title = "JABR eGrocery" 
+	const featuredProducts = await Product.aggregate([{ $match: {'featured': {$exists: true}}}, { $limit : 4 }]);
+	const latestProducts = await Product.aggregate([{ $match: {'added': {$exists: true}}}, { $sort: { added : -1} }, { $limit : 4 }]);
 	res.render('home', {title, featuredProducts, latestProducts})
 }))
 
