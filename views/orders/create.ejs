@@ -28,6 +28,7 @@
             <div class="card" style="width: 80%; max-width: 100%; margin: auto;">
               <div class="card-body">
                 <p>Payment Details</p>
+                <br>
               <label for="cardNumber">Credit Card</label>
               <input class="form-control" type="text" id="cardNumber" name="paymentDetails[cardNumber] style"
               <% if (user.paymentDetails.cardNumber) { -%>
@@ -72,6 +73,7 @@
               <div class="card" style="width: 80%; max-width: 100%; margin: auto;">
                 <div class="card-body">
                   <p>Shipping Address</p>
+                  <br>
                   <label for="address1">Address Line 1 </label>
                   <input class="form-control" type="text" id="address1" name="shippingAddress[address1]" value="<%=user.shippingAddress.address1%>">
           
