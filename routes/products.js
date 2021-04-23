@@ -11,6 +11,8 @@ router.get('/', wrapAsync(async (req, res, next)=>{
 	let d = req.query.d;
 	let s = req.query.sort;
 
+	if(!q)
+		q="";
 	var allProducts;
 
 	if (q) { // search occurred
@@ -19,7 +21,7 @@ router.get('/', wrapAsync(async (req, res, next)=>{
 
 		if (allProducts.length < 1){
 			req.flash('error', "No products match your search term, please try again!");
-			res.render("products/index", {title, allProducts, s, error: req.flash('error')});
+			res.render("products/index", {title, allProducts, s, q, error: req.flash('error')});
 		}
 
 	}
@@ -43,7 +45,7 @@ router.get('/', wrapAsync(async (req, res, next)=>{
 				break;
 	}
 
-	res.render("products/index", {title, allProducts, s});
+	res.render("products/index", {title, allProducts, s, q});
 }))
 
 router.get('/:id', wrapAsync(async (req, res, next)=>{

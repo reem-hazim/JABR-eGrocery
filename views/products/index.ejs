@@ -8,6 +8,10 @@
         <div class="row row-2">
             <h2>All Products</h2>
             <form action="/products" method="GET">
+              <% if (q) { -%>
+                 <input type="hidden" name="q" value="<%=q%>">
+              <% } -%>
+             
               <select name="sort" onchange="this.form.submit()">
                 <% switch(s){
               			case "last": -%>
