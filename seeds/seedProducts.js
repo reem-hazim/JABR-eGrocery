@@ -126,6 +126,8 @@ const seedProducts = [
 		added: "2021-03-28",
 	},
 
+	
+
 ];
 
 
@@ -136,3 +138,6 @@ Product.insertMany(seedProducts)
 	.catch(err => {
 		console.log(err);
 	})
+
+
+
