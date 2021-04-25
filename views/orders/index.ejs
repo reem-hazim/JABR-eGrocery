@@ -7,8 +7,11 @@
   	<div class="small-container" style="display: flex; justify-content: center; align-items: center; min-height: 80vh;">
 		<% if(user.orders.length === 0){ -%>
 			<div class="card" style="max-width: 100%; width: 80%;">
-				<div class="card-body">
-					<p>Sorry! No Orders Yet! Place an order through your <a href="//account/<%=user_id%>/shoppingcart/">Shopping Cart</a>. </p>
+				<div class="card-body" style="text-align: center;">
+					<p>Sorry, no orders yet! Place an order through your <a href="/account/<%=user_id%>/shoppingcart/">Shopping Cart</a>.
+					<br>
+					Or <a href="/contact">contact us</a> if you think there's an error.
+					</p>
 				</div>
 			</div>
 		<% } else {-%>
