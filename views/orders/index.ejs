@@ -4,9 +4,15 @@
 	<%- include('../partials/flash') %>
 	<div class="parallax"></div>
 	<h1>Hey, <%=user.firstName%>. Here Are Your Orders.</h1>
-  	<div class="small-container" style="display: flex; justify-content: center; align-items: center;">
-
-		<div style="display: flex; width: 100%; flex-direction: column; justify-content: center; align-items: center;">
+  	<div class="small-container" style="display: flex; justify-content: center; align-items: center; min-height: 80vh;">
+		<% if(user.orders.length === 0){ -%>
+			<div class="card" style="max-width: 100%; width: 80%;">
+				<div class="card-body">
+					<p>Sorry! No Orders Yet! Place an order through your <a href="//account/<%=user_id%>/shoppingcart/">Shopping Cart</a>. </p>
+				</div>
+			</div>
+		<% } else {-%>
+		<div style="display: flex; width: 100%; flex-direction: column; justify-content: center; align-items: center;"></div>
 			<% for (let order of user.orders.slice().reverse()) { -%>
 				<div class="card" style="max-width: 80%; width: 80%;">
 					<div class="card-body">
@@ -30,8 +36,8 @@
 				</div>
 			<% } -%>
 		</div>
-
+		<% } -%>
 	</div>
-
+	<%- include('../partials/footer') %>
 </body>
 </html>
