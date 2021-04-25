@@ -27,22 +27,27 @@
 						<% for (let item of order.products) { -%>
 							<div class="card" style="max-width: 100%;">
 								<div style="padding: 5px;">
-									<p style="font-size: medium;"><b><%=item.product.name%></b></p>
+									<img src=<%=item.product.image%> alt="products"/ style="height: 50px; width: 50px;">
+									<p style="font-size: medium;">
+										<b>
+											<a href="/products/<%=item.product._id%>">
+											<%=item.product.name%>
+											</a>
+										</b>
+									</p>
 									<br>
-									<p>Price: AED <%=item.product.price%></p>
-									<br>
-									<p>Quantity: <%=item.quantity%></p>
+									<p>Price: AED <%=item.product.price%> | Quantity: <%=item.quantity%></p>
 								</div>
 							</div>
 						<% } -%>
 					</div>
-					<div id="buttons" style="flex-direction: column; justify-content: space-between; align-items: center">
+					<div id="buttons" style="margin-top: 1.25rem; flex-direction: column; justify-content: space-around; align-items: baseline; padding: 10px;">
 						<form action="/order/<%=user._id%>/create" method="GET">
 							<input type="hidden" name="orderid" value="<%=order._id%>">
-							<button type="submit" class="block primary">Repeat this order!</button>
+							<button type="submit" class="block primary">Order Again</button>
 						</form>
-						<form action="/account/<%=user._id%>/shoppingcart/order/<%=order._id%>" method="POST">
-							<button type="submit" class="block primary">Add all items to my shopping cart</button>
+						<form action="/account/<%=user._id%>/shoppingcart/order/<%=order._id%>" method="POST" style="margin-top: 10px;">
+							<button type="submit" class="block primary">Add Order to Cart</button>
 						</form>
 					</div>
 				</div>
