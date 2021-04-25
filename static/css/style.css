@@ -27,6 +27,11 @@ button:hover{
     color: aliceblue;
 }
 
+button.primary:hover{
+    background-color: rgb(134, 188, 235);
+    color: aliceblue;
+}
+
 h1 {
     font-family: 'Fredoka One', cursive;
 	display: block;
