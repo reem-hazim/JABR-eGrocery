@@ -28,7 +28,7 @@ router.put('/:user_id', requireLogin, [validateCardNumber], authenticateUser(asy
     if (!errors.isEmpty()) {
     	console.log(errors)
     	req.flash('error', 'Must be a valid credit card number')
-      	return res.redirect(`/account/${user_id}`,);
+      	return res.redirect(`/account/${user_id}`);
     }
     let userInfo = req.body
     userInfo.paymentDetails.expiryDate = new Date(userInfo.paymentDetails.expiryDate)

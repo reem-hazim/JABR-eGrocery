@@ -1,7 +1,9 @@
 const {check} = require('express-validator')
+
 module.exports = {
     
   validateCardNumber : check('paymentDetails[cardNumber]')
+  	.if((value, { req }) => req.body.paymentMethod !== 'in person')
   
     // To delete leading and trailing space
     .trim()
