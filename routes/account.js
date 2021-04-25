@@ -9,6 +9,8 @@ const Product = require('../models/product');
 const Order = require('../models/order');
 const AppError = require('../utils/AppError');
 const constants = require('../utils/constants');
+const {validateCardNumber} = require('../utils/validator');
+const {validationResult} = require('express-validator')
 
 
 // Account page
@@ -20,9 +22,18 @@ router.get('/:user_id', requireLogin, authenticateUser(async (req, res)=>{
 }))
 
 // Edit account details
-router.put('/:user_id', requireLogin, authenticateUser(async (req, res, next)=>{
+router.put('/:user_id', requireLogin, [validateCardNumber], authenticateUser(async (req, res, next)=>{
 	const {user_id} = req.params;
-	await User.findByIdAndUpdate(user_id, req.body, {runValidators: true, new:true});
+	const errors = validationResult(req)
+    if (!errors.isEmpty()) {
+    	console.log(errors)
+    	req.flash('error', 'Must be a valid credit card number')
+      	return res.redirect(`/account/${user_id}`,);
+    }
+    let userInfo = req.body
+    userInfo.paymentDetails.expiryDate = new Date(userInfo.paymentDetails.expiryDate)
+    userInfo.paymentDetails.expiryDate.setMonth(userInfo.paymentDetails.expiryDate.getMonth()+1)
+	await User.findByIdAndUpdate(user_id, userInfo, {runValidators: true, new:true});
 	req.flash('success', "Successfully updated your account details!");
 	res.redirect(`/account/${user_id}`)
 }))

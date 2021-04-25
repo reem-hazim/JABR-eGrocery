@@ -4,5 +4,6 @@ $(".form-group").on("click", "a", function(){
 	$(":input", formGroup).removeAttr("disabled")
 	$(":input", formGroup).prop("required", true)
 	$(".save-changes", formGroup).show()
+	$(".cancel", formGroup).show()
 	$(this).hide()
 })
