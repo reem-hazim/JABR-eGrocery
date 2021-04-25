@@ -19,6 +19,17 @@ body {
 a {
     color: cornflowerblue;
     user-select: none;
+    text-decoration: none;
+}
+
+button:hover{
+    background-color: rgb(134, 188, 235);
+    color: aliceblue;
+}
+
+button.primary:hover{
+    background-color: rgb(134, 188, 235);
+    color: aliceblue;
 }
 
 h1 {
@@ -72,6 +83,7 @@ h1.head {
 	left: 0;
 	margin: 0;
 	height: calc(var(--navBarHeight)*1vh);
+    max-height: 100px;
 	width: 100vw;
 	position: fixed;
 	background-color: white;
@@ -578,6 +590,12 @@ footer h3{
     width: 140px;
 }
 
+#footerlogout:hover {
+    background-color: none !important;
+    color: rgb(134, 188, 235);
+    text-decoration: underline;
+}
+
 footer hr{
     border: none;
     background: #b5b5b5;
@@ -739,7 +757,9 @@ button.primary{
     color: black;
 }
 
-.card h5 a:hover {
+
+
+.card a:hover {
     color: rgb(134, 188, 235);
     text-decoration: none;
 }
@@ -832,10 +852,7 @@ select:focus{
     background-color: rgb(134, 188, 235);
     color: aliceblue;
 }
-button:hover{
-    background-color: rgb(134, 188, 235);
-    color: aliceblue;
-}
+
 
 
 /* ================================================================================================ */

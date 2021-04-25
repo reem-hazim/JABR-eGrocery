@@ -19,7 +19,19 @@
 			<% for (let order of user.orders.slice().reverse()) { -%>
 				<div class="card" style="max-width: 80%; width: 70%; flex-direction: row;">
 					<div class="card-body">
-						<h5>Total: AED <%=order.totalPrice.toFixed(2)%></h5>
+						<div style="display: flex; justify-content: space-between; align-items: center;">
+							<h5 style="padding: 10px 0; margin: 0;">Total: AED <%=order.totalPrice.toFixed(2)%></h5>
+							<div id="buttons" style="display: flex; justify-content: space-around; align-items: baseline; padding: 10px;">
+								<form action="/order/<%=user._id%>/create" method="GET">
+									<input type="hidden" name="orderid" value="<%=order._id%>">
+									<button type="submit" class="block primary">Order Again</button>
+								</form>
+								<form action="/account/<%=user._id%>/shoppingcart/order/<%=order._id%>" method="POST" style="margin-left: 5px;">
+									<button type="submit" class="block primary">Add Order to Cart</button>
+								</form>
+							</div>
+						</div>
+						
 						<p>Delivery Method: <%=order.orderType%></p>
 						<br>
 						<p>Items:</p>
@@ -27,23 +39,19 @@
 						<% for (let item of order.products) { -%>
 							<div class="card" style="max-width: 100%;">
 								<div style="padding: 5px;">
-									<p style="font-size: medium;"><b><%=item.product.name%></b></p>
+									<img src=<%=item.product.image%> alt="products"/ style="height: 50px; width: 50px;">
+									<p style="font-size: medium;">
+										<b>
+											<a href="/products/<%=item.product._id%>" style="color: black;">
+											<%=item.product.name%>
+											</a>
+										</b>
+									</p>
 									<br>
-									<p>Price: AED <%=item.product.price.toFixed(2)%></p>
-									<br>
-									<p>Quantity: <%=item.quantity%></p>
+									<p>Price: AED <%=item.product.price%>   |   Quantity: <%=item.quantity%></p>
 								</div>
 							</div>
 						<% } -%>
-					</div>
-					<div id="buttons" style="flex-direction: column; justify-content: space-between; align-items: center">
-						<form action="/order/<%=user._id%>/create" method="GET">
-							<input type="hidden" name="orderid" value="<%=order._id%>">
-							<button type="submit" class="block primary">Repeat this order!</button>
-						</form>
-						<form action="/account/<%=user._id%>/shoppingcart/order/<%=order._id%>" method="POST">
-							<button type="submit" class="block primary">Add all items to my shopping cart</button>
-						</form>
 					</div>
 				</div>
 			<% } -%>
