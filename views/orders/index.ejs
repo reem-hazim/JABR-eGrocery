@@ -19,7 +19,7 @@
 			<% for (let order of user.orders.slice().reverse()) { -%>
 				<div class="card" style="max-width: 80%; width: 80%;">
 					<div class="card-body">
-						<h5>Total: AED <%=order.totalPrice%></h5>
+						<h5>Total: AED <%=order.totalPrice.toFixed(2)%></h5>
 						<p>Delivery Method: <%=order.orderType%></p>
 						<br>
 						<p>Items:</p>
@@ -35,6 +35,19 @@
 								</div>
 							</div>
 						<% } -%>
+						<div id="buttons" style="flex-direction: column; justify-content: space-around; align-items:baseline">
+							<form action="/order/<%=user._id%>/create" method="GET">
+								<input type="hidden" name="orderid" value="<%=order._id%>">
+								<button type="submit" class="btn btn-primary">Repeat this order!</button>
+							</form>
+							<form action="/account/<%=user._id%>/shoppingcart/order/<%=order._id%>" method="POST">
+								<button type="submit" class="btn btn-primary">Add all items to my shopping cart</button>
+							</form>
+							
+							
+						</div>
+						
+
 					</div>
 				</div>
 			<% } -%>

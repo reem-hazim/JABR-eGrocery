@@ -68,7 +68,7 @@
 						<p>Shipping Cost: AED <%=shippingCost%> </p>
 						<br>
 						<br>
-						<p>Total Cost: AED <%=total + shippingCost%></p>
+						<p>Total Cost: AED <%=(total + shippingCost).toFixed(2)%></p>
 					</div>
 					<div class="addToCart">
 							<form action= "/order/<%=user_id%>/create">
