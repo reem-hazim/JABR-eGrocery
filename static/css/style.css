@@ -83,6 +83,7 @@ h1.head {
 	left: 0;
 	margin: 0;
 	height: calc(var(--navBarHeight)*1vh);
+    max-height: 100px;
 	width: 100vw;
 	position: fixed;
 	background-color: white;
@@ -756,9 +757,7 @@ button.primary{
     color: black;
 }
 
-.card a {
-    color: black;
-}
+
 
 .card a:hover {
     color: rgb(134, 188, 235);
