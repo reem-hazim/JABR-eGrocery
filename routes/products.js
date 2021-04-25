@@ -11,27 +11,55 @@ router.get('/', wrapAsync(async (req, res, next)=>{
 	let d = req.query.d;
 	let s = req.query.sort;
 
-	if(!q)
-		q="";
+	// if(!q)
+	// 	q="";
+	// var allProducts;
+	//
+	// if (q) { // search occurred
+	// 	const regex = new RegExp(q, 'gi');
+	// 	allProducts = await Product.find({$or:[{ brand : regex }, { name : regex }]});
+	//
+	// 	if (allProducts.length < 1){
+	// 		req.flash('error', "No products match your search term, please try again!");
+	// 		res.render("products/index", {title, allProducts, s, q, error: req.flash('error')});
+	// 	}
+	//
+	// }
+	//
+	// else if (d) { // department search occurred
+	// 	allProducts = await Product.find({department : d});
+	// }
+	//
+	// else { // just accessing the main products page
+	// 	allProducts = await Product.find({});
+	// }
+
 	var allProducts;
 
-	if (q) { // search occurred
-		const regex = new RegExp(q, 'gi');
-		allProducts = await Product.find({$or:[{ brand : regex }, { name : regex }]});
-
-		if (allProducts.length < 1){
-			req.flash('error', "No products match your search term, please try again!");
-			res.render("products/index", {title, allProducts, s, q, error: req.flash('error')});
-		}
-
-	}
-
-	else if (d) { // department search occurred
-		allProducts = await Product.find({department : d});
-	}
-
-	else { // just accessing the main products page
+	if (!q && !d) { // just accessing the main products page
 		allProducts = await Product.find({});
+	}
+
+	else if(!q){ // no search query -> department query?
+		if (d) {
+			allProducts = await Product.find({department : d});
+		} else {
+			q="";
+		}
+	}
+
+	else if(!d){ // no department query -> search query?
+		if (q) {
+			const regex = new RegExp(q, 'gi');
+			allProducts = await Product.find({$or:[{ brand : regex }, { name : regex }]});
+
+			if (allProducts.length < 1){
+				req.flash('error', "No products match your search term, please try again!");
+				res.render("products/index", {title, allProducts, s, q, d, error: req.flash('error')});
+			}
+		} else {
+			d="";
+		}
 	}
 
 	switch (s) {
@@ -45,7 +73,8 @@ router.get('/', wrapAsync(async (req, res, next)=>{
 				break;
 	}
 
-	res.render("products/index", {title, allProducts, s, q});
+	res.render("products/index", {title, allProducts, s, q, d});
+	
 }))
 
 router.get('/:id', wrapAsync(async (req, res, next)=>{
