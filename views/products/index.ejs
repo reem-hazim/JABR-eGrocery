@@ -11,7 +11,9 @@
               <% if (q) { -%>
                  <input type="hidden" name="q" value="<%=q%>">
               <% } -%>
-             
+              <% if (d) { -%>
+                  <input type="hidden" name="d" value="<%=d%>">
+               <% } -%>
               <select name="sort" onchange="this.form.submit()">
                 <% switch(s){
               			case "last": -%>
