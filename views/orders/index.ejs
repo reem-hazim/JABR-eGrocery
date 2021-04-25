@@ -1,15 +1,55 @@
 <%- include('../partials/head')%>
 <body>
-	<% for (let order of user.orders) { -%>
-		<p><%=order.totalPrice%></p>
-		<p><%=order.orderType%></p>
-		<% for (let item of order.products) { -%>
-			<p><%=item.product.name%></p>
-			<p><%=item.product.price%></p>
-			<p><%=item.quantity%></p>
+	<%- include('../partials/navbar') %>
+	<%- include('../partials/flash') %>
+	<div class="parallax"></div>
+	<h1>Hey, <%=user.firstName%>. Here Are Your Orders.</h1>
+  	<div class="small-container" style="display: flex; justify-content: center; align-items: center; min-height: 80vh;">
+		<% if(user.orders.length === 0){ -%>
+			<div class="card" style="max-width: 100%; width: 80%;">
+				<div class="card-body" style="text-align: center;">
+					<p>Sorry, no orders yet! Place an order through your <a href="/account/<%=user_id%>/shoppingcart/">Shopping Cart</a>.
+					<br>
+					Or <a href="/contact">contact us</a> if you think there's an error.
+					</p>
+				</div>
+			</div>
+		<% } else {-%>
+		<div style="display: flex; width: 100%; flex-direction: column; justify-content: center; align-items: center;">
+			<% for (let order of user.orders.slice().reverse()) { -%>
+				<div class="card" style="max-width: 80%; width: 70%; flex-direction: row;">
+					<div class="card-body">
+						<h5>Total: AED <%=order.totalPrice.toFixed(2)%></h5>
+						<p>Delivery Method: <%=order.orderType%></p>
+						<br>
+						<p>Items:</p>
+						<br>
+						<% for (let item of order.products) { -%>
+							<div class="card" style="max-width: 100%;">
+								<div style="padding: 5px;">
+									<p style="font-size: medium;"><b><%=item.product.name%></b></p>
+									<br>
+									<p>Price: AED <%=item.product.price%></p>
+									<br>
+									<p>Quantity: <%=item.quantity%></p>
+								</div>
+							</div>
+						<% } -%>
+					</div>
+					<div id="buttons" style="flex-direction: column; justify-content: space-between; align-items: center">
+						<form action="/order/<%=user._id%>/create" method="GET">
+							<input type="hidden" name="orderid" value="<%=order._id%>">
+							<button type="submit" class="block primary">Repeat this order!</button>
+						</form>
+						<form action="/account/<%=user._id%>/shoppingcart/order/<%=order._id%>" method="POST">
+							<button type="submit" class="block primary">Add all items to my shopping cart</button>
+						</form>
+					</div>
+				</div>
+			<% } -%>
+		</div>
 		<% } -%>
-		
-	<% } -%>
-
+	</div>
+	<%- include('../partials/footer') %>
 </body>
 </html>

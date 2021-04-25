@@ -17,25 +17,32 @@ const productSchema = new mongoose.Schema({
 	qtyAvailable : {
 		type: Number,
 		min: 0,
+		default: 50,
 		required: true,
 	},
 	brand: {
 		type: String,
 		required: true,
+		default: 'UAE',
 	},
 	department: {
 		type: String,
 		required: true,
+		default: 'Produce',
 	},
 	category: {
 		type: String,
 		required: true,
+		default: 'Vegetables',
 	},
 	featured: {
 		type: Boolean,
+		required: true,
+		default: true,
 	},
 	added: {
 		type: Date,
+		default: Date.now,
 	}
 });
 

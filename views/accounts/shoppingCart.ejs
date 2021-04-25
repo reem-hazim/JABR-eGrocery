@@ -40,17 +40,17 @@
 
 								<div  >
 									<form action= "/account/<%=user_id%>/shoppingcart/<%=item.product._id%>" method="POST" style="display: flex;">
-										
-										Qty: <input type="number" name="quantity" min="1" max="<%=item.product.quantity%>" step="1" value="<%=item.quantity%>" size="3" style="margin-left: 3px; text-align: center; width: 50%; display: inline-block;">
+
+										Qty: <input type="number" name="quantity" min="1" max="<%=item.product.quantity%>" step="1" value="<%=item.quantity%>" size="3" style="margin-left: 3px; text-align: center; width: 50%; min-width: 50px; display: inline-block;">
 										<button class="block primary" type="submit" name="fromCart" value=1 style="margin-left: 3px; width: 50%; display: inline-block;" >Modify</button>
 				          			</form>
 								</div>
 								<div>
 									<form action="/account/<%=user._id%>/shoppingcart/<%=item.product._id%>?_method=DELETE" method="POST">
-										<button class="block primary" type="submit">Delete Item</button>
+										<button class="block primary" type="submit">Remove</button>
 									</form>
 								</div>
-								
+
 
 							</div>
 						</div>
@@ -60,15 +60,15 @@
 		</div>
 		<% if(user.shoppingCart.length > 0){ -%>
 			<div id="checkoutBox">
-				<div class="card">
+				<div class="card" style="height: auto;">
 					<div class="card-body">
-						<p>Item Cost: AED <%=total%> </p>
+						<p>Item Cost: AED <%=total.toFixed(2)%> </p>
 						<br>
 						<br>
 						<p>Shipping Cost: AED <%=shippingCost%> </p>
 						<br>
 						<br>
-						<p>Total Cost: <%=total + shippingCost%></p>
+						<p>Total Cost: AED <%=(total + shippingCost).toFixed(2)%></p>
 					</div>
 					<div class="addToCart">
 							<form action= "/order/<%=user_id%>/create">

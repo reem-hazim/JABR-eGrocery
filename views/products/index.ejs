@@ -8,12 +8,40 @@
         <div class="row row-2">
             <h2>All Products</h2>
             <form action="/products" method="GET">
+              <% if (q) { -%>
+                 <input type="hidden" name="q" value="<%=q%>">
+              <% } -%>
+              <% if (d) { -%>
+                  <input type="hidden" name="d" value="<%=d%>">
+               <% } -%>
               <select name="sort" onchange="this.form.submit()">
-                  <option value="default">Default Sorting</option>
-                  <option value="last">Last Updated</option>
-                  <option value="priceHigh">Price: High to Low</option>
-                  <option value="priceLow">Price: Low to High</option>
-              </select>
+                <% switch(s){
+              			case "last": -%>
+                      <option value="default">Default Sorting</option>
+                      <option value="last" selected>Last Updated</option>
+                      <option value="priceHigh">Price: High to Low</option>
+                      <option value="priceLow">Price: Low to High</option>
+                    <%  break;
+              			case "priceHigh": -%>
+                      <option value="default">Default Sorting</option>
+                      <option value="last">Last Updated</option>
+                      <option value="priceHigh" selected>Price: High to Low</option>
+                      <option value="priceLow">Price: Low to High</option>
+                    <%  break;
+              			case "priceLow": -%>
+                      <option value="default">Default Sorting</option>
+                      <option value="last">Last Updated</option>
+                      <option value="priceHigh">Price: High to Low</option>
+                      <option value="priceLow" selected>Price: Low to High</option>
+                    <%  break;
+                    default: -%>
+                      <option value="default" selected>Default Sorting</option>
+                      <option value="last">Last Updated</option>
+                      <option value="priceHigh">Price: High to Low</option>
+                      <option value="priceLow">Price: Low to High</option>
+                    <%  break;
+              	   } -%>
+                </select>
             </form>
         </div>
 
