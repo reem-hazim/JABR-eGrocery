@@ -22,6 +22,11 @@ a {
     text-decoration: none;
 }
 
+button:hover{
+    background-color: rgb(134, 188, 235);
+    color: aliceblue;
+}
+
 h1 {
     font-family: 'Fredoka One', cursive;
 	display: block;
@@ -579,6 +584,12 @@ footer h3{
     width: 140px;
 }
 
+#footerlogout:hover {
+    background-color: none !important;
+    color: rgb(134, 188, 235);
+    text-decoration: underline;
+}
+
 footer hr{
     border: none;
     background: #b5b5b5;
@@ -837,10 +848,7 @@ select:focus{
     background-color: rgb(134, 188, 235);
     color: aliceblue;
 }
-button:hover{
-    background-color: rgb(134, 188, 235);
-    color: aliceblue;
-}
+
 
 
 /* ================================================================================================ */
