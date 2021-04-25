@@ -19,6 +19,7 @@ body {
 a {
     color: cornflowerblue;
     user-select: none;
+    text-decoration: none;
 }
 
 h1 {
@@ -739,7 +740,11 @@ button.primary{
     color: black;
 }
 
-.card h5 a:hover {
+.card a {
+    color: black;
+}
+
+.card a:hover {
     color: rgb(134, 188, 235);
     text-decoration: none;
 }
