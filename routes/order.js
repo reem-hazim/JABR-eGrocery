@@ -18,9 +18,10 @@ router.get('/:user_id/checkout', requireLogin, authenticateUser(async (req, res)
 // get order form
 router.get('/:user_id/create', requireLogin, authenticateUser(async (req, res)=>{
 	const {user_id} = req.params;
+	const {orderid=""} = req.query
 	user = await User.findById(user_id);
 	const emirates = ['Dubai', 'Abu Dhabi', 'Ajman', 'Sharjah', 'Ras Al Khaimah', 'Umm Al Quwain', 'Fujairah'];
-	res.render('orders/create', {title: "One More Step", user, emirates});
+	res.render('orders/create', {title: "One More Step", user, emirates, orderid});
 }))
 
 //create order
@@ -35,7 +36,10 @@ router.post('/:user_id/create', requireLogin, authenticateUser(async (req, res)=
 	body.shippingCost = constants.shippingCost;
 	//create new order	
 	let order = new Order(body);
-	await order.checkout(user);
+	let old_order = {};
+	if(options.order_id)
+		old_order = await Order.findById(options.order_id)
+	await order.checkout(user, old_order);
 	//delete shopping cart
 	await user.checkout(order._id, options, body);
 	req.flash("success", "Successfully made an order! Please make sure you have received a confirmation email.");

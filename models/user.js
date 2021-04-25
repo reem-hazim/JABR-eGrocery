@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 const Product = require('./product');
+const Order = require('./order');
 
 const userSchema = new mongoose.Schema({
 	firstName: {
@@ -74,8 +75,8 @@ userSchema.statics.findAndValidate = async function(email, password){
 	return isValid ? foundUser : false;
 }
 
-userSchema.methods.findItemAndAddToCart = async function(product_id, quantity, fromCart){
-	let foundItem;
+userSchema.methods.findItem = function(product_id){
+	let foundItem = {};
 	//search for item in user's shopping cart
 	for(let item of this.shoppingCart){
 		if(String(item.product._id) === String(product_id)){
@@ -83,7 +84,13 @@ userSchema.methods.findItemAndAddToCart = async function(product_id, quantity, f
 			break;
 		}
 	}
-	if(!foundItem){
+	return foundItem;
+}
+
+userSchema.methods.findItemAndAddToCart = async function(product_id, quantity, fromCart){
+	const foundItem = this.findItem(product_id);
+
+	if(Object.keys(foundItem).length === 0){
 		this.shoppingCart.push({product: product_id, quantity: quantity});
 		await this.save();
 		return "Successfully added to shopping cart!";
@@ -109,6 +116,30 @@ userSchema.methods.checkout = async function(order_id, options, body){
 	if (options.save_address)
 		this.shippingAddress = body.shippingAddress;
 	await this.save();
+}
+
+userSchema.methods.addItemsFromOrder = async function(order_id){
+	let foundItems = []
+	let notFoundItems = []
+	const order = await Order.findById(order_id);
+	for(let item of order.products){
+		let foundItem = this.findItem(item.product)
+		if (Object.keys(foundItem).length === 0)
+			notFoundItems.push(item)
+		else{
+			let obj = {
+				quantity : item.quantity,
+				foundItem
+			}
+			foundItems.push(obj)
+		}
+	}
+
+	this.shoppingCart.push.apply(this.shoppingCart, notFoundItems)
+	for (let item of foundItems)
+		item.foundItem.quantity += item.quantity;
+	
+	await this.save()
 }
 
 userSchema.virtual('totalPrice').get(function(){

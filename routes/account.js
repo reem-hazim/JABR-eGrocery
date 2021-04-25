@@ -6,6 +6,7 @@ const authenticateUser = require('../utils/authenticateUser')
 const requireLogin = require('../utils/requireLogin');
 const User = require('../models/user');
 const Product = require('../models/product');
+const Order = require('../models/order');
 const AppError = require('../utils/AppError');
 const constants = require('../utils/constants');
 
@@ -45,6 +46,20 @@ router.post('/:user_id/shoppingcart/:product_id', requireLogin, authenticateUser
 		throw AppError("User or Product not found", 505);
 	const flash_message = await user.findItemAndAddToCart(product._id, parseInt(quantity), fromCart)
 	req.flash('success', flash_message)
+	res.redirect(`/account/${user_id}/shoppingcart`)
+}))
+
+// Add products from an order to shopping cart
+router.post('/:user_id/shoppingcart/order/:order_id', requireLogin, authenticateUser(async (req, res)=>{
+	const {user_id, order_id} = req.params;
+	user = await User.findById(user_id);
+	order = await Order.findById(order_id);
+	if(!user || !order)
+		throw AppError("User or Order not found", 505);
+	// user.shoppingCart.push.apply(user.shoppingCart, order.products)
+	// await user.save();
+	await user.addItemsFromOrder(order_id);
+	req.flash('success', "Successfully added your order to your shopping cart")
 	res.redirect(`/account/${user_id}/shoppingcart`)
 }))
 

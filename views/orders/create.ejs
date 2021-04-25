@@ -21,6 +21,7 @@
                 <input type=radio name="paymentMethod" value="in person"  onclick="paymentSelected()">
                 Cash on Delivery
               </label>
+
             </div>
           </div>
 
@@ -45,13 +46,11 @@
                 Save This Credit Card
                 <input TYPE=checkbox NAME="options[save_card]" checked> 
               </LABEL>
-              </div>
             </div>
           </div>
         </div>
-        </div>
-
-        
+      </div>
+    </div>
 
         <div id="next" class="card" style="width: 100%; max-width: 100%;">
           <div class="card-body">
@@ -93,10 +92,10 @@
                     Save This Shipping Address
                     <input TYPE=checkbox NAME="options[save_address]" checked> 
                   </label>
+
                 </div>
               </div>
             </div>
-
           </div>
         </div>
 
@@ -109,18 +108,21 @@
                   Send Me That Receipt!
                   <br>
                   <input TYPE=checkbox NAME="sendReceipt" VALUE='true' checked> 
-                </LABEL>
+                </label>
               </div>
+
             </div>
           </div>
         </div>
         
 
+    <% if (orderid) { -%>
+      <input type="hidden" name="options[order_id]" value="<%=orderid%>">
+    <% } -%>
+    
     <button id="finally" class="block primary" type="submit" style="margin: 10px 0;">
       <h3>And Finally, You're All Good to Go.</h3>
     </button>
-
-
   </div>
 
 	<%- include('../partials/footer') %>

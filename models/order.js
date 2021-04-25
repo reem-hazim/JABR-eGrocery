@@ -65,6 +65,7 @@ const orderSchema = new mongoose.Schema({
 		type: String,
 	},
 	sendReceipt: Boolean,
+	createdAt: {type: Date, default: Date.now},
 })
 
 orderSchema.methods.calculateTotalPrice = async function(){
@@ -72,13 +73,16 @@ orderSchema.methods.calculateTotalPrice = async function(){
 	await this.populate('products.product', {price: 1}).execPopulate();
 	for (let item of this.products)
 		total += (item.quantity * item.product.price);
-	this.totalPrice = total + this.shippingCost;
+	this.totalPrice = total.toFixed(2) + this.shippingCost;
 	await this.save();
 	return this.totalPrice;
 }
 
-orderSchema.methods.checkout = async function(user){
-	this.set('products', user.shoppingCart)
+orderSchema.methods.checkout = async function(user, old_order){
+	if(old_order.products)
+		this.set('products', old_order.products)
+	else
+		this.set('products', user.shoppingCart)
 	await this.save();
 	for (let item of this.products){
 		let product = await Product.findById(item.product);
