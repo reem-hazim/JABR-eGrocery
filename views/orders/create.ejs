@@ -7,7 +7,8 @@
   <div class="small-container" style="display: flex; justify-content: center; align-items: center;">
 
     <form action="/order/<%=user._id%>/create" method="POST" style="width: 80%; max-width: 100%; display: flex; flex-direction:column; justify-content: center;">
-      <div id="first" class="card" style="width: 100%; max-width: 100%;">
+      <div id="first" style="width: 100%; max-width: 100%;">
+      <div class="card" style="width: 100%; max-width: 100%;">
         <div class="card-body" style="display: flex; flex-direction: column; justify-content: center;">
           <div class="form-group" style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
             <h3>First, Choose How You'll Pay.</h3>
@@ -18,7 +19,7 @@
               </label>
       
               <label style="text-align: center;">
-                <input type=radio name="paymentMethod" value="in person"  onclick="paymentSelected()">
+                <input type=radio name="paymentMethod" id="cash" value="in person"  onclick="paymentSelected()">
                 Cash on Delivery
               </label>
 
@@ -51,23 +52,25 @@
         </div>
       </div>
     </div>
+  </div>
 
-        <div id="next" class="card" style="width: 100%; max-width: 100%;">
+    <div id="next" style="width: 100%; max-width: 100%; display: none;">
+        <div  class="card" style="width: 100%; max-width: 100%;">
           <div class="card-body">
             <div class="form-group" style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
               <h3>Next, Tell Us How You Want It.</h3>
               <div style="padding: 15px 0px; width: 50%; display: flex; justify-content: space-between;">
                 <label style="text-align: center;">
-                  <input TYPE=radio NAME="orderType" ID="delivery" VALUE="delivery" onclick="prefSelected()"> 
+                  <input TYPE=radio NAME="orderType" id="delivery" VALUE="delivery" onclick="prefSelected()"> 
                   Delivered to My Door!
                 </label>
                 <label style="text-align: center;">
-                  <input TYPE=radio NAME="orderType" VALUE="pickup" onclick="prefSelected()"> 
+                  <input TYPE=radio NAME="orderType" id="pickup" VALUE="pickup" onclick="prefSelected()"> 
                   I'll Come Pick it Up!
                 </label>
               </div>
             </div>
-      
+    
             <div class="form-group" id="shippingAddress" style="display:none">
               <div class="card" style="width: 80%; max-width: 100%; margin: auto;">
                 <div class="card-body">
@@ -99,28 +102,36 @@
           </div>
         </div>
 
-        <div id="then" class="card" style="width: 100%; max-width: 100%;">
-          <div class="card-body">
-            <div class="form-group" style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
-              <h3>Then, Opt in for Updates.</h3>
-              <div style="padding: 15px 0px; width: 50%; display: flex; justify-content: center;">
-                <label>
-                  Send Me That Receipt!
-                  <br>
-                  <input TYPE=checkbox NAME="sendReceipt" VALUE='true' checked> 
-                </label>
-              </div>
+        <div id="then" style="width: 100%; max-width: 100%; display: none;">
+          <div class="card" style="width: 100%; max-width: 100%;">
+            <div class="card-body">
+              <div class="form-group" style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
+                <h3>Then, Opt in for Updates.</h3>
+                <div style="padding: 15px 0px; width: 50%; display: flex; justify-content: space-between;">
+                  <label>
+                    Receipt, Please!
+                    <br>
+                    <input id="receipt" TYPE=checkbox NAME="sendReceipt" VALUE='true' onclick="prefReceipt()"> 
+                  </label>
+                  <label>
+                    I'm Okay, Thanks.
+                    <br>
+                    <input id="imagood" TYPE=checkbox VALUE='true' onclick="prefReceipt()"> 
+                  </label>
+                </div>
 
+              </div>
             </div>
           </div>
-        </div>
+      </div>
+    </div>
         
 
     <% if (orderid) { -%>
       <input type="hidden" name="options[order_id]" value="<%=orderid%>">
     <% } -%>
     
-    <button id="finally" class="block primary" type="submit" style="margin: 10px 0;">
+    <button id="finally" class="block primary" type="submit" style="margin: 10px 0; display: none;">
       <h3>And Finally, You're All Good to Go.</h3>
     </button>
   </div>
@@ -135,6 +146,7 @@
 
     function paymentSelected() {
       var card = document.getElementById("card");
+      var cash = document.getElementById("cash");
       var form = document.getElementById("paymentDetails");
 
       // If the checkbox is checked, display the output text
@@ -143,10 +155,15 @@
       } else {
         form.style.display = "none";
       }
+
+      if(card.checked || cash.checked){
+        $("#next").fadeIn(1000);
+      }
     }
 
     function prefSelected() {
       var delivery = document.getElementById("delivery");
+      var pickup = document.getElementById("pickup");
       var form = document.getElementById("shippingAddress");
 
       // If the checkbox is checked, display the output text
@@ -154,6 +171,21 @@
         form.style.display = "block";
       } else {
         form.style.display = "none";
+      }
+
+      if(delivery.checked || pickup.checked){
+        $("#then").fadeIn(1000);
+      }
+    }
+
+    function prefReceipt(){
+      var receipt = document.getElementById("receipt");
+      var imagood = document.getElementById("imagood");
+      if(receipt.checked ^ imagood.checked){
+        $("#finally").fadeIn(1000);
+      }
+      else{
+        $("#finally").fadeOut(1000);
       }
     }
 	</script>
