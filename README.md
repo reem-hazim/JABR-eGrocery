@@ -7,9 +7,9 @@ An e-Grocery web application created as a project for the class CS-UH 2012 Softw
 - Joseph Hong (class of 2023)
 - Armaan Agrawal (class of 2023)
 
-### To run
+### To run the web application
 1. Make sure you have already installed [Node.js and npm](https://nodejs.org/en/download/)
-2. Make sure you have installed [MongoDB](https://docs.mongodb.com/manual/installation/). Once installed, run MongoDB (the mongod process).
+2. Make sure you have installed [MongoDB](https://docs.mongodb.com/manual/installation/). Once installed, run MongoDB (the mongod process) by following the instructions provided by the MongoDB documentation.
 3. Clone this repository: 
 ```
 git clone https://github.com/reem-hazim/JABR-eGrocery.git
