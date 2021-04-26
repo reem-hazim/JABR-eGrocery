@@ -29,6 +29,9 @@ const orderSchema = new mongoose.Schema({
 		enum: ['card', 'in person']
 	},
 	paymentDetails:{
+		cardName: {
+			type: String,
+		},
 		cardNumber: {
 			type: Number,
 		},

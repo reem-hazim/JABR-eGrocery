@@ -31,21 +31,36 @@
               <div class="card-body">
                 <p>Payment Details</p>
                 <br>
+              <label for="cardName">Credit Card</label>
+              <input class="form-control" type="text" id="cardName" name="paymentDetails[cardName]"
+              <% if (user.paymentDetails.cardName) { -%>
+                value="<%=user.paymentDetails.cardName%>"
+              <% } %>
+              >
+
               <label for="cardNumber">Credit Card</label>
-              <input class="form-control" type="text" id="cardNumber" name="paymentDetails[cardNumber] style"
+              <input class="form-control" type="text" id="cardNumber" name="paymentDetails[cardNumber]"
               <% if (user.paymentDetails.cardNumber) { -%>
                 value="<%=user.paymentDetails.cardNumber%>"
               <% } %>
               >
               <label for="expiryDate">Expiry Date </label>
-              <input class="form-control" type="month" id="expiryDate" name="paymentDetails[expiryDate]" value="<%=user.stringExpiryDate%>" style="max-width: 170px;" >
+              <input class="form-control" type="month" id="expiryDate" name="paymentDetails[expiryDate]" value="<%=user.stringExpiryDate%>" style="max-width: 170px;" 
+              <% let today = new Date();
+                let year = today.getFullYear()
+                let month = today.getMonth()
+                if(month < 10)
+                  month = "0" + parseInt(month + 1)
+                let minimum = `${year}-${month}`
+              %>
+              min="<%=minimum%>">
     
               <label for="cvv">CVV </label>
               <input class="form-control" type="password" id="cvv" name="paymentDetails[CVV]" style="width: 50px;">
     
               <label style="text-align: center;">
                 Save This Credit Card
-                <input TYPE=checkbox NAME="options[save_card]" checked> 
+                <input TYPE=checkbox id="save-card" NAME="options[save_card]" checked> 
               </LABEL>
             </div>
           </div>
@@ -93,7 +108,7 @@
           
                   <label>
                     Save This Shipping Address
-                    <input TYPE=checkbox NAME="options[save_address]" checked> 
+                    <input TYPE=checkbox id="save-address" NAME="options[save_address]" checked> 
                   </label>
 
                 </div>
@@ -143,49 +158,7 @@
 			filePath = "url(/img/background" + counter + ".jpeg)";
 			$(".parallax").css({"background-image":filePath});
 		});
-
-    function paymentSelected() {
-      var card = document.getElementById("card");
-      var cash = document.getElementById("cash");
-      var form = document.getElementById("paymentDetails");
-
-      // If the checkbox is checked, display the output text
-      if (card.checked == true){
-        form.style.display = "block";
-      } else {
-        form.style.display = "none";
-      }
-
-      if(card.checked || cash.checked){
-        $("#next").fadeIn(1000);
-      }
-    }
-
-    function prefSelected() {
-      var delivery = document.getElementById("delivery");
-      var pickup = document.getElementById("pickup");
-      var form = document.getElementById("shippingAddress");
-
-      // If the checkbox is checked, display the output text
-      if (delivery.checked == true){
-        form.style.display = "block";
-      } else {
-        form.style.display = "none";
-      }
-
-      if(delivery.checked || pickup.checked){
-        $("#then").fadeIn(1000);
-      }
-    }
-
-    function prefReceipt(){
-      var receipt = document.getElementById("receipt");
-      var imagood = document.getElementById("imagood");
-      if(receipt.checked ^ imagood.checked){
-        $("#finally").fadeIn(1000);
-      }
-      else{
-        $("#finally").fadeOut(1000);
-      }
-    }
 	</script>
+  <script type="text/javascript" src="/js/checkoutLogic.js"></script>
+</body>
+</html>

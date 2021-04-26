@@ -28,10 +28,10 @@ const userSchema = new mongoose.Schema({
 		default: ""
 	},
 	paymentDetails:{
-		cardNumber: {
-			type: Number,
+		cardName : {
+			type: String,
 		},
-		CVV: {
+		cardNumber: {
 			type: Number,
 		},
 		expiryDate: {

@@ -8,6 +8,8 @@ const Product = require('../models/product');
 const Order = require('../models/order')
 const AppError = require('../utils/AppError');
 const constants = require('../utils/constants')
+const {validateCardNumber} = require('../utils/validator');
+const {validationResult} = require('express-validator')
 
 // checkout
 router.get('/:user_id/checkout', requireLogin, authenticateUser(async (req, res)=>{
@@ -25,8 +27,14 @@ router.get('/:user_id/create', requireLogin, authenticateUser(async (req, res)=>
 }))
 
 //create order
-router.post('/:user_id/create', requireLogin, authenticateUser(async (req, res)=>{
+router.post('/:user_id/create', requireLogin, [validateCardNumber], authenticateUser(async (req, res)=>{
 	const {user_id} = req.params;
+	const errors = validationResult(req)
+    if (!errors.isEmpty()) {
+    	console.log(errors)
+    	req.flash('error', 'Must be a valid credit card number')
+      	return res.redirect(`/order/${user_id}/create`);
+    }
 	//find user
 	user = await User.findById(user_id);
 	//deconstruct the request body
@@ -34,6 +42,15 @@ router.post('/:user_id/create', requireLogin, authenticateUser(async (req, res)=
 	let body = req.body;
 	delete body.options;
 	body.shippingCost = constants.shippingCost;
+	if(body.paymentMethod === 'in person')
+		delete body.paymentDetails
+	else {
+		body.paymentDetails.expiryDate = new Date(body.paymentDetails.expiryDate)
+    	body.paymentDetails.expiryDate.setMonth(body.paymentDetails.expiryDate.getMonth()+1)
+	}
+	if(body.orderType === 'pickup')
+		delete body.shippingAddress
+
 	//create new order	
 	let order = new Order(body);
 	let old_order = {};
