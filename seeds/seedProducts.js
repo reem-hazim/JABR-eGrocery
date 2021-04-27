@@ -154,7 +154,7 @@ const seedProducts = [
 	},
 	{
 		image: "https://hips.hearstapps.com/vader-prod.s3.amazonaws.com/1598299038-p427419-av-01-zoom.jpg",
-		name: "The Ordinary Hyaluroic Acid",
+		name: "The Ordinary Hyaluronic Acid",
 		price: 29.00,
 		defWeight: "",
 		qtyAvailable: 42,
