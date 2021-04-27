@@ -22,7 +22,7 @@ router.post('/login', wrapAsync(async (req, res)=>{
 		req.flash('success', 'Successfully logged in!');
 		res.redirect('/'); 
 	} else {
-		req.flash('error', 'The username or password is incorrect');
+		req.flash('error', "A combination of this username and password doesn't exist.");
 		res.redirect('/login');
 	}
 }));

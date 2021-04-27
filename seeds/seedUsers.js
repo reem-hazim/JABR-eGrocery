@@ -71,4 +71,4 @@ User.deleteMany({})
 // Insert new users
 hashAndSaveUsers();
 
-mongoose.connection.close()
+// mongoose.connection.close()

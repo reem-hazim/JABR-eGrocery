@@ -749,16 +749,11 @@ button.primary{
     max-width: 25%;
     transition: 0.5s;
 }
-/* .card:hover{
-    transform: translateY(-2px);
-} */
+
 .card h5 a {
     font-size: 1.2rem;
     color: black;
 }
-
-
-
 .card a:hover {
     color: rgb(134, 188, 235);
     text-decoration: none;
@@ -1015,4 +1010,17 @@ select:focus{
 
 .form-control {
     width: 100%;
+}
+
+/* ================================================================================================ */
+/* ================================================================================================ */
+/* Orders */
+.orderform p {
+    font-size: 1rem;
+}
+.orderform h5 {
+    font-size: 1.75rem;
+}
+.orderform h4 {
+    font-size: 1.2rem;
 }

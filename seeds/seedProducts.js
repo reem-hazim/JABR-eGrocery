@@ -154,7 +154,7 @@ const seedProducts = [
 	},
 	{
 		image: "https://hips.hearstapps.com/vader-prod.s3.amazonaws.com/1598299038-p427419-av-01-zoom.jpg",
-		name: "The Ordinary Hyaluroic Acid",
+		name: "The Ordinary Hyaluronic Acid",
 		price: 29.00,
 		defWeight: "",
 		qtyAvailable: 42,
@@ -318,7 +318,7 @@ const seedProducts = [
 		name: "Barquillos Chocolate Wafer Rolls",
 		price: 9.99,
 		defWeight: "oz",
-		qtyAvailable: 51,
+		qtyAvailable: 0,
 		brand: "Barquillos",
 		department: "Snacks",
 		category: "Wafers",
@@ -344,4 +344,4 @@ Product.insertMany(seedProducts)
 		console.log(err);
 	})
 
-mongoose.connection.close()
+// mongoose.connection.close()

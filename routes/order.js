@@ -40,7 +40,7 @@ router.post('/:user_id/create', requireLogin, [validateCardNumber], authenticate
 	const errors = validationResult(req)
     if (!errors.isEmpty()) {
     	console.log(errors)
-    	req.flash('error', 'Must be a valid credit card number')
+    	req.flash('error', "Sorry, that doesn't seem to be a valid card number. Please try again.")
       	return res.redirect(`/order/${user_id}/create`);
     }
 	//find user
@@ -71,7 +71,7 @@ router.post('/:user_id/create', requireLogin, [validateCardNumber], authenticate
 	await order.checkout(user, old_order);
 	//delete shopping cart
 	await user.checkout(order._id, options, body);
-	req.flash("success", "Successfully made an order! Please make sure you have received a confirmation email.");
+	req.flash("success", "Successfully Ordered! Check for an email if you subscribed for one!");
 	res.redirect(`/order/${user_id}/checkout`);
 }))
 
