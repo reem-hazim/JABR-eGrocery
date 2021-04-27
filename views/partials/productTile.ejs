@@ -33,7 +33,11 @@
             Brand: <%= products[idx].brand%>
           </p>
         </div>
-        <div class="addToCart">
+        <% if (!(products[idx].qtyAvailable > 0)) { -%>
+          <div class="addToCart" style="display: none">             
+            <% }	else { -%>
+              <div class="addToCart">
+            <% } -%>
           <form
           <% if (!loggedIn) { -%>
               action="/login" method="GET"

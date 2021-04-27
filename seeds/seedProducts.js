@@ -318,7 +318,7 @@ const seedProducts = [
 		name: "Barquillos Chocolate Wafer Rolls",
 		price: 9.99,
 		defWeight: "oz",
-		qtyAvailable: 51,
+		qtyAvailable: 0,
 		brand: "Barquillos",
 		department: "Snacks",
 		category: "Wafers",
@@ -344,4 +344,4 @@ Product.insertMany(seedProducts)
 		console.log(err);
 	})
 
-mongoose.connection.close()
+// mongoose.connection.close()
