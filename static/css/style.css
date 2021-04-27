@@ -749,16 +749,11 @@ button.primary{
     max-width: 25%;
     transition: 0.5s;
 }
-/* .card:hover{
-    transform: translateY(-2px);
-} */
+
 .card h5 a {
     font-size: 1.2rem;
     color: black;
 }
-
-
-
 .card a:hover {
     color: rgb(134, 188, 235);
     text-decoration: none;
