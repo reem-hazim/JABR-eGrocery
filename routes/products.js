@@ -11,30 +11,7 @@ router.get('/', wrapAsync(async (req, res, next)=>{
 	let d = req.query.d;
 	let s = req.query.sort;
 
-	// if(!q)
-	// 	q="";
-	// var allProducts;
-	//
-	// if (q) { // search occurred
-	// 	const regex = new RegExp(q, 'gi');
-	// 	allProducts = await Product.find({$or:[{ brand : regex }, { name : regex }]});
-	//
-	// 	if (allProducts.length < 1){
-	// 		req.flash('error', "No products match your search term, please try again!");
-	// 		res.render("products/index", {title, allProducts, s, q, error: req.flash('error')});
-	// 	}
-	//
-	// }
-	//
-	// else if (d) { // department search occurred
-	// 	allProducts = await Product.find({department : d});
-	// }
-	//
-	// else { // just accessing the main products page
-	// 	allProducts = await Product.find({});
-	// }
-
-	var allProducts;
+	let allProducts;
 
 	if (!q && !d) { // just accessing the main products page
 		allProducts = await Product.find({});
