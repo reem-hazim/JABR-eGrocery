@@ -69,6 +69,22 @@ const seedProducts = [
 		featured: true,
 		added: "2021-04-10",
 	},
+
+	{
+		image: "https://chiquitabrands.com/wp-content/uploads/2019/08/Organics2.jpg",
+		name: "Banana",
+		price: 3.00,
+		defWeight: "g",
+		qtyAvailable: 200,
+		brand: "Chiquita",
+		department: "Produce",
+		category: "Fruits",
+		featured: true,
+		added: "2021-04-09",
+	},
+
+
+
 	{
 		image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRSVEcyoWRMx4NYaNaa0LjjLkQ1NHzI7pNqkHeYgIPOqd1_SgpkpeNsMb1oigSbO4VfdGQ7pkE&usqp=CAc",
 		name: "Head & Shoulders Smooth and Silky Shampoo",
@@ -224,6 +240,93 @@ const seedProducts = [
 		category: "Chocolates",
 		added: "2021-04-27",
 	},
+
+	{
+		image: "https://images-na.ssl-images-amazon.com/images/I/81vJyb43URL._SL1500_.jpg",
+		name: "Lay's Classic Potato Chips",
+		price: 7.00,
+		defWeight: "oz",
+		qtyAvailable: 180,
+		brand: "Lay's",
+		department: "Snacks",
+		category: "Chips",
+		added: "2021-02-02",
+	},
+
+	{
+		image: "https://images-na.ssl-images-amazon.com/images/I/81Yqf3flvcL._SL1500_.jpg",
+		name: "Planters Lightly Salted Mixed Nuts",
+		price: 14.99,
+		defWeight: "oz",
+		qtyAvailable: 12,
+		brand: "Planters",
+		department: "Snacks",
+		category: "Mixed Nuts",
+		added: "2021-03-01",
+	},
+
+	{
+		image: "https://www.bigbasket.com/media/uploads/p/xxl/312169_10-britannia-bake-rusk-toast.jpg",
+		name: "Britannia Bake Rusk Toast",
+		price: 10.00,
+		defWeight: "g",
+		qtyAvailable: 75,
+		brand: "Britannia",
+		department: "Snacks",
+		category: "Bread",
+		added: "2021-03-31",
+	},
+
+	{
+		image: "https://www.bigbasket.com/media/uploads/p/xxl/1201310-2_1-britannia-treat-jim-jam-biscuits.jpg",
+		name: "Britannia Treat Jim Jam Cream Biscuits",
+		price: 19.99,
+		defWeight: "g",
+		qtyAvailable: 28,
+		brand: "Britannia",
+		department: "Snacks",
+		category: "Biscuit",
+		added: "2021-03-31",
+	},
+
+	{
+		image: "https://5.imimg.com/data5/SC/AK/LJ/SELLER-19591746/cadbury-oreo-vanilla-creme-biscuit-50gm-mrp-rs-10-500x500.jpg",
+		name: "Cadbury Oreo Vanilla Creme Biscuit",
+		price: 9.99,
+		defWeight: "g",
+		qtyAvailable: 74,
+		brand: "Cadbury",
+		department: "Snacks",
+		category: "Biscuit",
+		added: "2021-03-17",
+	},
+
+	{
+		image: "https://images-na.ssl-images-amazon.com/images/I/71MQeIS7FAL.jpg",
+		name: "Doritos Nacho Cheese Flavored Tortilla Chips",
+		price: 4.99,
+		defWeight: "oz",
+		qtyAvailable: 48,
+		brand: "Doritos",
+		department: "Snacks",
+		category: "Chips",
+		added: "2021-03-24",
+	},
+
+	{
+		image: "https://i5.walmartimages.com/asr/7dfe5a91-42c7-4048-a445-a7bd7dc466fe_1.4f064c498d96f41d9e80bb14f0df9d56.jpeg",
+		name: "Barquillos Chocolate Wafer Rolls",
+		price: 9.99,
+		defWeight: "oz",
+		qtyAvailable: 51,
+		brand: "Barquillos",
+		department: "Snacks",
+		category: "Wafers",
+		added: "2021-04-06",
+	},
+
+
+
 
 
 
