@@ -60,7 +60,7 @@
     
               <label style="text-align: center;">
                 Save This Credit Card
-                <input TYPE=checkbox id="save-card" NAME="options[save_card]" checked> 
+                <input type=checkbox id="save-card" name="options[save_card]" checked> 
               </LABEL>
             </div>
           </div>
@@ -142,6 +142,8 @@
     </div>
         
 
+      <input type="hidden" name="options[random]" value="random">
+      
     <% if (orderid) { -%>
       <input type="hidden" name="options[order_id]" value="<%=orderid%>">
     <% } -%>
@@ -149,6 +151,7 @@
     <button id="finally" class="block primary" type="submit" style="margin: 10px 0; display: none;">
       <h3>And Finally, You're All Good to Go.</h3>
     </button>
+  </form>
   </div>
 
 	<%- include('../partials/footer') %>

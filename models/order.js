@@ -95,5 +95,14 @@ orderSchema.methods.checkout = async function(user, old_order){
 	await this.calculateTotalPrice();	
 }
 
+orderSchema.methods.checkItemAvailability =async function(){
+	await this.populate('products.product', {qtyAvailable: 1, name: 1, _id: 1}).execPopulate();
+	let result = []
+	for (let item of this.products){
+		if(item.product.qtyAvailable < item.quantity)
+			result.push(item.product.name)
+	}
+	return result;
+}
 
 module.exports = mongoose.model('Order', orderSchema)

@@ -122,16 +122,19 @@ userSchema.methods.addItemsFromOrder = async function(order_id){
 	let foundItems = []
 	let notFoundItems = []
 	const order = await Order.findById(order_id);
+	const unavProducts = await order.checkItemAvailability();
 	for(let item of order.products){
-		let foundItem = this.findItem(item.product)
-		if (Object.keys(foundItem).length === 0)
-			notFoundItems.push(item)
-		else{
-			let obj = {
-				quantity : item.quantity,
-				foundItem
+		if(!unavProducts.includes(item.product.name)){
+			let foundItem = this.findItem(item.product)
+			if (Object.keys(foundItem).length === 0)
+				notFoundItems.push(item)
+			else{
+				let obj = {
+					quantity : item.quantity,
+					foundItem
+				}
+				foundItems.push(obj)
 			}
-			foundItems.push(obj)
 		}
 	}
 
@@ -140,6 +143,7 @@ userSchema.methods.addItemsFromOrder = async function(order_id){
 		item.foundItem.quantity += item.quantity;
 	
 	await this.save()
+	return unavProducts;
 }
 
 userSchema.virtual('totalPrice').get(function(){

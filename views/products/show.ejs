@@ -73,10 +73,11 @@
 						<% } else { -%>
 							action= "/account/<%=user_id%>/shoppingcart/<%=product._id%>" method="POST"
 						<% } -%>>
+
 							<div class="productDescRow">
 								<div>Qty</div>
 								<div>
-									<select name="quantity">
+									<!-- <select name="quantity">
 										<option value="1">1</option>
 										<option value="2">2</option>
 										<option value="3">3</option>
@@ -97,11 +98,19 @@
 										<option value="18">18</option>
 										<option value="19">19</option>
 										<option value="20">20</option>
-									</select>
+									</select> -->
+									<input type="number" name="quantity" min="1" max="<%=product.qtyAvailable%>" step="1" size="3" style="margin-left: 3px; text-align: center; width: 50%; min-width: 50px; display: inline-block;"
+										<% if(!product.inStock){ -%>
+											disabled
+										<% } -%>
+										>
 								</div>
 							</div>
 							<div class="addToCart">
-								<button class="block primary" type="submit"> 
+								<button class="block primary" type="submit"
+								<% if(!product.inStock){ -%>
+											disabled
+										<% } -%>> 
 									Add to Cart
 								</button>
 							</div>

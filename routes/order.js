@@ -22,6 +22,14 @@ router.get('/:user_id/create', requireLogin, authenticateUser(async (req, res)=>
 	const {user_id} = req.params;
 	const {orderid=""} = req.query
 	user = await User.findById(user_id);
+	if(orderid){
+		const order = await Order.findById(orderid)
+		const result = await order.checkItemAvailability();
+		if(result.length > 0){
+			req.flash('error', `There isn't enough ${result[0]} for this order. Please add products to cart instead.`);
+			res.redirect(`/order/${user_id}`)
+		}
+	}
 	const emirates = ['Dubai', 'Abu Dhabi', 'Ajman', 'Sharjah', 'Ras Al Khaimah', 'Umm Al Quwain', 'Fujairah'];
 	res.render('orders/create', {title: "One More Step", user, emirates, orderid});
 }))
@@ -41,7 +49,9 @@ router.post('/:user_id/create', requireLogin, [validateCardNumber], authenticate
 	const {options} = req.body;
 	let body = req.body;
 	delete body.options;
+
 	body.shippingCost = constants.shippingCost;
+
 	if(body.paymentMethod === 'in person')
 		delete body.paymentDetails
 	else {
@@ -54,8 +64,10 @@ router.post('/:user_id/create', requireLogin, [validateCardNumber], authenticate
 	//create new order	
 	let order = new Order(body);
 	let old_order = {};
+
 	if(options.order_id)
 		old_order = await Order.findById(options.order_id)
+	
 	await order.checkout(user, old_order);
 	//delete shopping cart
 	await user.checkout(order._id, options, body);

@@ -191,12 +191,48 @@ const seedProducts = [
 		category: "Lip Products",
 		added: "2021-04-02",
 	},
+	{
+		image: "https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcRZwcppvI_TumyWO6dkHiLTiagpX_Tgn0hIPqdwQispSGIEXBal3EVsRfmSAU5Sv08MLHNj11OrtsQ&usqp=CAc",
+		name: "Lay's Salt Potato Chips 23g",
+		price: 0.95,
+		defWeight: "",
+		qtyAvailable: 55,
+		brand: "Lay's",
+		department: "Snacks",
+		category: "Chips",
+		added: "2021-04-27",
+	},
+	{
+		image: "https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcTKFxHaXTT7I5hHt9oMveYHxhLMJTEJlZp-vsPFfne6eMWiXn-x3Bcc3qArnCkBv369LBrJgWoYANs&usqp=CAc",
+		name: "Snickers Chocolate Bar 50g",
+		price: 2.60,
+		defWeight: "",
+		qtyAvailable: 55,
+		brand: "Snickers",
+		department: "Snacks",
+		category: "Chocolates",
+		added: "2021-04-27",
+	},
+	{
+		image: "https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcQV65Wx8hgF7bg4K06pfwNpwr14-WHpDwbpNLALsUid-2Y_wpndASZN2ieXkTd90xvmIzOCXiEZrko&usqp=CAc",
+		name: "TwixTop Chocolate Bars, 21g x 20",
+		price: 21.56,
+		defWeight: "",
+		qtyAvailable: 55,
+		brand: "Twix",
+		department: "Snacks",
+		category: "Chocolates",
+		added: "2021-04-27",
+	},
 
 
 
 ];
 
+// Delete existing products
+Product.deleteMany({})
 
+// Insert new products
 Product.insertMany(seedProducts)
 	.then(res => {
 		console.log(res);
@@ -204,3 +240,5 @@ Product.insertMany(seedProducts)
 	.catch(err => {
 		console.log(err);
 	})
+
+mongoose.connection.close()

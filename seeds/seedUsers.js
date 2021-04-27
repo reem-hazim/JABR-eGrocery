@@ -66,4 +66,9 @@ const hashAndSaveUsers = async ()=>{
 	})
 }
 
+// Delete all users
+User.deleteMany({})
+// Insert new users
 hashAndSaveUsers();
+
+mongoose.connection.close()
