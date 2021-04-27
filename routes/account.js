@@ -27,7 +27,7 @@ router.put('/:user_id', requireLogin, [validateCardNumber], authenticateUser(asy
 	const errors = validationResult(req)
     if (!errors.isEmpty()) {
     	console.log(errors)
-    	req.flash('error', 'Must be a valid credit card number')
+    	req.flash('error', "Sorry, that doesn't seem to be a valid card number. Please try again.")
       	return res.redirect(`/account/${user_id}`);
     }
     let userInfo = req.body
@@ -71,9 +71,9 @@ router.post('/:user_id/shoppingcart/order/:order_id', requireLogin, authenticate
 	// await user.save();
 	const unavProducts = await user.addItemsFromOrder(order_id);
 	if(unavProducts.length > 0)
-		req.flash('error', "There isn't enough stock available for some of your products")
+		req.flash('error', "Sorry, there isn't enough stock available for some of your products.")
 	else
-		req.flash('success', "Successfully added your order to your shopping cart")
+		req.flash('success', "Successfully added your order to your shopping cart!")
 	res.redirect(`/account/${user_id}/shoppingcart`)
 }))
 
@@ -81,7 +81,7 @@ router.post('/:user_id/shoppingcart/order/:order_id', requireLogin, authenticate
 router.delete('/:user_id/shoppingcart/:product_id', requireLogin, authenticateUser(async (req, res)=>{
 	const {user_id, product_id} = req.params;
 	await User.findByIdAndUpdate(user_id, { $pull: {shoppingCart: {product:product_id} }}, {new:true, useFindAndModify: false})
-	req.flash("success", "Successfully deleted this product")
+	req.flash("success", "Successfully removed this product from your cart.")
 	res.redirect(`/account/${user_id}/shoppingcart`)
 }))
 
