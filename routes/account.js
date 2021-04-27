@@ -67,8 +67,6 @@ router.post('/:user_id/shoppingcart/order/:order_id', requireLogin, authenticate
 	order = await Order.findById(order_id);
 	if(!user || !order)
 		throw AppError("User or Order not found", 505);
-	// user.shoppingCart.push.apply(user.shoppingCart, order.products)
-	// await user.save();
 	const unavProducts = await user.addItemsFromOrder(order_id);
 	if(unavProducts.length > 0)
 		req.flash('error', "There isn't enough stock available for some of your products")
