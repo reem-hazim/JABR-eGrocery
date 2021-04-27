@@ -333,15 +333,15 @@ const seedProducts = [
 ];
 
 // Delete existing products
-Product.deleteMany({})
+Product.deleteMany({}).then(res => {
+	Product.insertMany(seedProducts)
+		.then(res => {
+			console.log(res);
+		})
+		.catch(err => {
+			console.log(err);
+		})
+})
 
-// Insert new products
-Product.insertMany(seedProducts)
-	.then(res => {
-		console.log(res);
-	})
-	.catch(err => {
-		console.log(err);
-	})
 
 // mongoose.connection.close()
