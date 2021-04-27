@@ -21,7 +21,7 @@
 					<div class="card-body">
 						<div style="display: flex; justify-content: space-between; align-items: center;">
 							
-							<h5 id="dateHeader" style="padding: 10px 0; margin: 0;"></h5>
+							<h5 class="dateHeader" style="padding: 10px 0; margin: 0;"></h5>
 							<script>
 								var month = new Array();
 								month[0] = "January";
@@ -38,8 +38,7 @@
 								month[11] = "December";
 								var n = month[<%=order.createdAt.getMonth()%>];
 								var string = String(<%=order.createdAt.getDate()%>) + " " + n + ", " + String(<%=order.createdAt.getFullYear()%>);
-								$("#dateHeader").html(string);
-								console.log(n);
+								$(".dateHeader").html(string);
 							</script>
 							<div id="buttons" style="display: flex; justify-content: space-around; align-items: baseline; padding: 10px;">
 								<form action="/order/<%=user._id%>/create" method="GET">
