@@ -242,8 +242,8 @@ const seedProducts = [
 	},
 
 	{
-		image: "https://images-na.ssl-images-amazon.com/images/I/81vJyb43URL._SL1500_.jpg",
-		name: "Lay's Classic Potato Chips",
+		image: "https://images-na.ssl-images-amazon.com/images/I/51R5ARRU2SL.jpg",
+		name: "Lay's Tangy Tomato",
 		price: 7.00,
 		defWeight: "oz",
 		qtyAvailable: 180,
