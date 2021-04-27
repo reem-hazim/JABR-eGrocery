@@ -8,48 +8,12 @@
 			<div class="productDescImg showProd">
 				<img src=<%=product.image%> alt="products"/>
 			</div>
-			<!-- <div class="col-4">
-				<ul>
-					<h1><%= product.name %></h1>
-					<li><a href="#reviews">
-						<div class="rating">
-							<span><i class="fa fa-star"></i></span>
-							<span><i class="fa fa-star"></i></span>
-							<span><i class="fa fa-star"></i></span>
-							<span><i class="fa fa-star-o"></i></span>
-							<span><i class="fa fa-star-o"></i></span>
-							<span> 81 reviews</span>
-						</div>
-					</a></li>
-					<p>Price: AED <%= product.price %></p>
-					<li>Description:<p>This is a great product.</p></li>
-					<li>Images:
-						<ul class="images">
-							<li><button type="button" class="light">
-								<img src="/images/p6.jpg" alt="product" class="small">
-							</button></li>
-							<li><button type="button" class="light">
-								<img src="/uploads/1600863487091.jpg" alt="product" class="small">
-							</button></li>
-						</ul>
-					</li>
-				</ul>
-			</div> -->
 				<div class="card card-body">
 					<ul>
 						<h3><%= product.name %></h3>
-						<!-- <h3>Price: $<%= product.price %></h3>
-						<h3>Brand: <%= product.brand %></h3> -->
-							<!-- <div class="rating"><span><i class="fa fa-star"></i></span>
-								<span><i class="fa fa-star"></i></span>
-								<span><i class="fa fa-star"></i></span>
-								<span><i class="fa fa-star"></i></span>
-								<span><i class="fa fa-star-half-o"></i></span>
-								<span> 120 reviews</span>
-							</div> -->
 						<div class="productDescRow">
 							<div>Price</div>
-							<div>$<%= product.price.toFixed(2)%>
+							<div>AED <%= product.price.toFixed(2)%>
 								<% if (product.defWeight != "") { -%>
 									per <%=product.defWeight%>
 								<% } -%>
@@ -75,7 +39,7 @@
 						<% } -%>>
 
 						<% if (!(product.qtyAvailable > 0)) { -%>
-							<div class="productDescRow" style="display: none">             
+							<div class="productDescRow" style="display: none">
 							<% }	else { -%>
 							<div class="productDescRow">
 							<% } -%>
@@ -89,18 +53,18 @@
 								</div>
 							</div>
 							<% if (!(product.qtyAvailable > 0)) { -%>
-							<div class="addToCart" style="display: none">             
+							<div class="addToCart" style="display: none">
 							<% }	else { -%>
 							<div class="addToCart">
 							<% } -%>
 								<button class="block primary" type="submit"
 								<% if(!product.inStock){ -%>
 											disabled
-										<% } -%>> 
+										<% } -%>>
 									Add to Cart
 								</button>
 							</div>
-							
+
 						</form>
 					</ul>
 				</div>
